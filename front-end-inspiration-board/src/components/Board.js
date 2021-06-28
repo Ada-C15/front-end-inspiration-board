@@ -1,0 +1,7 @@
+
+
+/*Board
+
+Props:
+board
+onBoardSelect */
