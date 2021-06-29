@@ -1,5 +1,6 @@
+import React from 'react';
+
 const Card = () => {
-    return (
-        
-    )
+    return []
 }
+export default Card;
