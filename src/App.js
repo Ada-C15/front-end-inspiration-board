@@ -1,4 +1,6 @@
 import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import Board from './components/Board';
 import Card from './components/Card';
 import CardList from './components/CardList';
@@ -6,6 +8,24 @@ import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 
 function App() {
+  // state of the list of boards
+  const [boardsList, setBoardsList] = useState([]);
+  // state of the current board (state is the same structure as the response in flask)
+  const [selectedBoard, setSelectedBoard] = useState({
+    title: '',
+    owner: '',
+    board_id: null
+  });
+
+  // this loads the list of boards from the Flask API ONCE, after the object renders
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
+    }).then((response) => {
+      setBoardsList(response.data);
+    })
+  }, []);
+  console.log(boardsList);
+
   return (
     <div className="page__container">
       <div className="content__container">
@@ -14,6 +34,7 @@ function App() {
           <section>
             <h2>Boards</h2>
             <ol>
+              {/* these list items will be rendered from within the Board component? */}
               <li>(Board List Placeholder)</li>
               <li>(Board List Placeholder)</li>
               <li>(Board List Placeholder)</li>
