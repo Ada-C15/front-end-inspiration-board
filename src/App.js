@@ -1,13 +1,59 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+// const axios = require('axios');
+import FindCityForm from './components/FindCityForm';
+import { LOCATIONIQ_API_KEY } from './secrets.js'
+import './App.css';
 
-function App() {
+
+const URL = 'https://us1.locationiq.com/v1/search.php';
+
+function App () {
+  const [likeCount, setLikeCount] = useState(1);
+  const [boardContent, setBoardContent] = useState("")
+  const [errors, setErrors] = useState(null);
+
+  const Board = ()
+
+  const getLocation = (city) => {
+    axios.get(`${ URL }?key=${ LOCATIONIQ_API_KEY }&q=${ city }&format=json`)
+      .then((response) => {
+        // console.log(response.data);
+        setLocation({
+          lat: response.data[0].lat,
+          lon: response.data[0].lon,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        setErrors(error.response.data.error);
+      });
+  }
+
+  useEffect(() => {
+    getLocation('Seattle');
+  }, []);
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <div>
+          <ul>
+            <li>Lat: {location.lat}</li>
+            <li>Lon: {location.lon}</li>
+          </ul>
+        </div>
+        <div>
+          {errors ? <h2>{errors}</h2> : '' }
+        </div>
+        <div>
+          <FindCityForm onSubmitCallback={getLocation} />
+        </div>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          My API key is {LOCATIONIQ_API_KEY} and was loaded from secrets.js!
         </p>
         <a
           className="App-link"
@@ -21,5 +67,8 @@ function App() {
     </div>
   );
 }
+
+export default App;
+
 
 export default App;

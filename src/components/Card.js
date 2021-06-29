@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Card = (props) => {
     // move this to parent file 
-    const [likeCount, setLikeCount] = useState(1);
+    // const [likeCount, setLikeCount] = useState(1);
 
     const likeIncrease = () => {
         setLikeCount(likeCount + 1);
