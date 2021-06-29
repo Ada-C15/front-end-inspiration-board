@@ -21,17 +21,19 @@ function App() {
     board_id: null
   });
 
-  // sends GET request to boards endpoint
-  // response object contains data for all boards
-  // response used to update boardsData state
+  // useEffect utilized to send GET request to boards endpoint
+  // > response object contains data for all boards
+  // > response used to update boardsData state
   useEffect(() => {
     axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
     })
     .then((response) => {setBoardsData(response.data);
     })
-  }, []);
+  }, []); // <-- Because we want this API call to happen only when the component
+  // mounts, and not when any updates are made, our dependency list is an empty array []
   
+  // event handler responsible for updating setSelectedBoard state
   const selectBoard = (board) => { setSelectedBoard(board) };
 
   // mapping the response data from a successful GET request to 
