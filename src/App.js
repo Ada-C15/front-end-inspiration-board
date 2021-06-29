@@ -52,6 +52,18 @@ function App() {
     getBoards();
   }, [])
 
+  const createBoard = (title, owner) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards?title=${title}&owner=${owner}&format=json`)
+      .then((response) => {
+        console.log(response.data);
+        const newBoard = response.data
+        const newData = [...boardData]
+        newData.push(newBoard)
+        setBoardData(newData)
+        
+      })
+  }
+
   return (
     <div className="page__container">
       <div className="content__container">
@@ -67,14 +79,7 @@ function App() {
           </section>
           <section className="new-board-form__container">
             <h2>Create a New Board</h2>
-            <form className="new-board-form__form">
-              <label>Title </label>
-              <input type="text" class="invalid-form-input" value="title" />
-              <label>Owner's Name </label>
-              <input type="text" className="invalid-form-input" value="name" />
-              <p>Preview: </p>
-              <input type="Submit" className="new-board-form__form-submit-btn" />
-            </form>
+            <NewBoardForm addBoardCallback={createBoard}/>
             <span className="new-board-form__toggle-btn">Hide New Board Form</span>
           </section>
         </section>
