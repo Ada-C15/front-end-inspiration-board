@@ -3,7 +3,7 @@ const NewBoardForm = (props) => {
     const [formFields, setFormFields] = useState({
         title: '',
         owner: ''
-                
+
     });
 
     const onTitleChange = (event) => {
@@ -23,11 +23,13 @@ const NewBoardForm = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
+        // props.addBoardCallback(formFields.title, formFields.owner);
+
         props.addBoardCallback({
             title: formFields.title,
             owner: formFields.owner
         });
-    
+
         setFormFields({
             title: '',
             owner: '',
@@ -35,9 +37,9 @@ const NewBoardForm = (props) => {
     }
     return (
         <form onSubmit={onFormSubmit} className="new-board-form__form">
-            <label>Title </label>
+            <label htmlFor="title">Title </label>
             <input type="text" class="invalid-form-input" value={formFields.title} onChange={onTitleChange}/>
-            <label>Owner's Name </label>
+            <label htmlFor="owner">Owner's Name </label>
             <input type="text" className="invalid-form-input" value={formFields.owner} onChange={onOwnerChange} />
             <p>Preview: </p>
             <input type="Submit" className="new-board-form__form-submit-btn" />
@@ -47,5 +49,3 @@ const NewBoardForm = (props) => {
 };
 
 export default NewBoardForm;
-
-

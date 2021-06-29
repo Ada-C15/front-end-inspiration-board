@@ -52,17 +52,20 @@ function App() {
     getBoards();
   }, [])
 
-  const createBoard = (title, owner) => {
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards?title=${title}&owner=${owner}&format=json`)
+  const createBoard = (newBoard) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
       .then((response) => {
         console.log(response.data);
-        const newBoard = response.data
+        const boardThing = response.data
         const newData = [...boardData]
-        newData.push(newBoard)
+        newData.push(boardThing)
         setBoardData(newData)
-        
       })
   }
+
+  // useEffect(() => {
+  //   createBoard();
+  // }, [boardData]);
 
   return (
     <div className="page__container">
