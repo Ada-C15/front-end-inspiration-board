@@ -45,6 +45,7 @@ function App() {
   });
 
   // Board component will display a blue border if rendered correctly
+  // here
   return (
     <div>
       <h1>Inspiration Board</h1>
