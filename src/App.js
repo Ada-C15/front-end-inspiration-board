@@ -1,74 +1,62 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// const axios = require('axios');
-import FindCityForm from './components/FindCityForm';
-import { LOCATIONIQ_API_KEY } from './secrets.js'
 import './App.css';
+import Board from './components/Board'
+import CardList from './components/CardList'
+import NewBoardForm from './components/NewBoardForm';
+import NewCardForm from './components/NewCardForm';
 
-
-const URL = 'https://us1.locationiq.com/v1/search.php';
 
 function App () {
+  const BASE_URL = "http://localhost:5000"
+  const [boards, setBoards] = useState([])
   const [likeCount, setLikeCount] = useState(1);
-  const [boardContent, setBoardContent] = useState("")
   const [errors, setErrors] = useState(null);
 
-  const Board = ()
+  // What functionalities to be incluced in this App file?
+  // render the current list of boards with the newly added board
 
-  const getLocation = (city) => {
-    axios.get(`${ URL }?key=${ LOCATIONIQ_API_KEY }&q=${ city }&format=json`)
-      .then((response) => {
-        // console.log(response.data);
-        setLocation({
-          lat: response.data[0].lat,
-          lon: response.data[0].lon,
-        });
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-        setErrors(error.response.data.error);
-      });
-  }
-
+  // Displaying all boards
   useEffect(() => {
-    getLocation('Seattle');
+    axios.get(`${BASE_URL}/boards`)
+    .then((response) => setBoards(response))
+    .catch((error) =>{
+      setErrors(error.response.data.error);
+    })
   }, []);
 
+  // Do we need this here?
+  const onSubmit = (event) =>{
+    event.preventDefault();
+    axios.post();
+  };
+
+  // Create a new board function here? Or it's done in Form.js?
+  const createNewBoard ()
+
+  // Create a new card
+  const createNewCard ()
 
   return (
     <div className="App">
       <header className="App-header">
+        <header>
+          <h1>INSPIRATION BOARD</h1>
+        </header>
+          <h2>BOARDS</h2> 
+        <main>
+          <Board />
+          <CardList cards={cards}/>
+          <NewBoardForm />
+          <NewCardForm />
+        </main>
         <div>
-          <ul>
-            <li>Lat: {location.lat}</li>
-            <li>Lon: {location.lon}</li>
-          </ul>
+          {/* <FindCityForm onSubmitCallback={getLocation} /> */}
         </div>
-        <div>
-          {errors ? <h2>{errors}</h2> : '' }
-        </div>
-        <div>
-          <FindCityForm onSubmitCallback={getLocation} />
-        </div>
-        <p>
-          My API key is {LOCATIONIQ_API_KEY} and was loaded from secrets.js!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Make some change on React
-        </a>
       </header>
     </div>
   );
 }
-
-export default App;
-
 
 export default App;
