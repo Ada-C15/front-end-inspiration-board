@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { LOCATIONIQ_API_KEY } from './secrets.js'
 import './App.css';
 import Board from './components/Board'
 import CardList from './components/CardList'
@@ -12,9 +11,11 @@ import NewCardForm from './components/NewCardForm';
 function App () {
   const BASE_URL = "http://localhost:5000"
   const [boards, setBoards] = useState([])
-  const [boardContent, setBoardContent] = useState("")
   const [likeCount, setLikeCount] = useState(1);
   const [errors, setErrors] = useState(null);
+
+  // What functionalities to be incluced in this App file?
+  // render the current list of boards with the newly added board
 
   // Displaying all boards
   useEffect(() => {
@@ -25,30 +26,17 @@ function App () {
     })
   }, []);
 
+  // Do we need this here?
   const onSubmit = (event) =>{
     event.preventDefault();
     axios.post();
   };
 
-  // const getLocation = (city) => {
-  //   axios.get(`${ URL }?key=${ LOCATIONIQ_API_KEY }&q=${ city }&format=json`)
-  //     .then((response) => {
-  //       // console.log(response.data);
-  //       setLocation({
-  //         lat: response.data[0].lat,
-  //         lon: response.data[0].lon,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.data);
-  //       setErrors(error.response.data.error);
-  //     });
-  // }
+  // Create a new board function here? Or it's done in Form.js?
+  const createNewBoard ()
 
-  // useEffect(() => {
-  //   getLocation('Seattle');
-  // }, []);
-
+  // Create a new card
+  const createNewCard ()
 
   return (
     <div className="App">
