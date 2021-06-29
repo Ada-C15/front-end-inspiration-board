@@ -47,9 +47,21 @@ function App() {
   // Board component will display a blue border if rendered correctly
   return (
     <div>
-
+      <h1>Inspiration Board</h1>
+        <section>
+            <h2>Boards</h2>
+            <ol className="boards__list">
+              {boardsElements}
+            </ol>
+        </section>
+        <section>
+            <h2>Selected Board</h2>
+            <p>{selectedBoard.board_id ? `${selectedBoard.title} - ${selectedBoard.owner}` : 'First select a board from list'}</p>
+        </section>
+      <h2>Create a New Board</h2>
+      <h2>Create a New Card</h2>
+      <h2>Selected Card</h2>
     </div>
-
   );
 }
 
