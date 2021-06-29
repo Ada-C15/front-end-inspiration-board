@@ -19,9 +19,9 @@ const Board = (props) => {
             <p onClick={displayBoardButtonClick}>{props.title}</p>
         </div>
         <div className="allBoards_div">
-            <h2>BOARDS</h2>
+            {/* <h2>BOARDS</h2>  */}
             {/* How to increase index? */}
-            <div>{indexIncrease}{boardTitle}</div>
+            <div>{props.id}{boardTitle}</div>
         </div>
         </div>
     );
