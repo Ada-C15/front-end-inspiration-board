@@ -1,5 +1,21 @@
 import PropTypes from 'prop-types';
-import './Student.css';
+import './Board.css';
+
+const Board = (props) => {
+    // move this to parent file 
+    const [boardTitle, setboardTitle] = useState("");
+
+    return (
+        <div className="board_div">
+            <h2>BOARDS</h2>
+            {/* How to increase index? */}
+            <div>{indexIncrease}{boardTitle}</div>
+        </div>
+    );
+};
+
+export default Card;
+
 
 const Student = (props) => {
 

@@ -1,40 +1,37 @@
-import './StudentList.css';
+import './CardList.css';
 import PropTypes from 'prop-types';
-import Student from './Student';
+import Card from './Card';
 
-const StudentList = (props) => {
-    const studentComponents = props.students.map((student, index) => {
+const CardList = (props) => {
+    const cardComponents = props.cards.map((card, index) => {
         return (
             <li key={index}>
-                <Student
-                    id={student.id}
-                    name={student.nameData}
-                    email={student.emailData}
-                    isPresent={student.isPresentData}
-                    onUpdate={props.onUpdateStudent}
-                ></Student>
+                <Card
+                    id={card.id}  
+                    message={card.message}
+                    onUpdate={props.addCard}
+                ></Card>
             </li>
         );
     });
 
     return (
         <section>
-            <h2>Student List</h2>
+            <h2>CARDS FOR {card.name}</h2>
             <ul>
-                {studentComponents}
+                {cardComponents}
             </ul>
         </section>
     );
 };
 
-StudentList.propTypes = {
-    students: PropTypes.arrayOf(PropTypes.shape({
+CardList.propTypes = {
+    cards: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
-        nameData: PropTypes.string.isRequired,
-        emailData: PropTypes.string.isRequired,
-        isPresentData: PropTypes.bool
+        message: PropTypes.string.isRequired,
     })),
-    onUpdateStudent: PropTypes.func.isRequired
+    addCard: PropTypes.func.isRequired
+    // onUpdateStudent: PropTypes.func.isRequired
 };
 
-export default StudentList;
+export default CardList;

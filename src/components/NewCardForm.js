@@ -1,46 +1,34 @@
 import { useState } from 'react';
 
-const NewStudentForm = () => {
+const NewCardForm = () => {
 
     const [formFields, setFormFields] = useState({
-        name: '',
-        email: ''
+        message: ''
     });
 
-    const onNameChange = (event) => {
+    const onMessageChange = (event) => {
         setFormFields({
             ...formFields,
             name: event.target.value
         })
     };
 
-    const onEmailChange = (event) => {
-        setFormFields({
-            ...formFields,
-            email: event.target.value
-        })
-    };
-
     return (
         <form>
             <div>
-                <label htmlFor="fullName">Name:</label>
-                <input
-                    name="fullName"
-                    value={formFields.name}
-                    onChange={onNameChange} />
+                <label htmlFor="message"></label>
+                <input name="message"
+                    value={formFields.message}
+                    onChange={onMessageChange} />
             </div>
             <div>
-                <label htmlFor="email">Email:</label>
-                <input name="email"
-                    value={formFields.email}
-                    onChange={onEmailChange} />
+                <p>Preview: {formFields.message}</p>
             </div>
             <input
                 type="submit"
-                value="Add Student" />
+                value="Add Card" />
         </form>
     );
 };
 
-export default NewStudentForm;
+export default NewBoardForm;
