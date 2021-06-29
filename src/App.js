@@ -6,10 +6,11 @@ import Card from './components/Card';
 import CardList from './components/CardList';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
+import BoardList from './components/BoardList';
 
 function App() {
   // state of the list of boards
-  const [boardsList, setBoardsList] = useState([]);
+  const [boardData, setBoardData] = useState([]);
   // state of the current board (state is the same structure as the response in flask)
   const [selectedBoard, setSelectedBoard] = useState({
     title: '',
@@ -18,13 +19,38 @@ function App() {
   });
 
   // this loads the list of boards from the Flask API ONCE, after the object renders
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
-    }).then((response) => {
-      setBoardsList(response.data);
+  // useEffect(() => {
+  //   axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
+  //   }).then((response) => {
+  //     setBoardData(response.data);
+  //     console.log(response.data)
+  //   })
+  // }, []);
+  // // console.log);
+
+//   return (<article>
+//     <h2 className="student-list__header yellow-big">Student</h2>
+//     <ul className={componentClass}>
+//     {studentComponents}
+//     </ul>
+// </article>)
+// }
+
+  const getBoards = () => {
+  axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
+    .then((response) => {
+      console.log(response.data);
+      const newData = response.data
+      setBoardData(newData);
     })
-  }, []);
-  console.log(boardsList);
+    // .catch((error) => {
+    //   console.log('error.response.data');
+    // });
+  }
+
+  useEffect(() => {
+    getBoards();
+  }, [])
 
   return (
     <div className="page__container">
@@ -33,12 +59,7 @@ function App() {
         <section className="boards__container">
           <section>
             <h2>Boards</h2>
-            <ol>
-              {/* these list items will be rendered from within the Board component? */}
-              <li>(Board List Placeholder)</li>
-              <li>(Board List Placeholder)</li>
-              <li>(Board List Placeholder)</li>
-            </ol>
+            <BoardList boardData={boardData} />
           </section>
           <section>
             <h2>Selected Board</h2>
@@ -72,7 +93,7 @@ function App() {
             <label>Message</label>
             <input type="text" className="invalid-form-input" value="message" />
             <p>Preview: </p>
-            <input type="Submit" class="new-card-form__form-submit-btn" />
+            <input type="Submit" className="new-card-form__form-submit-btn" />
           </form>
         </section>
         </section>
