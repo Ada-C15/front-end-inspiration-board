@@ -32,7 +32,7 @@ function App() {
       <h1>Inspiration Board</h1>
       <h2>Boards</h2>
       <h2>Selected Boards</h2>
-      <h2>Create a New Board</h2>
+      <h2>Create a New Board </h2>
       <h2>Create a New Card</h2>
       <h2>Selected Card</h2>
     </div>

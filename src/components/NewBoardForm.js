@@ -18,17 +18,23 @@ const NewBoardForm = (props) => {
         setOwner(event.target.value)
     };
 
+    // function to submit board
+    const submitBoard = (event) => {
+    
+    };
+
     // return jsx w/ label & input
 
     return (
+        //  form needs a submit button....
         <form>
         <div>
-            <label>Title</label>
-            <input type="text" value={title} onChange={onTitleChange} />
+            <label htmlFor="title-input">Title</label>
+            <input name="title" value={title} onChange={onTitleChange} />
         </div>
         <div>
-            <label>Owner's Name</label>
-            <input type="text" value={owner} onChange={onOwnerChange} />
+            <label htmlFor="owner-input">Owner's Name</label>
+            <input name="owner" value={owner} onChange={onOwnerChange} />
         </div>
         </form>
     );
