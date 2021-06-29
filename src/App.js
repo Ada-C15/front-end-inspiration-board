@@ -22,7 +22,8 @@ function App() {
   });
 
   // sends GET request to boards endpoint
-  // response contains data for all boards
+  // response object contains data for all boards
+  // response used to update boardsData state
   useEffect(() => {
     axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
@@ -31,7 +32,6 @@ function App() {
     })
   }, []);
   
-  // 
   const selectBoard = (board) => { setSelectedBoard(board) };
 
   // mapping the response data from a successful GET request to 
