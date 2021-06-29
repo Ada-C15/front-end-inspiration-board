@@ -1,4 +1,9 @@
 import './App.css';
+import Board from './components/Board';
+import Card from './components/Card';
+import CardList from './components/CardList';
+import NewBoardForm from './components/NewBoardForm';
+import NewCardForm from './components/NewCardForm';
 
 function App() {
   return (
