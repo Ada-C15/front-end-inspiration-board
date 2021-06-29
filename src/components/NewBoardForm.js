@@ -1,11 +1,18 @@
 import { useState } from 'react';
 
-const NewStudentForm = () => {
+const NewBoardForm = () => {
 
     const [formFields, setFormFields] = useState({
-        name: '',
-        email: ''
+        title: '',
+        name: ''
     });
+
+    const onTitleChange = (event) => {
+        setFormFields({
+            ...formFields,
+            title: event.target.value
+        })
+    };
 
     const onNameChange = (event) => {
         setFormFields({
@@ -14,33 +21,31 @@ const NewStudentForm = () => {
         })
     };
 
-    const onEmailChange = (event) => {
-        setFormFields({
-            ...formFields,
-            email: event.target.value
-        })
-    };
-
     return (
         <form>
             <div>
-                <label htmlFor="fullName">Name:</label>
+                <label htmlFor="title">Title:</label>
                 <input
-                    name="fullName"
+                    name="title"
+                    value={formFields.title}
+                    onChange={onTitleChange} />
+            </div>
+            <div>
+                <label htmlFor="name">Owner:</label>
+                <input name="name"
                     value={formFields.name}
                     onChange={onNameChange} />
             </div>
             <div>
-                <label htmlFor="email">Email:</label>
-                <input name="email"
-                    value={formFields.email}
-                    onChange={onEmailChange} />
+                <p>Preview: {formFields.title} - {formFields.name}</p>
             </div>
             <input
                 type="submit"
-                value="Add Student" />
+                value="Add Board" />
         </form>
     );
 };
 
-export default NewStudentForm;
+export default NewBoardForm;
+
+// lskdfjd
