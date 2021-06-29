@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 const Card = (props) => {
     // move this to parent file 
     // const [likeCount, setLikeCount] = useState(1);
+    const{card, key} = props;
+
 
     const likeIncrease = () => {
         setLikeCount(likeCount + 1);
@@ -15,13 +17,15 @@ const Card = (props) => {
             <h2>{props.value}</h2>
             <div>{likeCount}</div>
             <div className='btn_div'>
-                <button onClick={likeIncrease}>UP</button>
+                <button onClick={likeIncrease}>UP ❤️</button>
                 <button className="delete-btn">DELETE</button>
                 {/* Make a delete function */}
             </div>
         </div>
     );
 };
+
+export default Card;
 
 
 
