@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import NewBoardForm from './components/NewBoardForm';
@@ -6,6 +5,7 @@ import NewBoardForm from './components/NewBoardForm';
 function App() {
 
   const [boardsData, setBoardsData] = useState([{
+    id: 1,
     titleData:"Shopping List",
     ownerData:"Priscille"
   }]
@@ -24,6 +24,10 @@ function App() {
     setBoardsData(newBoardList)
   }
 
+  const boardComponent = boardsData.map( board => {
+    return <li key={board.id}>{board.titleData}</li>
+  })
+
 
   return (
     <div className="App">
@@ -31,6 +35,11 @@ function App() {
       <h1>Inspiration Board</h1>
       </header>
       <main>
+        <section>
+          <ol>
+            {boardComponent}
+          </ol>
+        </section>
         <NewBoardForm addBoardCallback = {addBoardsData}></NewBoardForm>
       </main>
     </div>
