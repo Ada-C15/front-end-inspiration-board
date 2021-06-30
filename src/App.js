@@ -8,21 +8,23 @@ import CardList from './components/CardList';
 
 function App() {
 
+  // Get list of boards
   const [boardsData, setBoardsData] = useState([{
     id: 1,
     titleData:"Shopping List",
     ownerData:"Priscille"
   }])
 
+  // Select a board
+
   const [selectedBoard, setSelectedBoard] = useState([])
 
-  // const [cardsData, setCardsData] = useState(
-  //   [{
 
-  //   }])
-
+// Hide and Show Board
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true)
 
+
+// Add a new board
   const addBoardsData = newBoard => {
     const newBoardList = [...boardsData];
 
@@ -36,6 +38,7 @@ function App() {
     setBoardsData(newBoardList)
   }
 
+  // Add a new card
   const addCardsData = newCard => {
     const newCardList = [...selectedBoard];
 
@@ -50,6 +53,7 @@ function App() {
 
   }
 
+  // Select a board
   const selectABoard = (id) =>{
     const boards = boardsData.map(board => {
       if(board.id === id) {
@@ -61,10 +65,12 @@ function App() {
     setBoardsData(boards)
   }
 
+  // rendering the boards to the Board component
   const boardComponent = boardsData.map( board => {
     return <li key={board.id}><Board id={board.id} title={board.titleData} owner={board.ownerData} onBoardSelect={selectABoard}></Board></li>
   })
   
+  // ClikButton to hide or show the board form
   const onClickCallback = () => {
     setIsBoardFormVisible(!isBoardFormVisible)
   }
