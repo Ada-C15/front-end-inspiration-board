@@ -8,6 +8,7 @@ const NewBoardForm = (props) => {
     const [title, setTitle] = useState('');
     const [owner, setOwner] = useState('');
 
+
     // function to handle new title input
     const onTitleChange = (event) => {
         setTitle(event.target.value)
@@ -18,16 +19,30 @@ const NewBoardForm = (props) => {
         setOwner(event.target.value)
     };
 
-    // function to submit board
-    const submitBoard = (event) => {
+    // call back function to submit board
+    const submitNewBoard = (event) => {
+        event.preventDefault();
+
+        props.addBoardCallBack({
+            title: title,
+            owner: owner
+        });
+
+        setTitle({
+            title: ''
+        });
+
+        setOwner({
+            owner: ''
+        });
     
     };
 
     // return jsx w/ label & input
 
     return (
-        //  form needs a submit button....
-        <form>
+        <section>
+        <form onSubmit={submitNewBoard}>
         <div>
             <label htmlFor="title-input">Title</label>
             <input name="title" value={title} onChange={onTitleChange} />
@@ -36,8 +51,11 @@ const NewBoardForm = (props) => {
             <label htmlFor="owner-input">Owner's Name</label>
             <input name="owner" value={owner} onChange={onOwnerChange} />
         </div>
+        <input type="submit" value="Add Board" />
         </form>
+        </section>
     );
 };
 
 export default NewBoardForm;
+
