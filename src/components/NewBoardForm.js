@@ -30,15 +30,14 @@ const NewBoardForm = (props) => {
 
   return (
     <form>
-      {/* Title input
-            Owner input
-            Submit button */}
+      <label>Board Title: </label>
       <input
         name="title"
         id="title"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
+      <label>Board Owner: </label>
       <input
         name="owner"
         id="owner"
