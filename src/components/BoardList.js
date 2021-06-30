@@ -8,11 +8,15 @@ const BoardList = (props) => {
             <Board 
             title= {board.title}
             id= {board.id}
+            owner= {board.owner}
+            onBoardSelect= {props.selectedBoard}
             />
         )
     })  
-    
+
+
     return <div>{ boardList }</div>
+
 }
 
 export default BoardList;

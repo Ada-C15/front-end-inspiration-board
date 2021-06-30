@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import BoardList from './components/BoardList';
 
 function App() {
-  const testData = [
-    {
-      id: 1,
-      title: 'Break Week Fun'
-    }, 
-    {
-      id: 2,
-      title: 'Ada Is Awesome'
-    },
-    {
-      id: 3,
-      title: 'Shout Outs '
-    },
-  ]
 
-  const [boardsData, setBoardsData] = useState(testData)
+  const [boardsData, setBoardsData] = useState([])
+  const [selectedBoard, setSelectedBoard] = useState({
+    'id': null,
+    'title': '',
+    'owner': ''
+  });
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
+    }).then((response) => {
+      setBoardsData(response.data);
+    })
+  }, []);
+  console.log(selectedBoard)
+  //selectedBoard is an array
 
   return (
     <div>
@@ -31,12 +32,14 @@ function App() {
         /> */}
       </section>
       <section className='boards__container'>
-        <h2>Choose A Board</h2>
-        <div>
-          < BoardList 
-          boardsData= { boardsData }
-          />
-        </div>
+
+        <h2>Choose A Board</h2> 
+        < BoardList 
+        boardsData= { boardsData }
+        selectedBoard={setSelectedBoard}
+        
+        />
+
       </section>
       <section> 
         < CardList />
