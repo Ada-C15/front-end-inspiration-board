@@ -24,9 +24,9 @@ const NewBoardForm = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        props.addBoardCallback({
-            titleData: boardForm.title,
-            ownerData: boardForm.owner
+        props.createNewBoard({
+            title: boardForm.title,
+            owner: boardForm.owner
         })
 
         setBoardForm({
