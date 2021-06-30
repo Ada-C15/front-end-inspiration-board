@@ -12,7 +12,7 @@ const BoardList = (props) => {
         )
     })  
     
-    return <section>{ boardList }</section>
+    return <div>{ boardList }</div>
 }
 
 export default BoardList;
