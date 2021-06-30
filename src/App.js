@@ -9,6 +9,7 @@ function App() {
   //STATES:
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
+  const [boardCount, setBoardCount] = useState(0);
   
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`,
@@ -26,7 +27,7 @@ function App() {
       console.log(error.response)
       alert("Could not connect to boards")
     });
-  }, []);
+  }, [boardCount]);
 
 
   const selectBoard = (event) => {
@@ -55,6 +56,30 @@ function App() {
     return boardTitles;
   }
 
+  const postNewBoard = (newBoardData) => {
+    // alert(title);
+    console.log(newBoardData);
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoardData)
+      .then((response) => {
+        console.log('success! New board Created');
+        setBoardCount(boardCount + 1);
+      })
+      .catch((error) => {
+        console.log(
+          "Anything that isn't status code 2XX is an error:",
+          error.response.status
+        );
+        console.log(
+          "The data from response with an error:",
+          error.response.data
+        );
+      });
+  };
+
+  const handleSubmit = (boardData) => {
+    console.log(boardData);
+    postNewBoard(boardData);
+  }
 
   return (
     <div className="App">
@@ -70,7 +95,7 @@ function App() {
         </select>
         <h3>Selected Board: {currentBoard.title}</h3>
         <h3>Create a New Board:</h3>
-        <NewBoardForm></NewBoardForm>
+        <NewBoardForm onSubmitCallback={handleSubmit}></NewBoardForm>
 
         <Board data={currentBoard}></Board>
       </main>
