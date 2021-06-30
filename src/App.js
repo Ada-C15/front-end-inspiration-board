@@ -42,7 +42,7 @@ function App() {
     }).catch((error) => {
       console.log('Error:', error);
       alert('Couldn\'t create a new board.');
-    })
+    })}
   const upvoteCard = (selectedCardId) => {
     axios
     .put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}/upvote`)
