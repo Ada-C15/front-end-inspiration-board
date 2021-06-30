@@ -1,6 +1,6 @@
 const Board = (props) => {
     return (
-        <span>{props.title}</span>
+        <span onClick={() => props.onBoardSelect(props.board)}>{props.board.title}</span>
     )
 }
 
