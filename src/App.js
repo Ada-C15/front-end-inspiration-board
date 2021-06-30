@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import BoardList from './components/BoardList';
 import CardList from './components/CardList';
+import NewBoardForm from './components/NewBoardForm';
 
 function App() {
 
@@ -19,7 +20,6 @@ function App() {
       setBoardsData(response.data);
     })
   }, []);
-  console.log(selectedBoard)
   //selectedBoard is an array
 
   const [cardsData, setCardsData] = useState([])
@@ -33,15 +33,29 @@ function App() {
     }
   }, [selectedBoard]);
 
+  const createNewBoard = (newBoard) => { 
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard).then((response) => {
+      console.log("Response:", response.data)
+      const newBoards = [...boardsData]
+      newBoards.push(response.data);
+      setBoardsData(newBoards);
+    }).catch((error) => {
+      console.log('Error:', error);
+      alert('Couldn\'t create a new board.');
+    })
+  }
+
   return (
     <div>
       <h1> Inspiration Board </h1>
       <main>
       <section className='new-board-form__container'>
         <h2>Create a New Board</h2>
-        {/* < NewBoardForm 
-          addBoardCallBack={ newBoardData }
-        /> */}
+        <section>
+          < NewBoardForm 
+            createNewBoard={ createNewBoard }
+          />
+        </section>
       </section>
       <section className='boards__container'>
 
