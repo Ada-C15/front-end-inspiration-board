@@ -41,18 +41,20 @@ const NewBoardForm = (props) => {
     // return jsx w/ label & input
 
     return (
-        <section>
-        <form onSubmit={submitNewBoard}>
-        <div>
-            <label htmlFor="title-input">Title</label>
-            <input name="title" value={title} onChange={onTitleChange} />
-        </div>
-        <div>
-            <label htmlFor="owner-input">Owner's Name</label>
-            <input name="owner" value={owner} onChange={onOwnerChange} />
-        </div>
-        <input type="submit" value="Add Board" />
-        </form>
+        <section className="new-board-form_container">
+            <form onSubmit={submitNewBoard} className="new-board-form_form">
+                <div>
+                    <label htmlFor="title-input">Title</label>
+                    <input name="title" value={title} onChange={onTitleChange} />
+                </div>
+                <div>
+                    <label htmlFor="owner-input">Owner's Name</label>
+                    <input name="owner" value={owner} onChange={onOwnerChange} />
+                </div>
+                <div>
+                <input type="submit" value="Add Board" className="new-board-form_submit"/>
+                </div>
+            </form>
         </section>
     );
 };

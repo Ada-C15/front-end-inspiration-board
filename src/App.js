@@ -23,6 +23,8 @@ function App() {
     board_id: null
   });
 
+  // 
+
   // useEffect utilized to send GET request to boards endpoint
   // > response object contains data for all boards
   // > response used to update boardsData state
@@ -49,7 +51,7 @@ function App() {
   // Board component will display a blue border if rendered correctly
   // here
 
-  // ----------------- MELISSA'S CODE ----------------------------------- 
+  // ----------------- MELISSA'S BOARD CODE ----------------------------------- 
   // new board function submission button - references call back function
   const createNewBoard = (newBoardData) => {
     console.log('newBoardData', newBoardData)
@@ -66,25 +68,59 @@ function App() {
       .catch((error) => {
         console.log("error!")
       });
-  }
+  };
+
+  // new card function to connect cards to board
+  const addNewCard = (message) => {
+    console.log('message', message)
+    const newCard = {
+      message: message,
+      board_id: selectedBoard.id
+    }
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("error!")
+      });
+  };
 
   return (
-    <div>
-      <h1>Inspiration Board</h1>
+    <div className="page_container">
+
+      <div className="header_container">
+        <h1>INSPIRATION BOARD</h1>
+      </div>
+
+      <div className="boards_container">
         <section>
-            <h2>Boards</h2>
-            <ol className="boards__list">
-              {boardsElements}
-            </ol>
+          <h2>BOARDS</h2>
+          <ol className="boards_list">
+            {boardsElements}
+          </ol>
         </section>
-        <section>
-            <h2>Selected Board</h2>
-            <p>{selectedBoard.board_id ? `${selectedBoard.title} - ${selectedBoard.owner}` : 'First select a board from list'}</p>
+        <section className="selected_board">
+          <h2>SELECTED BOARD</h2>
+          <p>{selectedBoard.board_id ? `${selectedBoard.title} - ${selectedBoard.owner}` : 'First select a board from list'}</p>
         </section>
-      <h2>Create a New Board</h2>
-      <NewBoardForm addBoardCallBack={createNewBoard}></NewBoardForm>
-      <h2>Create a New Card</h2>
-      <h2>Selected Card</h2>
+        <section className="new-board-form_container"> 
+          <h2>CREATE A NEW BOARD</h2>
+          <NewBoardForm addBoardCallBack={createNewBoard}></NewBoardForm>
+        </section>
+      </div>
+
+      <div className="cards_container">
+        <section className="card_items_container">
+          
+
+        </section>
+        <section className="new-card-form_container">
+          <h2>CREATE A NEW CARD</h2>
+          <NewCardForm addCardCallBack={addNewCard}></NewCardForm>
+        </section>
+      </div>
+
     </div>
   );
 }
