@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+.ol {
+  border: black solid 2px;
+}
 
 @keyframes App-logo-spin {
   from {

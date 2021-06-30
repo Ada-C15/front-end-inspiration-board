@@ -11,6 +11,8 @@ function App() {
   }]
   )
 
+  const [isBoardFormVisible, setIsBoardFormVisible] = useState(true)
+
   const addBoardsData = newBoard => {
     const newBoardList = [...boardsData];
 
@@ -27,20 +29,23 @@ function App() {
   const boardComponent = boardsData.map( board => {
     return <li key={board.id}>{board.titleData}</li>
   })
-
-
+  
+  const onClickCallback = () => {
+    setIsBoardFormVisible(!isBoardFormVisible)
+  }
   return (
     <div className="App">
       <header className="App-header">
       <h1>Inspiration Board</h1>
       </header>
       <main>
-        <section>
+        <section className="displayBoard">
           <ol>
             {boardComponent}
           </ol>
         </section>
-        <NewBoardForm addBoardCallback = {addBoardsData}></NewBoardForm>
+          {isBoardFormVisible ? <NewBoardForm addBoardCallback = {addBoardsData}/> : ""}
+        <input type="button" value={isBoardFormVisible? "Hide New Board Form" : "Show New Board Form" } onClick={onClickCallback}/>
       </main>
     </div>
   );
