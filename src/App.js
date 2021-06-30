@@ -36,7 +36,7 @@ function App() {
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard).then((response) => {
       console.log("Response:", response.data)
       const newBoards = [...boardsData]
-      newBoards.push(response.data);
+      newBoards.push(response.data.board);
       setBoardsData(newBoards);
     }).catch((error) => {
       console.log('Error:', error);
