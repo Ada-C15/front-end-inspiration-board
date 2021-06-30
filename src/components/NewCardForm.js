@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const NewCardForm = (props) => {
     const [cardForm, setCardForm] = useState({
@@ -43,3 +44,4 @@ const NewCardForm = (props) => {
 };
 
 export default NewCardForm;
+
