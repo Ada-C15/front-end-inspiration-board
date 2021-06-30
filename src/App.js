@@ -15,8 +15,7 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
-    }).then((response) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`).then((response) => {
       setBoardsData(response.data);
     })
   }, []);
@@ -43,6 +42,9 @@ function App() {
       console.log('Error:', error);
       alert('Couldn\'t create a new board.');
     })
+  };
+
+
   const upvoteCard = (selectedCardId) => {
     axios
     .put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}/upvote`)
@@ -54,6 +56,7 @@ function App() {
       console.log(error.data.details)
     })
   };
+
 
   const deleteCard = (selectedCardId) => {
     axios
@@ -82,7 +85,7 @@ function App() {
       }
     });
     setCardsData(cards)
-  }
+  };
 
   return (
     <div>
@@ -101,19 +104,20 @@ function App() {
         <h2>Choose A Board</h2> 
         < BoardList 
         boardsData= { boardsData }
-        selectedBoard={setSelectedBoard}
+        selectedBoard={ setSelectedBoard }
         />
       </section>
       <section> 
         < CardList 
         cardsData= { cardsData }
-        upvoteCard = {upvoteCard}
-        deleteCard = {deleteCard}
+        upvoteCard = { upvoteCard }
+        deleteCard = { deleteCard }
         />
       </section>
       </main>
     </div>
     
   );
-}
+};
+
 export default App;
