@@ -1,8 +1,28 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 .ol {
   border: black solid 2px;
+}
+
+.left, .middle, .right {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.left {
+  background-color: cadetblue;
+  margin-left: 50px;
+}
+
+.middle {
+  background-color: cyan;
+  margin-left: 150px;
+}
+
+.right {
+  background-color: darkkhaki;
+  margin-left: 250px;
 }
 
 @keyframes App-logo-spin {
