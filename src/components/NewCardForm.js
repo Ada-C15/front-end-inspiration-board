@@ -31,18 +31,18 @@ const NewCardForm = (props) => {
 
     return (
         <form onSubmit={onFormSubmit}>
-        <div>
-            <label htmlFor="message">Message</label>
-            <input
-                type="text"
-                name="message"
-                value={card.message}
-                onChange={onMessageChange} />
-        </div>
-        <p>Preview: {card.message}</p>
-        <div>
-            <input type="submit" value="submit"/>
-        </div>
+            <div>
+                <label htmlFor="message">Message</label>
+                <input
+                    type="text"
+                    name="message"
+                    value={card.message}
+                    onChange={onMessageChange} />
+            </div>
+            <p>Preview: {card.message}</p>
+            <div>
+                <input type="submit" value="submit"/>
+            </div>
         </form>
     )
 }
