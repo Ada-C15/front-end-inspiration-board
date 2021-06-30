@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
+import NewCardForm from './components/NewCardForm';
 
 // getBoardData
 function App() {
@@ -58,9 +59,11 @@ function App() {
 
   return (
     <div className="App">
+      
       <header className="App-header">
         <h1>Inspiration Board</h1>
       </header>
+      
       <main>
         <h3>Boards List:</h3>
         {/* Created this as a drop-down list, not sure if I like it */}
@@ -68,11 +71,17 @@ function App() {
           <option value=""></option>
           {generateBoardTitles(boardData)}
         </select>
+        
         <h3>Selected Board: {currentBoard.title}</h3>
+        
         <h3>Create a New Board:</h3>
         <NewBoardForm></NewBoardForm>
 
         <Board data={currentBoard}></Board>
+
+        <h3>Create a New Card</h3>
+        <NewCardForm board_id={currentBoard.board_id}></NewCardForm>
+
       </main>
     </div>
   );

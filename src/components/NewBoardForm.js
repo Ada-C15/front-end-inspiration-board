@@ -10,6 +10,7 @@ const NewBoardForm = (props) => {
     // alert(title);
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, {"title":title,"owner":owner})
+      
       .then((response) => {
         console.log(
           "The data we get back from the HTTP response:",

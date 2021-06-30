@@ -1,55 +1,45 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 //need to connect NewCardForm to Selected Board & BoardsList
 const NewCardForm = (props) => {
-    const [message, setTitle] = useState("");
-    
-    const newCard = (board_id) => {
-        // alert(title);
-        axios
-            .post(`${process.env.REACT_APP_BACKEND_URL}/boards/${board_id}/cards`, {"message":message})
-            .then((response) => {
-            console.log(
-                "...",
-                response.data
-            );
-        })
+  const [message, setTitle] = useState("");
 
-        //.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${board_id}/cards’ ….
+  const newCard = () => {
+    // alert(title);
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_URL}/boards/${props.board_id}/cards`,
+        { "message": message }
+      )
+      
+      .then((response) => {
+        console.log("...", response.data)
+      })
+      .catch((error) => {
+        console.log("...", error.response.status);
+      });
+  };
 
+  return (
+    <form>
 
-        // .catch((error) => {
-        // console.log(
-        //     "...",
-        //     error.response.status
-        // );
-        // console.log(
-        //     "...",
-        //     error.response.data
-        // );
-        // });
-    };
-    
-    return (
-        <form>
-            {/* Message Input
-            Submit button */}
-
-        <input
+      <input
         name="message"
         id="message"
         value={message}
         onChange={(event) => setTitle(event.target.value)}
-        />
-        
-        <button onClick={newCard}>SUBMIT</button>
-        
-        </form>
+      />
 
-    );
+      <button onClick={newCard}>SUBMIT</button>
 
+    </form>
+  );
+};
+
+NewCardForm.propTypes = {
+  board_id: PropTypes.number,
 };
 
 export default NewCardForm;
-
