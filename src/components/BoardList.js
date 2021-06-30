@@ -3,7 +3,7 @@ import Board from './Board';
 
 const BoardList = (props) => { 
     
-    const boardList = props.boardsData.map((board) => {
+    const listofBoards = props.boardsData.map((board) => {
         return (
             <Board 
             title= {board.title}
@@ -13,10 +13,7 @@ const BoardList = (props) => {
             />
         )
     })  
-
-
-    return <div>{ boardList }</div>
-
+    return <div>{ listofBoards }</div>
 }
 
 export default BoardList;
