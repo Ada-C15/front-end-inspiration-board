@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import BoardList from './components/BoardList';
+import CardList from './components/CardList';
 
 function App() {
 
@@ -51,13 +52,13 @@ function App() {
         />
       </section>
       <section> 
-      
-        {/* < CardList /> */}
+        < CardList 
+        cardsData= { cardsData }
+        />
       </section>
       </main>
     </div>
     
   );
 }
-
 export default App;
