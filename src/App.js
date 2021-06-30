@@ -27,19 +27,23 @@ function App() {
       <main>
       <section className='new-board-form__container'>
         <h2>Create a New Board</h2>
-        {/* < NewBoardForm /> */}
+        {/* < NewBoardForm 
+          addBoardCallBack={ newBoardData }
+        /> */}
       </section>
       <section className='boards__container'>
+
         <h2>Choose A Board</h2> 
         < BoardList 
         boardsData= { boardsData }
         selectedBoard={setSelectedBoard}
         
         />
+
       </section>
-      {/* <section> 
+      <section> 
         < CardList />
-      </section> */}
+      </section>
       </main>
     </div>
     
