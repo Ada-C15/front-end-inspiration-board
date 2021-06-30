@@ -17,7 +17,7 @@ const CardList = (props) => {
     }, [props]);
 
     const cardElements = cardsData.map((card) => {
-        return (<Card card_id={card.card_id} message={card.message}/>)
+        return (<Card card_id={card.card_id} message={card.message} like_count={card.like_count}/>)
     });
 
     return (
