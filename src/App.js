@@ -12,6 +12,8 @@ import CardList from './components/CardList';
 
 function App() {
 
+
+  //  ---------------------------- BOARD STATES ------------------------------
   // create state for board (default: empty array, meaning no boards created)
   const [boardsData, setBoardsData] = useState([]) 
   // create state for selected board (default: no board is selected)
@@ -46,6 +48,26 @@ function App() {
 
   // Board component will display a blue border if rendered correctly
   // here
+
+  // ----------------- MELISSA'S CODE ----------------------------------- 
+  // new board function submission button - references call back function
+  const createNewBoard = (newBoardData) => {
+    console.log('newBoardData', newBoardData)
+
+    const newBoard = {
+      title: newBoardData.title,
+      owner: newBoardData.owner
+    }
+
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("error!")
+      });
+  }
+
   return (
     <div>
       <h1>Inspiration Board</h1>
@@ -60,6 +82,7 @@ function App() {
             <p>{selectedBoard.board_id ? `${selectedBoard.title} - ${selectedBoard.owner}` : 'First select a board from list'}</p>
         </section>
       <h2>Create a New Board</h2>
+      <NewBoardForm addBoardCallBack={createNewBoard}></NewBoardForm>
       <h2>Create a New Card</h2>
       <h2>Selected Card</h2>
     </div>
