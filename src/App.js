@@ -21,6 +21,17 @@ function App() {
   console.log(selectedBoard)
   //selectedBoard is an array
 
+  const [cardsData, setCardsData] = useState([])
+
+  useEffect(() => {
+    if (selectedBoard?.id) {
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
+        setCardsData(response.data);
+        console.log('Response is:',response.data)
+      })
+    }
+  }, [selectedBoard]);
+
   return (
     <div>
       <h1> Inspiration Board </h1>
@@ -37,12 +48,11 @@ function App() {
         < BoardList 
         boardsData= { boardsData }
         selectedBoard={setSelectedBoard}
-        
         />
-
       </section>
       <section> 
-        < CardList />
+      
+        {/* < CardList /> */}
       </section>
       </main>
     </div>
