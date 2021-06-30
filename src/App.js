@@ -11,10 +11,9 @@ function App () {
   const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
   const [cards, setCards] = useState([]);
-  const [likeCount, setLikeCount] = useState(0);
+  // const [likeCount, setLikeCount] = useState(0);
   const [errors, setErrors] = useState(null);
   const [toggle, setToggle] = useState(true);
-  const [boardTitle, setboardTitle] = useState("");
 
   // Displaying all boards
   useEffect(() => {
@@ -27,11 +26,11 @@ function App () {
       });
   }, []);
 
-  // Do we need this here?
-  const onSubmit = (event) =>{
-    event.preventDefault();
-    axios.post();
-  };
+
+  // const onSubmit = (event) =>{
+  //   event.preventDefault();
+  //   axios.post();
+  // };
 
   // Create a new board
   const createNewBoard = () =>{
@@ -86,6 +85,16 @@ function App () {
     newBoard = null;
   }
 
+  const likeIncrease = (card_id) => {
+    // axios.put(`${BASE_URL}/cards/${card_id}/like`)
+    axios.put(`${BASE_URL}/cards/1/like`)
+    .then((response) => {
+      // setLikeCount(likeCount + 1);
+      setCards(response.data.card);
+      // setCards(response.data.card.likes_count);
+    });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -109,10 +118,11 @@ function App () {
             <div>{selectedBoard}</div>
           </div>
           {/* new board section */}
+          <h2>Create new board</h2>
           {newBoard}
           <button onClick={toggler}>{buttonText}</button>
           {/* cards for selected board section */}
-          <CardList cards={cards}/>
+          <CardList cards={cards} likeIncreaseCallback={likeIncrease}/>
           {/* new card section */}
           <NewCardForm />
         </main>

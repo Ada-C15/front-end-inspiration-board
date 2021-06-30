@@ -9,7 +9,7 @@ const NewCardForm = () => {
     const onMessageChange = (event) => {
         setFormFields({
             ...formFields,
-            name: event.target.value
+            message: event.target.value
         })
     };
 

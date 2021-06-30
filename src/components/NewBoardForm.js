@@ -23,7 +23,6 @@ const NewBoardForm = () => {
 
     return (
         <form>
-            <h2>Create new board</h2>
             <div>
                 <label htmlFor="title">Title:</label>
                 <input

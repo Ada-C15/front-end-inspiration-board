@@ -7,14 +7,16 @@ const CardList = (props) => {
         return (
             <li key={card.id}>
                 <Card
-                    id={card.id}  
+                    id={card.card_id}  
                     message={card.message}
                     onUpdate={props.addCard}
                     likeCount={card.likes_count}
+                    likeIncreaseCallback={props.likeIncreaseCallback}
                 ></Card>
             </li>
         );
     });
+    // sdofjd
 
     return (
         <section>
@@ -30,8 +32,10 @@ CardList.propTypes = {
         cards: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         message: PropTypes.string.isRequired,
+        likes_count: PropTypes.number.isRequired,
     })),
-    addCard: PropTypes.func.isRequired
+    addCard: PropTypes.func.isRequired,
+    likeIncreaseCallback: PropTypes.func.isRequired
 };
 
 export default CardList;
