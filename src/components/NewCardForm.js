@@ -15,8 +15,9 @@ const NewCardForm = () => {
 
     return (
         <form>
+            <h2>new card form</h2>
             <div>
-                <label htmlFor="message"></label>
+                <label htmlFor="message">message:</label>
                 <input name="message"
                     value={formFields.message}
                     onChange={onMessageChange} />
@@ -31,4 +32,4 @@ const NewCardForm = () => {
     );
 };
 
-export default NewBoardForm;
+export default NewCardForm;

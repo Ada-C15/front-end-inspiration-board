@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import './Card.css'
+import './Card.css'
 
 const Card = (props) => {
     // move this to parent file 
     // const [likeCount, setLikeCount] = useState(1);
-    const{card, key} = props;
-
+    const{message, likesCount, id, onUpdate} = props;
 
     const likeIncrease = () => {
-        setLikeCount(likeCount + 1);
+        props.setLikeCount(likesCount + 1);
     };
 
     return (
         <div className="card_div">
-            <h2>{props.value}</h2>
-            <div>{likeCount}</div>
+            <p>{message}</p>
+            <div>{likesCount}</div>
             <div className='btn_div'>
                 <button onClick={likeIncrease}>UP ❤️</button>
                 <button className="delete-btn">DELETE</button>

@@ -2,28 +2,29 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import Board from './components/Board'
 import CardList from './components/CardList'
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 
-
 function App () {
-  const BASE_URL = "http://localhost:5000"
-  const [boards, setBoards] = useState([])
-  const [likeCount, setLikeCount] = useState(1);
+  const BASE_URL = "https://inspiration-board-tashforce.herokuapp.com";
+  const [boards, setBoards] = useState([]);
+  const [selectedBoard, setSelectedBoard] = useState(null);
+  const [cards, setCards] = useState([]);
+  const [likeCount, setLikeCount] = useState(0);
   const [errors, setErrors] = useState(null);
-
-  // What functionalities to be incluced in this App file?
-  // render the current list of boards with the newly added board
+  const [toggle, setToggle] = useState(true);
+  const [boardTitle, setboardTitle] = useState("");
 
   // Displaying all boards
   useEffect(() => {
     axios.get(`${BASE_URL}/boards`)
-    .then((response) => setBoards(response))
-    .catch((error) =>{
-      setErrors(error.response.data.error);
-    })
+      .then((response) => {
+        setBoards(response.data);
+      })
+      .catch(() => {
+        setErrors("Fail to show boards");
+      });
   }, []);
 
   // Do we need this here?
@@ -32,11 +33,58 @@ function App () {
     axios.post();
   };
 
-  // Create a new board function here? Or it's done in Form.js?
-  const createNewBoard ()
+  // Create a new board
+  const createNewBoard = () =>{
+    axios.post(`${BASE_URL}/boards`)
+      .then((response) =>{
+        setBoards(response.data);
+      })
+  }
 
   // Create a new card
-  const createNewCard ()
+  const createNewCard = () =>{
+    axios.post(`${BASE_URL}/boards/{board_id}/cards`)
+      .then((response) =>{
+        setCards(response.data);
+      })
+  }
+
+  // Delete a card
+  const deleteCard = () =>{
+    axios.delete(`${BASE_URL}/boards/{board_id}/cards`)
+      .then((response) =>{
+        setCards("");
+      })
+  }
+
+  // Hide the board form
+  const toggler = () =>{
+    setToggle(!toggle);
+    // setToggle(() => !toggle);
+    // what exactly is callback
+  }
+
+  const onClickBoard = (boardId, boardTitle) => {
+    // update "selected board"
+    setSelectedBoard(boardTitle);
+    // update "cards for"
+    axios.get(`${BASE_URL}/boards/${boardId}/cards`)
+    .then((response) => {
+      setCards(response.data.cards);
+    })
+    .catch(() => {
+      setErrors("Fail to show cards");
+    });
+  }
+
+  const buttonText = toggle === true ? "Hide" : "Show";
+
+  let newBoard;
+  if (toggle){
+    newBoard = <NewBoardForm />
+  } else{
+    newBoard = null;
+  }
 
   return (
     <div className="App">
@@ -44,11 +92,28 @@ function App () {
         <header>
           <h1>INSPIRATION BOARD</h1>
         </header>
-          <h2>BOARDS</h2> 
+          <div>{errors}</div>
         <main>
-          <Board />
+          {/* all boards section */}
+          <div className="all-boards">
+            <h2>BOARDS</h2> 
+            {boards.map(board => (
+              <p key={board.board_id} onClick={() => onClickBoard(board.board_id, board.title)}>
+                {board.board_id}. {board.title}
+              </p>
+            ))}
+          </div>
+          {/* selected board section */}
+          <div>
+            <h2>SELECTED BOARD</h2>
+            <div>{selectedBoard}</div>
+          </div>
+          {/* new board section */}
+          {newBoard}
+          <button onClick={toggler}>{buttonText}</button>
+          {/* cards for selected board section */}
           <CardList cards={cards}/>
-          <NewBoardForm />
+          {/* new card section */}
           <NewCardForm />
         </main>
         <div>
