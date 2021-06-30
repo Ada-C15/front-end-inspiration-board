@@ -46,6 +46,13 @@ function App() {
       })
   }
 
+  // const createCard = (newCard, selectedBoard) => {
+  //   axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.board.board_id}/cards`, newCard)
+  //   .then((response) => {
+  //     console.log(response.data);
+  //   })
+  // }
+
   const selectBoard = (board) => {
     setSelectedBoard(board)
   }
@@ -107,12 +114,9 @@ function App() {
             <ol>
               {boardComponents}
             </ol>
-            {/* <BoardList boardData={boardData} /> */}
-            {/* Can we pass in props to the same component in two different places? */}
           </section>
           <section>
             <h2>Selected Board</h2>
-            {/* <BoardList selectBoardCallback={selectBoard}/> */}
             <p>{selectedBoard.title} - {selectedBoard.owner}</p>
           </section>
           <section className="new-board-form__container">
