@@ -41,9 +41,7 @@ function App() {
     }).catch((error) => {
       console.log('Error:', error);
       alert('Couldn\'t create a new board.');
-    })
-  };
-
+    })}
 
   const upvoteCard = (selectedCardId) => {
     axios
