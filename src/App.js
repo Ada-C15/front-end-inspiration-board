@@ -15,8 +15,7 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
-    }).then((response) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`).then((response) => {
       setBoardsData(response.data);
     })
   }, []);
@@ -43,12 +42,32 @@ function App() {
       console.log('Error:', error);
       alert('Couldn\'t create a new board.');
     })}
+
   const upvoteCard = (selectedCardId) => {
     axios
     .put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}/upvote`)
     .then((response) => {
         console.log(response.data.card)
         updateCardsList(response.data.card)
+    })
+    .catch((error) => {
+      console.log(error.data.details)
+    })
+  };
+
+
+  const deleteCard = (selectedCardId) => {
+    axios
+    .delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`)
+    .then((response) => {
+      axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`)
+      .then((response) => {
+        setCardsData(response.data)
+      })
+      .catch((error) => {
+        console.log(error.data.details)
+      })
     })
     .catch((error) => {
       console.log(error.data.details)
@@ -64,7 +83,7 @@ function App() {
       }
     });
     setCardsData(cards)
-  }
+  };
 
   return (
     <div>
@@ -83,18 +102,20 @@ function App() {
         <h2>Choose A Board</h2> 
         < BoardList 
         boardsData= { boardsData }
-        selectedBoard={setSelectedBoard}
+        selectedBoard={ setSelectedBoard }
         />
       </section>
       <section> 
         < CardList 
         cardsData= { cardsData }
-        upvoteCard = {upvoteCard}
+        upvoteCard = { upvoteCard }
+        deleteCard = { deleteCard }
         />
       </section>
       </main>
     </div>
     
   );
-}
+};
+
 export default App;
