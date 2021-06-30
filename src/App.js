@@ -15,26 +15,9 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState({
     title: '',
     owner: '',
+    cards: [],
     board_id: null
   });
-
-  // this loads the list of boards from the Flask API ONCE, after the object renders
-  // useEffect(() => {
-  //   axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
-  //   }).then((response) => {
-  //     setBoardData(response.data);
-  //     console.log(response.data)
-  //   })
-  // }, []);
-  // // console.log);
-
-//   return (<article>
-//     <h2 className="student-list__header yellow-big">Student</h2>
-//     <ul className={componentClass}>
-//     {studentComponents}
-//     </ul>
-// </article>)
-// }
 
   const getBoards = () => {
   axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
@@ -63,6 +46,30 @@ function App() {
       })
   }
 
+  const createCard = () => {
+
+  }
+
+  const selectBoard = (board) => {
+    setSelectedBoard(board)
+  }
+
+  const boardComponents = boardData.map(board => {
+    return (
+    <li key={board.board_id}>
+        <Board board={board} onBoardSelect={selectBoard}></Board>
+    </li>)
+  });
+
+
+  const displayCards = (board_id) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${board_id}/cards`)
+    .then((response) => {
+      console.log(response.data.cards)
+      const cardData = response.data.cards
+    })
+  }
+
   // useEffect(() => {
   //   createBoard();
   // }, [boardData]);
@@ -74,41 +81,42 @@ function App() {
         <section className="boards__container">
           <section>
             <h2>Boards</h2>
-            <BoardList boardData={boardData} />
+            <ol>
+              {boardComponents}
+            </ol>
+            {/* <BoardList boardData={boardData} /> */}
+            {/* Can we pass in props to the same component in two different places? */}
           </section>
           <section>
             <h2>Selected Board</h2>
-            <p>(Selected Board Title Placeholder)</p>
+            {/* <BoardList selectBoardCallback={selectBoard}/> */}
+            <p>{selectedBoard.title} - {selectedBoard.owner}</p>
           </section>
           <section className="new-board-form__container">
             <h2>Create a New Board</h2>
             <NewBoardForm addBoardCallback={createBoard}/>
-            <span className="new-board-form__toggle-btn">Hide New Board Form</span>
+            {/* <span className="new-board-form__toggle-btn">Hide New Board Form</span> */}
           </section>
         </section>
-        <section className="cards__container">
-          <section>
-            <h2>Cards for (board placeholder)</h2>
-            <div className="card-items__container">
-              <div className="card-item">
-                <p className="card-item__message">(message placeholder)</p>
-              </div>
-            </div>
-          </section>
+        {<CardList board={selectedBoard} />}
+        {/* <CardList  selectedBoardCallback/> */}
         <section className="new-card-form__container">
           <h2>Create a New Card</h2>
-          <form className="new-card-form__form">
+          {/* <NewCardForm addCardCallback={createCard}/> */}
+          {/* <form className="new-card-form__form">
             <label>Message</label>
             <input type="text" className="invalid-form-input" value="message" />
             <p>Preview: </p>
             <input type="Submit" className="new-card-form__form-submit-btn" />
-          </form>
+          </form> */}
         </section>
-        </section>
+      <div>
+        {/* {selectedBoard.board_id ? <CardsList board={selectedBoard}/> : ''} */}
       </div>
       <footer>
         <span>Copyright 2021 Just a Flask Wound</span>
       </footer>
+    </div>
     </div>
   );
 }
