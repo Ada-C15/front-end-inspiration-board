@@ -1,29 +1,65 @@
 /* .App {
   text-align: center;
 } */
+
+@import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap');
+
+body {
+  font-family: 'Kirang Haerang', cursive;
+  text-align: center;
+  color: black;
+  background-color: #def068;
+}
+
+header {
+  font-size: 3em;
+}
+
+.boards__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 40% 10% 40%;
+}
+
 .ol {
   border: black solid 2px;
 }
 
-.left, .middle, .right {
+.left, .middle, .right, .bottom-left, .bottom-right {
   display: inline-block;
   margin: 0 auto;
+  background-color: rgb(242, 4, 186, 0.932);
 }
 
 .left {
-  background-color: cadetblue;
-  margin-left: 50px;
+  grid-column: 1 / 2 ;
+  grid-row: 1 / 2;
+  /* margin-left: 60px; */
 }
 
 .middle {
-  background-color: cyan;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
   margin-left: 150px;
 }
 
 .right {
-  background-color: darkkhaki;
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
   margin-left: 250px;
 }
+.bottom-left {
+  grid-column: 1 / 2 ;
+  grid-row: 3 / 4;
+  margin-right: 60px;
+} 
+.bottom-right {
+  grid-row: 1 / 2;
+  grid-row: 3 / 4;
+  margin-left: 250px;
+}
+
+
 
 @keyframes App-logo-spin {
   from {

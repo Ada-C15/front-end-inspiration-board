@@ -80,32 +80,36 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h1>Inspiration Board</h1>
+        <h1> ✴ Inspiration Board ✴ </h1>
       </header>
       <main>
-      <div className="left">
-      <section className="displayBoard">
-          <ol>
-            {boardComponent}
-          </ol>
-        </section>
-    
-      </div>
-      <div className="middle">
-      <section>
-          <h2>Selected Board</h2>
-          {/* <p>{board.title}</p> */}
-        </section>
-      </div>
-      <div className="right">
-      <h2>Create a new board</h2>
-          {isBoardFormVisible ? <NewBoardForm addBoardCallback = {addBoardsData}/> : ""}
-        <input type="button" value={isBoardFormVisible? "Hide New Board Form" : "Show New Board Form" } onClick={onClickCallback}/>
-        <h2>Create a new card</h2>
-        <NewCardForm addCardCallback={addCardsData}></NewCardForm>
-      </div>
-      <div> <CardList cards={selectedBoard}></CardList></div>
-        
+        <section class= "boards__container">
+          <div className="left">
+            <section className="displayBoard">
+                <ol>
+                  {boardComponent}
+                </ol>
+              </section>
+          </div>
+          <div className="middle">
+            <section>
+              <h2>Selected Board</h2>
+              {/* <p>{board.title}</p> */}
+            </section>
+          </div>
+          <div className="right">
+            <h2>Create a new board</h2>
+              {isBoardFormVisible ? <NewBoardForm addBoardCallback = {addBoardsData}/> : ""}
+            <input type="button" value={isBoardFormVisible? "Hide New Board Form" : "Show New Board Form" } onClick={onClickCallback}/>
+          <div className="bottom-right">
+            <h2>Create a new card</h2>
+          </div> 
+            <NewCardForm addCardCallback={addCardsData}></NewCardForm>
+          </div>
+          <div className="bottom-left"> 
+            <CardList cards={selectedBoard}></CardList>
+          </div>
+        </section>  
       </main>
     </div>
 
