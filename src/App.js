@@ -45,6 +45,24 @@ function App() {
     })
   };
 
+  const deleteCard = (selectedCardId) => {
+    axios
+    .delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`)
+    .then((response) => {
+      axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`)
+      .then((response) => {
+        setCardsData(response.data)
+      })
+      .catch((error) => {
+        console.log(error.data.details)
+      })
+    })
+    .catch((error) => {
+      console.log(error.data.details)
+    })
+  };
+
   const updateCardsList = (selectedCard) => {
     const cards = cardsData.map(card => {
       if (selectedCard.id === card.id) {
@@ -78,6 +96,7 @@ function App() {
         < CardList 
         cardsData= { cardsData }
         upvoteCard = {upvoteCard}
+        deleteCard = {deleteCard}
         />
       </section>
       </main>

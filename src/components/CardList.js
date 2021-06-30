@@ -12,7 +12,8 @@ const CardList = (props) => {
                 message={ card.message }
                 likesCount= { card.likes_count}
                 boardId= {card.board_id }
-                upvoteCard={props.upvoteCard}/>
+                upvoteCard={props.upvoteCard}
+                deleteCard={props.deleteCard}/>
             </li>
         );
     });
