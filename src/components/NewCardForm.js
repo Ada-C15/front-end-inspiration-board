@@ -15,7 +15,6 @@ const NewCardForm = () => {
 
     return (
         <form>
-            <h2>new card form</h2>
             <div>
                 <label htmlFor="message">message:</label>
                 <input name="message"

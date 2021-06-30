@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const NewBoardForm = () => {
+const NewBoardForm = (props) => {
 
     const [formFields, setFormFields] = useState({
         title: '',
@@ -21,6 +21,14 @@ const NewBoardForm = () => {
         })
     };
 
+    const onButtonClick = () => {
+       props.createNewBoard()
+      };
+
+    // const submitNewBoard = (event) => {
+
+    // }
+
     return (
         <form>
             <div>
@@ -39,9 +47,10 @@ const NewBoardForm = () => {
             <div>
                 <p>Preview: {formFields.title} - {formFields.name}</p>
             </div>
-            <input
+            {/* <input
                 type="submit"
-                value="Add Board" />
+                value="Add Board" /> */}
+            <button onClick={onButtonClick}>Add a baord</button>
         </form>
     );
 };

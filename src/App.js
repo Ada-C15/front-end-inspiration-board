@@ -33,42 +33,70 @@ function App () {
   // };
 
   // Create a new board
-  const createNewBoard = () =>{
+  const createNewBoard = (event) =>{
+    event.preventDefault();
     axios.post(`${BASE_URL}/boards`)
       .then((response) =>{
-        setBoards(response.data);
+        const newboards = [...boards];
+        newboards.push(response.data)
+        setBoards(newboards);
       })
+      .catch(() => {
+        setErrors("Fail to create a new board");
+      });
   }
 
   // Create a new card
-  const createNewCard = () =>{
+  const createNewCard = (event) =>{
+    event.preventDefault();
     axios.post(`${BASE_URL}/boards/{board_id}/cards`)
       .then((response) =>{
-        setCards(response.data);
+        const newcards = [...cards];
+        newcards.push(response.data)
+        setCards(newcards);
       })
+      .catch(() => {
+        setErrors("Fail to create a new card");
+      });
   }
 
   // Delete a card
-  const deleteCard = () =>{
+  const deleteCard = (event) =>{
+    event.preventDefault();
     axios.delete(`${BASE_URL}/boards/{board_id}/cards`)
       .then((response) =>{
-        setCards("");
+        const newcards = [...cards];
+        newcards.push(response.data)
+        setCards(response.data);
       })
+      .catch(() => {
+        setErrors("Fail to delete a card");
+      });
   }
 
   // Hide the board form
   const toggler = () =>{
     setToggle(!toggle);
-    // setToggle(() => !toggle);
-    // what exactly is callback
   }
 
+  const buttonText = toggle === true ? "Hide" : "Show";
+
+  let newBoard;
+  if (toggle){
+    newBoard = <NewBoardForm setBoards={setBoards} createNewBoard={createNewBoard}/>
+  } else{
+    newBoard = null;
+  }
+
+  // Show all cards for the selected board
   const onClickBoard = (boardId, boardTitle) => {
     // update "selected board"
     setSelectedBoard(boardTitle);
     // update "cards for"
     axios.get(`${BASE_URL}/boards/${boardId}/cards`)
     .then((response) => {
+      const allCards = [...cards];
+      allCards.push(response.data)
       setCards(response.data.cards);
     })
     .catch(() => {
@@ -76,15 +104,7 @@ function App () {
     });
   }
 
-  const buttonText = toggle === true ? "Hide" : "Show";
-
-  let newBoard;
-  if (toggle){
-    newBoard = <NewBoardForm />
-  } else{
-    newBoard = null;
-  }
-
+  // Increase like for a card
   const likeIncrease = (card_id) => {
     // axios.put(`${BASE_URL}/cards/${card_id}/like`)
     axios.put(`${BASE_URL}/cards/1/like`)
@@ -92,6 +112,9 @@ function App () {
       // setLikeCount(likeCount + 1);
       setCards(response.data.card);
       // setCards(response.data.card.likes_count);
+    })
+    .catch(() => {
+      setErrors("Fail to increase like");
     });
   }
 
@@ -118,13 +141,14 @@ function App () {
             <div>{selectedBoard}</div>
           </div>
           {/* new board section */}
-          <h2>Create new board</h2>
+          <h2>CREATE A NEW BOARD</h2>
           {newBoard}
           <button onClick={toggler}>{buttonText}</button>
           {/* cards for selected board section */}
+          <h3>CARDS FOR {selectedBoard}</h3>
           <CardList cards={cards} likeIncreaseCallback={likeIncrease}/>
           {/* new card section */}
-          <NewCardForm />
+          <NewCardForm createNewCard={createNewCard} deleteCard={deleteCard}/>
         </main>
         <div>
           {/* <FindCityForm onSubmitCallback={getLocation} /> */}

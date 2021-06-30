@@ -1,12 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useState } from 'react';
 import './Card.css'
 
-const Card = ({message, likeCount, likeIncreaseCallback, id}) => {
+const Card = ({message, likeCount, likeIncreaseCallback, id, deleteCard}) => {
 
     const onLikeClick = ()  =>{
         likeIncreaseCallback(id);
+    }
+
+    const deleteClick = ()  =>{
+        deleteCard(id);
     }
 
     // const{likesCount} = props;
@@ -21,8 +23,8 @@ const Card = ({message, likeCount, likeIncreaseCallback, id}) => {
             <div>{likeCount}</div>
             <div className='btn_div'>
                 <button onClick={onLikeClick}>UP ❤️</button>
-                <button className="delete-btn">DELETE</button>
-                {/* Make a delete function */}
+                <button onClick={deleteClick}>DELETE</button>
+                {/* <button className="delete-btn">DELETE</button> */}
             </div>
         </div>
     );
