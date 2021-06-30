@@ -70,6 +70,8 @@ function App() {
       });
   };
 
+  // ----------------- MELISSA'S CARD CODE ----------------------------------- 
+
   // new card function to connect cards to board
   const addNewCard = (message) => {
     console.log('message', message)
@@ -78,6 +80,28 @@ function App() {
       board_id: selectedBoard.id
     }
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("error!")
+      });
+  };
+
+  // create function for card likes
+  const cardLikes = (cardId) => {
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}/like`, )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("error!")
+      });
+  };
+
+  // create function to delete cards
+  const cardDelete = (cardId) => {
+    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}`, )
       .then((response) => {
         console.log(response);
       })
@@ -112,9 +136,11 @@ function App() {
 
       <div className="cards_container">
         <section className="card_items_container">
-          
-
+          <p>
+            {selectedBoard.id ? <CardList board={selectBoard} likeCallBack={cardLikes} deleteCallBack={cardDelete} addCardCallBack={addNewCard}></CardList>: ''}
+          </p>
         </section>
+        
         <section className="new-card-form_container">
           <h2>CREATE A NEW CARD</h2>
           <NewCardForm addCardCallBack={addNewCard}></NewCardForm>
