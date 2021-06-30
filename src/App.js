@@ -43,6 +43,27 @@ function App() {
       console.log('Error:', error);
       alert('Couldn\'t create a new board.');
     })
+  const upvoteCard = (selectedCardId) => {
+    axios
+    .put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}/upvote`)
+    .then((response) => {
+        console.log(response.data.card)
+        updateCardsList(response.data.card)
+    })
+    .catch((error) => {
+      console.log(error.data.details)
+    })
+  };
+
+  const updateCardsList = (selectedCard) => {
+    const cards = cardsData.map(card => {
+      if (selectedCard.id === card.id) {
+        return selectedCard;
+      } else {
+        return card;
+      }
+    });
+    setCardsData(cards)
   }
 
   return (
@@ -68,6 +89,7 @@ function App() {
       <section> 
         < CardList 
         cardsData= { cardsData }
+        upvoteCard = {upvoteCard}
         />
       </section>
       </main>

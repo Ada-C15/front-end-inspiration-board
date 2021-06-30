@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card';
 
+
 const CardList = (props) => { 
 
     const listofCards = props.cardsData.map((card) => {
@@ -10,7 +11,8 @@ const CardList = (props) => {
                 id={ card.id } 
                 message={ card.message }
                 likesCount= { card.likes_count}
-                boardId= {card.board_id } />
+                boardId= {card.board_id }
+                upvoteCard={props.upvoteCard}/>
             </li>
         );
     });
