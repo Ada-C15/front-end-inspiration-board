@@ -10,7 +10,8 @@ function App() {
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
   const [boardCount, setBoardCount] = useState(0);
-  const [cards, setCards] = useState([])
+  const [cards, setCards] = useState([]);
+  const [showNewBoardForm, toggleNewBoardForm] = useState(true);
   
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`,
@@ -160,6 +161,7 @@ function App() {
     }
     
   }
+  
 
   return (
     <div className="App">
@@ -179,8 +181,8 @@ function App() {
         <h3>Selected Board: {currentBoard.title}</h3>
         
         <h3>Create a New Board:</h3>  
-
-        <NewBoardForm onSubmitCallback={handleBoardSubmit}></NewBoardForm>
+        { showNewBoardForm ? <NewBoardForm onSubmitCallback={handleBoardSubmit}></NewBoardForm> : '' }
+        <button onClick={() => toggleNewBoardForm(!showNewBoardForm)}>Show New Board Form</button>
         <Board data={currentBoard} cards={cards} onLikeClickCallback={increaseLikeCount} onDeleteClickCallback={deleteCard} onSubmitCallback={handleCardSubmit}></Board>
       </main>
     </div>
