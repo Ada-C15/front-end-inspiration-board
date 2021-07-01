@@ -51,7 +51,6 @@ function App() {
   const BASE_URL = 'http://localhost:5000';
 
   const [boardsData, setBoardsData] = useState([])
-<<<<<<< HEAD
   const [cards, setCards] = useState(createCards()); //for test data
   // const [cards, setCards] = useState([]);  //for API calls
 
@@ -141,7 +140,6 @@ function App() {
       </main>
     </div>
   )
-=======
   const [selectedBoard, setSelectedBoard] = useState({
     title: '',
     owner: '',
@@ -158,7 +156,6 @@ function App() {
     .catch((error) => console.log(error));
   }, []);
 
->>>>>>> b21fa46498d6e8061c1b5c7e612f0463c1b74911
 
   const CreateNewBoard = (newBoard) => {
     // const BASE_URL = "http://localhost:5000";
