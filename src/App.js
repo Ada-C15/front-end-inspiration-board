@@ -11,7 +11,7 @@ function App() {
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
   const [boardCount, setBoardCount] = useState(0);
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState([])
   
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`,
@@ -43,6 +43,24 @@ function App() {
       setCurrentBoard({});
     }
   }
+
+  //this updates the cards whenever the current board is changed
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${currentBoard.board_id}/cards`,
+      {
+        params: {
+          format: 'json'
+        }
+      })
+    .then( (response) => {
+        setCards(response.data);
+        console.log('success in finding card list')
+    })
+    .catch( (error) => {
+        console.log('error in getting card list');
+        console.log(error.response)
+    });
+  }, [currentBoard])
 
 
   const handleChange = (event) => { 
@@ -102,7 +120,7 @@ function App() {
         <h3>Create a New Board:</h3>
         <NewBoardForm onSubmitCallback={handleSubmit}></NewBoardForm>
 
-        <Board data={currentBoard}></Board>
+        <Board data={currentBoard} cards={cards}></Board>
 
         <h3>Create a New Card</h3>
         <NewCardForm board_id={currentBoard.board_id}></NewCardForm>
