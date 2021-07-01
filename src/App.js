@@ -111,7 +111,7 @@ function App() {
   const generateBoardTitles = (boardData) => {
     const boardTitles = [];
     for (let board of boardData) {
-        boardTitles.push(<option key={board.id} value={board.title}>{board.title}</option>);
+        boardTitles.push(<option key={board.board_id} value={board.title}>{board.title}</option>);
     }
     return boardTitles;
   }
