@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const generateCardComponents = (cards, likeCallback, deleteCallback) => {
     const cardList = [];
     for (let card of cards) {
-        cardList.push(<Card id={card.card_id} message={card.message} likes={card.likes_count} onLikeClickCallback={likeCallback} onDeleteClickCallback={deleteCallback}/>);
+        cardList.push(<Card key={card.card_id} id={card.card_id} message={card.message} likes={card.likes_count} onLikeClickCallback={likeCallback} onDeleteClickCallback={deleteCallback}/>);
     }
     return cardList;
 }
