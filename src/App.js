@@ -17,7 +17,11 @@ function App() {
 
   // Select a board
 
-  const [selectedBoard, setSelectedBoard] = useState([])
+  const [selectedBoard, setSelectedBoard] = useState({
+    id: null,
+    titleData:"",
+    ownerData:""
+  })
 
 
 // Hide and Show Board
@@ -54,22 +58,18 @@ function App() {
   }
 
   // Select a board
-  const selectABoard = (id) =>{
-    const boards = boardsData.map(board => {
-      if(board.id === id) {
-      
-      board["cards"] = {selectedBoard}
+  const selectABoard = (board) =>{
+            setBoardsData(board)
         }
-        return board
-      })
-    setBoardsData(boards)
-  }
+    
 
   // rendering the boards to the Board component
+
   const boardComponent = boardsData.map( board => {
-    return <li key={board.id}><Board id={board.id} title={board.titleData} owner={board.ownerData} onBoardSelect={selectABoard}></Board></li>
-  })
-  
+    return <li key={board.id}><Board board={board} onBoardSelect={selectABoard}></Board></li>
+    // return <li key={board.id}><Board id={board.id} title={board.titleData} owner={board.ownerData} onBoardSelect={selectABoard}></Board></li>
+      })
+
   // ClikButton to hide or show the board form
   const onClickCallback = () => {
     setIsBoardFormVisible(!isBoardFormVisible)
@@ -83,6 +83,7 @@ function App() {
       <h1>Inspiration Board</h1>
       </header>
       <main>
+ 
       <div className="left">
       <section className="displayBoard">
           <ol>
@@ -104,7 +105,7 @@ function App() {
         <h2>Create a new card</h2>
         <NewCardForm addCardCallback={addCardsData}></NewCardForm>
       </div>
-      <div> <CardList cards={selectedBoard}></CardList></div>
+      <div>{selectedBoard.id ? <CardList board={selectedBoard}></CardList> : ''}</div>
         
       </main>
     </div>
