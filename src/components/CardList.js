@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 const CardList = (props) => {
 
-    console.log('cardsList props', props.cards)
+    console.log('cardsList props', props.cards[0])
     const cardComponents = props.cards.map((card) => {
         return(
             <li>
