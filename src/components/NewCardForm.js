@@ -31,6 +31,7 @@ const NewCardForm = (props) => {
         id="message"
         value={formFields.message}
         onChange={onMessageChange}
+        required
       />
 
       <button type='submit'>SUBMIT</button>

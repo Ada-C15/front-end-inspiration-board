@@ -41,6 +41,7 @@ const onOwnerChange = (event) => {
         id="title"
         value={formFields.title}
         onChange={onTitleChange}
+        required
       />
       <label>Board Owner: </label>
       <input
@@ -48,6 +49,7 @@ const onOwnerChange = (event) => {
         id="owner"
         value={formFields.owner}
         onChange={onOwnerChange}
+        required
       />
       <button type='submit'>SUBMIT</button>
     </form>
