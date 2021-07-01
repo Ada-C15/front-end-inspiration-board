@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 const Card = (props) => {
 
-    const [newMessage, setNewMessage] = useState({'message': ''});
+    const [newMessage, setNewMessage] = useState({'message': props.message});
 
     const [showEditBox, setShowEditBox] = useState(false)
 
@@ -37,10 +37,6 @@ const Card = (props) => {
     return (
     <section>
         <ul>
-            <li>Sticky Note: { props.id }</li>
-            <li>Board ID: { props.boardId }</li>
-            <button type='button' onClick={upvoteClick}> Upvote: {props.likesCount}</button>
-            <button type='button' onClick={deleteCardClick}>Delete</button>
             <>
                 {showEditBox ? (
                 <>
@@ -49,6 +45,8 @@ const Card = (props) => {
                 </>
                 ) : <li>Message: { props.message }</li>}
                 </>
+            <button type='button' onClick={upvoteClick}> Upvote: {props.likesCount}</button>
+            <button type='button' onClick={deleteCardClick}>Delete</button>
             <button type='button' onClick={editButtonClick}>Edit</button>
         </ul>
     </section>
