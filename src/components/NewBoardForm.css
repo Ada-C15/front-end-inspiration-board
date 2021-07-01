@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap');
+
+/* doesnt line up w 'choose' prompt */
+/* style div class or input classes? */
+.fieldItself { 
+    background-color: #8C705F;
+    color: #CCFCCB;
+    font-weight: bolder;
+    font-family: 'Gaegu', cursive; 
+    display: flex; /* or in-line block? */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 810px;
+    height: 50px;
+    width: 100px; /* shorten button width */
+    margin: 20px auto 0;
+    padding: 5px; /*space bw button txt and edge of button */
+    border-radius: 25% 10%; /* from: https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
+}
+
+/* .titleElements {
+    top: 475px;
+    left: 250px;
+    width: 100px;
+    height: 30px;
+    margin-top: 15px;
+}
+
+.ownerElements {
+    top: 475px;
+    right: 250px;
+    width: 350px;
+    height: 120px;
+    margin-top: 15px;
+} */
+
+.fieldItself:hover, .fieldPrompt:hover {
+    background-color: #9b806e;
+    text-decoration: underline dotted#CCFCCB; /* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration */
+
+}
