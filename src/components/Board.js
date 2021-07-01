@@ -1,13 +1,20 @@
 import React from "react";
-import { useState } from "react";
 import PropTypes from 'prop-types';
 
 const Board = (props) => {
 
+    const deleteBoardClick = () => {
+        const selectedBoardId = props.id
+        props.deleteBoard(selectedBoardId)
+    };
+
     return (
-        <button onClick={() => props.onBoardSelect({id:props.id,title:props.title,owner:props.owner})}>
-            {props.id}: {props.title}
-        </button>
+        <div>
+            <button onClick={() => props.onBoardSelect({id:props.id,title:props.title,owner:props.owner})}>
+                {props.id}: {props.title}
+            </button>
+            <button onClick={deleteBoardClick} >Delete Board</button>
+        </div>
     );
     
 };

@@ -7,10 +7,12 @@ const BoardList = (props) => {
     const listofBoards = props.boardsData.map((board) => {
         return (
             <Board 
+            key= {board.id}
             title= {board.title}
             id= {board.id}
             owner= {board.owner}
             onBoardSelect= {props.selectedBoard}
+            deleteBoard= {props.deleteBoard}
             />
         )
     })  
@@ -27,8 +29,9 @@ BoardList.propTypes = {
         title: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
         owner: PropTypes.string.isRequired,
-        onBoardSelect: PropTypes.func.isRequired
+        
     })),
+    deleteBoard: PropTypes.func.isRequired,
     selectedBoard: PropTypes.func.isRequired
 }
 
