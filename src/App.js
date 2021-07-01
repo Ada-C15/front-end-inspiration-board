@@ -68,49 +68,6 @@ function App() {
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
   const toggleNewBoardForm = () => {setIsBoardFormVisible(!isBoardFormVisible)}
 
-
-  // ----------------- MELISSA'S CARD CODE ----------------------------------- 
-
-  // new card function to connect cards to board
-  const addNewCard = (message) => {
-    console.log('message', message)
-    const newCard = {
-      message: message,
-      board_id: selectedBoard.id
-    }
-    axios.post(`${process.envREACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log("error!")
-      });
-  };
-
-  // create function for card likes
-  const cardLikes = (cardId) => {
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}/like`, )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log("error!")
-      });
-  };
-
-  // create function to delete cards
-  const cardDelete = (cardId) => {
-    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}`, )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log("error!")
-      });
-  };
-
-  // --------------------------------------------------------------------------
-
   return (
     <div className="page_container">
 
@@ -141,7 +98,7 @@ function App() {
       <div className="cards_container">
 
         <section className="card_items_container">
-          {selectedBoard.board_id ? <CardList board={selectedBoard} likeCallBack={cardLikes} deleteCallBack={cardDelete} /> : ''}
+          {selectedBoard.id ? <CardList board={selectedBoard}/> : ''}
         </section> 
 
       </div>

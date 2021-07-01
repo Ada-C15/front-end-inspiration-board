@@ -1,4 +1,3 @@
-import './NewCardForm.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -14,6 +13,7 @@ const NewCardForm = (props) => {
     // callback function to submit message
     const submitNewCard = (event) => {
         event.preventDefault();
+        console.log(formFields)
         props.addCardCallback(formFields);
         setFormFields('');
     }

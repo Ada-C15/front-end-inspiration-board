@@ -1,9 +1,4 @@
-import './Card.css';
 import { useState } from 'react';
-
-// const Card = (props) => {
-
-// }
 
 const Card = (props) => {
     // state to count likes
@@ -12,7 +7,9 @@ const Card = (props) => {
     // function callback for likes
     const likeButton = () => {
         props.likeCallBack(props.id)
+        console.log(cardLikes)
         setCardLikes(cardLikes + 1)
+        
     };
 
     // function callback for delete
@@ -20,15 +17,14 @@ const Card = (props) => {
         props.deleteCallBack(props.id)
     };
 
-
     return (
-    <div className='card-item'>
-        <p className='card-item__message'>{props.card.message}</p>
-        <ul className='card-item__controls'>
-            <li><p>{props.card.likes_count} 💕</p></li>
-            <li><p onClick={() => props.plusOneCardItem(props.card)}>+1</p></li>
-            <li><p className='card-item__delete' onClick={() => props.deleteCardItem(props.card)}>Delete</p></li>
-        </ul>
+        <div className='card-item'>
+            <p className='card-item__message'>{props.message}</p>
+            <ul className='card-item__controls'>
+                <li><p>{cardLikes}💕</p></li>
+                <li><p onClick={likeButton}>+1</p></li>
+                <li><p className='card-item__delete' onClick={deleteButton}>🗑️</p></li>
+            </ul>
         </div>);
     };
 
