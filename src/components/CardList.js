@@ -16,7 +16,7 @@ const CardList = (props) => {
         });
     }, [props.board]);
 
-    console.log("Cards Data: ",cardsData);
+    console.log("Cards Data in UseEffect: ",cardsData);
 
     // const deleteCardItem = (card) => {
     //     axios.delete(`https://board-inspo-app.herokuapp.com/cards/${card.card_id}`).then((response) => {
@@ -48,17 +48,29 @@ const CardList = (props) => {
             // plusOneCardItem={plusOneCardItem}
             ></Card>)
     });
+    
 
-    const postNewCard = (message) => {
+    const postNewCard = (text) => {
+        const message = {"message":text}
+        console.log("This is the message that will be send from CardList: ",message)
         axios.post(`https://board-inspo-app.herokuapp.com/cards`,message)
         .then((response) => {
-            console.log("My new card created: 🌻",response)
-        // const cards = [...cardsData];
-        // cards.push(response.data.card);
-        // setCardsData(cards);
+            console.log("ID new card created: 🌻",response.data.id)
+            const new_card_id = response.data.id
+            const bodyToLinkToBoard = {"card_ids": [new_card_id]}
+            axios.post(`https://board-inspo-app.herokuapp.com/boards/${props.board.id}/cards`, bodyToLinkToBoard)
+            .then((response) => {
+                axios.get(`https://board-inspo-app.herokuapp.com/boards/${props.board.id}/cards`).then((response)=> {
+                    setCardsData(response.data.cards);
+                }).catch((error) => {
+                console.log('Error:', error);
+                alert('Couldn\'t get cards for this board.');
+                });
+            })
+            .catch((error) => {console.log(error.response.data)})
         }).catch((error) => {
-        console.log('Error:', error);
-        alert('Couldn\'t create a new card.');
+            console.log('Error:', error);
+            alert('Couldn\'t create a new board.');
         });
     };
 

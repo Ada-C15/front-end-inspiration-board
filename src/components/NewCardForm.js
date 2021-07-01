@@ -10,6 +10,7 @@ const NewCardForm = (props) => {
 
     const submitNewCard = (event) => {
         event.preventDefault();
+        console.log("This is the message that will be send from NewCardForm: ",message)
         props.postNewCard(message);
         setMessage('');
     };
