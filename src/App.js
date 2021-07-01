@@ -23,8 +23,9 @@ function App() {
   })
 
   useEffect(() => {
-    axios.get('http://localhost:5000/boards', 
-    {headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
+    // axios.get('http://localhost:5000/boards', 
+    // {headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
     .then((response) => {
       console.log(response.data)
       setBoardsData(response.data)
@@ -43,8 +44,8 @@ function App() {
     // })
     // setBoardsData(board);
     // axios.post(`${BASE_URL}/boards`, newBoard)
-    axios.post("http://localhost:5000/boards", newBoard)
-    // axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
+    // axios.post("http://localhost:5000/boards", newBoard)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
         .then((response) => {
           console.log('response ', response.data.board)
           board.push(response.data.board);
