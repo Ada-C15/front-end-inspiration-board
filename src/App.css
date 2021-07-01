@@ -3,6 +3,7 @@
 } */
 
 @import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
 
 body {
   font-family: 'Kirang Haerang', cursive;
@@ -15,9 +16,9 @@ header {
   font-size: 3em;
 }
 
-footer {
+/* footer {
 
-}
+} */
 
 /* h2 {
   font-size: 2em;
@@ -25,12 +26,13 @@ footer {
 
 .boards__container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 40% 10% 40%;
+  grid-template-columns: 20% 1fr 20%;
+  grid-template-rows: 40% 10% 30%;
+  padding-top: 1px;
 }
 
 .ol {
-  border: black solid 2px;
+  border: black solid 2.5px;
 }
 
 .boards__container div {
@@ -38,12 +40,12 @@ footer {
 }
 
 .left, .middle, .right, .bottom-left, .bottom-right {
-  display: inline-block;
+  /* display: inline-block; */
   background-color: rgb(242, 4, 186, 0.932);
   border: 2px solid black;
   padding-left: 8px;
   padding-right: 8px;
-  font-size: 1.5em;
+  font-size: 1.25em;
   height: 400px;
 }
 
@@ -62,20 +64,27 @@ footer {
 .right {
   grid-column: 3 / 4;
   grid-row: 1 / 2;
-
+  height: 400px;
 }
+
 .bottom-left {
   grid-column: 1 / 2 ;
   grid-row: 3 / 4;
+  
 
 } 
 .bottom-right {
   grid-column: 3 / 4;
   grid-row: 3 / 4;
-
+  height: 100;
 }
 
+.newFormHideButton {
+  background-color: #def068;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 1em;
 
+}
 
 @keyframes App-logo-spin {
   from {

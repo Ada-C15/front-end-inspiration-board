@@ -48,7 +48,7 @@ const NewBoardForm = (props) => {
             <form class= "new-board-form__form" 
                 onSubmit={onFormSubmit}>
                 <div>
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="title">Title </label>
                     <input
                         type="text"
                         name="title"
@@ -56,14 +56,19 @@ const NewBoardForm = (props) => {
                         onChange={onTitleChange} />
                 </div>
                 <div>
-                    <label htmlFor="owner">Owner's Name</label>
+                    <label htmlFor="owner">Owner's Name </label>
                     <input
                         type="text"
                         name="owner"
                         value={formFields.owner}
                         onChange={onOwnerChange} />
-                </div>Preview: {formFields.title} <div>
-                    <input type="submit" value="submit"/>
+                </div>
+                <div>
+                    <p> Preview: {formFields.title} </p>
+                    <input 
+                        className= "smallButton"
+                        type="submit" 
+                        value="submit"/>
                 </div>
             </form>
         </section>

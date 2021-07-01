@@ -1,7 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+
 .new-card-form__form {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    margin-bottom: 2em;
-    width: 20%;
+    margin-bottom: 1em;
+    width: 100%;
+    text-align: left;
+}
+
+h2 {
+    text-align: center;
+}
+
+.smallButton {
+    font-family: 'Red Hat Display', sans-serif;
 }
