@@ -5,13 +5,14 @@ import Card from './Card';
 const CardList = (props) => {
     const cardComponents = props.cards.map((card) => {
         return (
-            <li key={card.id}>
+            <li key={card.card_id}>
                 <Card
                     id={card.card_id}  
                     message={card.message}
                     // onUpdate={props.addCard}
                     likeCount={card.likes_count}
                     likeIncreaseCallback={props.likeIncreaseCallback}
+                    deleteCard={props.deleteCard}
                 ></Card>
             </li>
         );
@@ -20,7 +21,6 @@ const CardList = (props) => {
 
     return (
         <section>
-            {/* <h2>CARDS FOR {props.boardTitle}</h2> */}
             <ul>
                 {cardComponents}
             </ul>

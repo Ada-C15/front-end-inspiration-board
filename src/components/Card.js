@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css'
 
-const Card = ({message, likeCount, likeIncreaseCallback, id, deleteCard}) => {
+const Card = ({message, likeIncreaseCallback, id, deleteCard, likeCount}) => {
 
     const onLikeClick = ()  =>{
         likeIncreaseCallback(id);

@@ -4,7 +4,7 @@ const NewBoardForm = (props) => {
 
     const [formFields, setFormFields] = useState({
         title: '',
-        name: ''
+        owner: ''
     });
 
     const onTitleChange = (event) => {
@@ -14,23 +14,25 @@ const NewBoardForm = (props) => {
         })
     };
 
-    const onNameChange = (event) => {
+    const onOwnerChange = (event) => {
         setFormFields({
             ...formFields,
-            name: event.target.value
+            owner: event.target.value
         })
     };
 
-    const onButtonClick = () => {
-       props.createNewBoard()
+    const onSubmit= (event) => {
+        event.preventDefault();
+        props.createNewBoard(formFields)
       };
 
-    // const submitNewBoard = (event) => {
+//     const onSubmit = (event) =>{
+//     event.preventDefault();
 
-    // }
+//   };
 
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             <div>
                 <label htmlFor="title">Title:</label>
                 <input
@@ -39,18 +41,18 @@ const NewBoardForm = (props) => {
                     onChange={onTitleChange} />
             </div>
             <div>
-                <label htmlFor="name">Owner:</label>
-                <input name="name"
-                    value={formFields.name}
-                    onChange={onNameChange} />
+                <label htmlFor="owner">Owner:</label>
+                <input name="owner"
+                    value={formFields.owner}
+                    onChange={onOwnerChange} />
             </div>
             <div>
                 <p>Preview: {formFields.title} - {formFields.name}</p>
             </div>
-            {/* <input
+            <input
                 type="submit"
-                value="Add Board" /> */}
-            <button onClick={onButtonClick}>Add a baord</button>
+                value="Add Board" />
+            {/* <button onClick={onButtonClick}>Add a board</button> */}
         </form>
     );
 };
