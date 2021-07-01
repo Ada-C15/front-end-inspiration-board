@@ -18,6 +18,8 @@ function App() {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`).then((response) => {
       setBoardsData(response.data);
+    }).catch((error) => {
+      console.log(error.data.details)
     })
   }, []);
 
@@ -39,6 +41,8 @@ function App() {
       axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
         setCardsData(response.data);
         console.log('Response is:',response.data)
+      }).catch((error) => {
+        console.log(error.data.details)
       })
     }
   }, [selectedBoard]);
@@ -97,7 +101,7 @@ function App() {
 
 
   const updateSingleCard = (selectedCardId, newMessage) => {
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`, newMessage) 
+    axios.put(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/cards/${selectedCardId}`, newMessage) 
       .then((response) => {
         const cards = cardsData.map(card => {
           if (selectedCardId === card.id) {
@@ -107,6 +111,10 @@ function App() {
         })
         console.log(response.data)
         setCardsData(cards)
+    }).catch((error) => {
+      console.log(error.data.details)
+    })
+  };
 
   const deleteBoard = (selectedBoardId) => {
     axios
