@@ -1,0 +1,7 @@
+.new-card-form__form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-bottom: 2em;
+    width: 20%;
+}
