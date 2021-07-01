@@ -9,66 +9,65 @@ import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import CardList from './components/CardList';
 
+// I cannot get the process.env object to work so this is
+// will have to do for now:
+const REACT_APP_BACKEND_URL = 'http://localhost:5000'
 
 function App() {
 
-
-  //  ---------------------------- BOARD STATES ------------------------------
-  // create state for board (default: empty array, meaning no boards created)
-  const [boardsData, setBoardsData] = useState([]) 
-  // create state for selected board (default: no board is selected)
+  // creates state for board (default: empty array, meaning no boards created):
+  const [boardsData, setBoardsData] = useState([]);
+  // creates state for selected board (default: no board is selected):
   const [selectedBoard, setSelectedBoard] = useState({
     title: '',
     owner: '', 
     board_id: null
   });
 
-  // 
-
   // useEffect utilized to send GET request to boards endpoint
   // > response object contains data for all boards
   // > response used to update boardsData state
+
   useEffect(() => {
     axios
-    .get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
+    .get(`${REACT_APP_BACKEND_URL}/boards`, {
     })
-    .then((response) => {setBoardsData(response.data);
+    .then((response) => {
+      setBoardsData(response.data);
     })
-  }, []); // <-- Because we want this API call to happen only when the component
-  // mounts, and not when any updates are made, our dependency list is an empty array []
+  }, []); 
   
   // event handler responsible for updating setSelectedBoard state
   const selectBoard = (board) => { setSelectedBoard(board) };
 
-  // mapping the response data from a successful GET request to 
-  // a list of boards (boardsElements)
-  const boardsElements = boardsData.map((board) => {
+  // maps the response data from a successful GET request to 
+  // a list of boards:
+  const allBoardsList = boardsData.map((board) => {
     return (<li>
       <Board board={board} onBoardSelect={selectBoard}></Board>
     </li>)
   });
 
-  // Board component will display a blue border if rendered correctly
-  // here
-
-  // ----------------- MELISSA'S BOARD CODE ----------------------------------- 
-  // new board function submission button - references call back function
-  const createNewBoard = (newBoardData) => {
-    console.log('newBoardData', newBoardData)
-
-    const newBoard = {
-      title: newBoardData.title,
-      owner: newBoardData.owner
-    }
-
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
+  const postNewBoard = (newBoardData) => {
+    axios
+      .post(`${REACT_APP_BACKEND_URL}/boards`, {
+        title: newBoardData.title,
+        owner: newBoardData.owner
+      })
       .then((response) => {
-        console.log(response);
+        console.log('response:', response);
+        console.log('response data:', response.data);
       })
       .catch((error) => {
-        console.log("error!")
+        console.log('error:', error);
+        console.log('error response:', error.response);
+        alert('Could not create board.');
       });
   };
+
+  const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
+  const toggleNewBoardForm = () => {setIsBoardFormVisible(!isBoardFormVisible)}
+
 
   // ----------------- MELISSA'S CARD CODE ----------------------------------- 
 
@@ -79,7 +78,7 @@ function App() {
       message: message,
       board_id: selectedBoard.id
     }
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard)
+    axios.post(`${REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard)
       .then((response) => {
         console.log(response);
       })
@@ -90,7 +89,7 @@ function App() {
 
   // create function for card likes
   const cardLikes = (cardId) => {
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}/like`, )
+    axios.put(`${REACT_APP_BACKEND_URL}/cards/${cardId}/like`, )
       .then((response) => {
         console.log(response);
       })
@@ -101,7 +100,7 @@ function App() {
 
   // create function to delete cards
   const cardDelete = (cardId) => {
-    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}`, )
+    axios.delete(`${REACT_APP_BACKEND_URL}/cards/${cardId}`, )
       .then((response) => {
         console.log(response);
       })
@@ -109,6 +108,8 @@ function App() {
         console.log("error!")
       });
   };
+
+  // --------------------------------------------------------------------------
 
   return (
     <div className="page_container">
@@ -118,33 +119,31 @@ function App() {
       </div>
 
       <div className="boards_container">
+
         <section>
           <h2>BOARDS</h2>
-          <ol className="boards_list">
-            {boardsElements}
-          </ol>
+          <ul> {allBoardsList} </ul>       
         </section>
+
         <section className="selected_board">
           <h2>SELECTED BOARD</h2>
-          <p>{selectedBoard.board_id ? `${selectedBoard.title} - ${selectedBoard.owner}` : 'First select a board from list'}</p>
+          <p>{selectedBoard.id ? `"${selectedBoard.title}" by ${selectedBoard.owner}` : 'Please select a board from the list!'}</p>
         </section>
+
         <section className="new-board-form_container"> 
           <h2>CREATE A NEW BOARD</h2>
-          <NewBoardForm addBoardCallBack={createNewBoard}></NewBoardForm>
+          <button onClick={toggleNewBoardForm}>{isBoardFormVisible ? 'Hide Form' : 'Show Form'}</button>
+          {isBoardFormVisible ? <NewBoardForm addBoardCallBack={postNewBoard}></NewBoardForm> : ''}
         </section>
+        
       </div>
 
       <div className="cards_container">
+
         <section className="card_items_container">
-          <p>
-            {selectedBoard.id ? <CardList board={selectBoard} likeCallBack={cardLikes} deleteCallBack={cardDelete} addCardCallBack={addNewCard}></CardList>: ''}
-          </p>
-        </section>
-        
-        <section className="new-card-form_container">
-          <h2>CREATE A NEW CARD</h2>
-          <NewCardForm addCardCallBack={addNewCard}></NewCardForm>
-        </section>
+          {selectedBoard.board_id ? <CardList board={selectedBoard} /> : ''}
+        </section> 
+
       </div>
 
     </div>

@@ -1,14 +1,10 @@
 import './Board.css';
 
-
 const Board = (props) => {
     return (
-        <div className="board"
-        onClick={() => props.onBoardSelect(props.board)}
-        >
+        <div onClick={() => props.onBoardSelect(props.board)}>
             {props.board.title}
-        </div>
-    );
+        </div>);
 };
 
 export default Board;
