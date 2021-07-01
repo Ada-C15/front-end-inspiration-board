@@ -7,29 +7,7 @@ const NewBoardForm = (props) => {
     title: '',
     owner: ''
   });
-  // const [title, setTitle] = useState('');
-  // const [owner, setOwner] = useState('');
-  // const newBoard = () => {
-  //   // alert(title);
-  //   axios
-  //     .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, {"title":title,"owner":owner})
-  //     .then((response) => {
-  //       console.log(
-  //         "The data we get back from the HTTP response:",
-  //         response.data
-  //       );
-  //     })
-  //     .catch((error) => {
-  //       console.log(
-  //         "Anything that isn't status code 2XX is an error:",
-  //         error.response.status
-  //       );
-  //       console.log(
-  //         "The data from response with an error:",
-  //         error.response.data
-  //       );
-  //     });
-  // };
+  
   const onFormSubmit = (event) => {
     event.preventDefault();
     props.onSubmitCallback({

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Oleo+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 
 .App {
   text-align: center;
@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   border: 2px solid black;
-  font-family: fantasy;
+  font-family: 'Nanum Pen Script', cursive;
 }
 
 .BoardStuff {
@@ -36,7 +36,7 @@
 }
 
 h3 {
-  font-family: fantasy;
+  font-family: 'Nanum Pen Script', cursive;
   font-size: 1.5em;
 }
 
