@@ -7,37 +7,32 @@ const NewCardForm = (props) => {
     const [message, setMessage] = useState('');
 
     const onMessageEntry = (event) => {
-        setMessage({
-            ...message,
-            message: event.target.value
-        })
+        setMessage(event.target.value)
+        // setMessage({
+        //     message: event.target.value
+        // })
     };
 
     const submitCard = (event) => {
         event.preventDefault();
 
+        props.createNewCard(message)
 
-        props.createNewCard({
-            message: message.message
-        })
-
-
-        setMessage({
-            message: ''
-        })
+        setMessage('');
+        //     {
+        //     message: ''
+        // })
     };
     
 
 //why doesnt this form render on the UI?
     return(
         <form onSubmit={submitCard}>
-            <div>
-                <label htmlFor='message'>Message</label>
-                <input 
-                    name='message'
-                    value={message.message}
-                    onChange={onMessageEntry} />
-            </div>
+            <label htmlFor='message-input'>Message</label>
+            <input 
+                name='message'
+                value={message}
+                onChange={onMessageEntry} />
             <button type='submit'>Submit</button>
         </form>
     );

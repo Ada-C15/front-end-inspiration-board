@@ -4,6 +4,7 @@ import CardList from './components/CardList.js';
 import Card from './components/Card.js';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
+import BoardList from './components/BoardList'
 import axios from 'axios';
 
 
@@ -22,80 +23,66 @@ selectedBoard
 isBoardFormVisible */
 
 //Creates helper data array to test with
-const createCards = () => {
-  const cards = [];
+// const createCards = () => {
+//   const cards = [];
 
-  let current_id = 0
+//   let current_id = 0
 
-  for(let row = 0; row < 9; row +=1) {
-    cards.push({
-      card_id: current_id,
-      likes_count: 0,
-      message: 'This works!'});
-      current_id += 1
-  }  
-  console.log('cards', cards)
-  return cards;
-}
+//   for(let row = 0; row < 9; row +=1) {
+//     cards.push({
+//       card_id: current_id,
+//       likes_count: 0,
+//       message: 'This works!'});
+//       current_id += 1
+//   }  
+//   console.log('cards', cards)
+//   return cards;
+// }
 
 
 function App() {
   const BASE_URL = 'http://localhost:5000';
 
-  const [boardsData, setBoardsData] = useState([])
-  const [cards, setCards] = useState(createCards()); //for test data
-  // const [cards, setCards] = useState([]);  //for API calls
+  const [boardsData, setBoardsData] = useState([]);
+  const [selectedBoard, setSelectedBoard] = useState({
+    title: '',
+    owner: '',
+    // board_id: null
+  });
+  const [cards, setCards] = useState([]);
 
-  //when a user clicks a card list then:
 
-  // useEffect(()=>{
-    //   axios
-    //   .get(`${BASE_URL}/cards`)
-    //   .then((response) => console.log(response))
-    //   //.then((response)=>setCards(response))//setCards will have an empty obj or list as default([])
-    //   .catch((error)=>console.log(error));
-    // }, []);
-    //use state to
-    //then it will trigger render so that it gets added to cardList with -setCards
-    //the way we trigger a re-render is by calling a set function
+    //Testing API call works
+  // useEffect(() => {
+  //     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/1/cards`)
+  //     // axios.get('http://localhost:5000/boards', 
+  //     // {headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
+  //     .then((response) => {
+  //       console.log('card request ', response.data)
+  //       console.log('card request.cards', response.data.cards)
+  //     })
+  //     .catch((error) => console.log(error));
+  //   }, []);
 
-  const createNewCard = (newCardObj) => {
+  const createNewCard = (message) => {
 
     console.log('hi im in createNewCard')
-    console.log(newCardObj.message)
+    console.log('board id ', selectedBoard.id)
 
-    // axios
-    //     .post(`${BASE_URL}/boards/{board_id}/cards/`, newCardObj)
-    //     //   .then((response) => console.log(response))
-    //     .then((response)=>{
-    //       // const newCardsList = [...cards]
-    //       // newCardsList.push(response.data)
-    //       //setCards(newCardsList)
-    //       setCards([...cards, response.data]) //do I need to specify here?
-    //     })
-    //     .catch((error)=>console.log(error));
-  
-    
+    const cardsData = [...cards];
 
-    //recieves an object from NewCardForm constructed from the data from the form fields : 
-    //{
-  //   card_id: Id,
-  //   likes_count: 0,
-  //   message: ''
-  //  }
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, {
+        message: message
+      })
+        .then((response)=>{
+          console.log('post response ', response.data)
+          console.log('post response.card ', response.data.card)
 
-    //put card data into database with POST request
-    // useEffect(()=>{
-    //   axios
-    //   .post(`${BASE_URL}/cards`, {newCardObject.newMessage})
-    //   .then((response) => console.log(response))
-    //   //.then((response)=>setCards(response))//setCards will have an empty obj or list as default([])
-          //or .then((response)=>())
-    //   .catch((error)=>console.log(error));
-    // }, []);
-
-    // //then do API GET request to get all the cards and then put that data in setCards to update state
-    
+          cardsData.push(response.data.card)
+          setCards(cardsData)
+        })
+        .catch((error)=>console.log('error post', error));
+    console.log('ALL IN ', cards)  
   } 
 
     const testDeleteCardCallback = (card_id) => {
@@ -132,11 +119,6 @@ function App() {
   //     </main>
   //   </div>
   // )
-  const [selectedBoard, setSelectedBoard] = useState({
-    title: '',
-    owner: '',
-    // board_id: null
-  })
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
@@ -200,23 +182,23 @@ function App() {
 
   //tenery is board form visible, render newboard form, if not ''
   return (
-    // <div>
-    //   <h1>Inspiration Board</h1>
-    //   <h2>Create a New Board</h2>
-    //   {isBoardFormVisible ? <NewBoardForm createNewBoard={CreateNewBoard}/> : ''}
-    //   <input type="button" value={changeBoardForm} onClick = {() => setIsBoardFormVisible(!isBoardFormVisible)}/>
-    //   {/* <NewBoardForm createNewBoard={CreateNewBoard}/> */}
-    //   {/* <input type="button" value="Hide Board Form" onClick = {() => setIsBoardFormVisible(false)}/> */}
+    <div>
+      <h1>Inspiration Board</h1>
+      <h2>Create a New Board</h2>
+      {isBoardFormVisible ? <NewBoardForm createNewBoard={CreateNewBoard}/> : ''}
+      <input type="button" value={changeBoardForm} onClick = {() => setIsBoardFormVisible(!isBoardFormVisible)}/>
+      {/* <NewBoardForm createNewBoard={CreateNewBoard}/> */}
+      {/* <input type="button" value="Hide Board Form" onClick = {() => setIsBoardFormVisible(false)}/> */}
 
-    //   <section>
-    //     <h3>Boards</h3>
-    //     <BoardList boards={boardsData} onBoardSelect={onBoardSelect}/>
-    //   </section>
-    //   <section>
-    //     <h3>Selected Board</h3>
-    //     <div> {selectedBoard.title} - {selectedBoard.owner}</div>
-    //   </section>
-      <div>
+      <section>
+        <h3>Boards</h3>
+        <BoardList boards={boardsData} onBoardSelect={onBoardSelect}/>
+      </section>
+      <section>
+        <h3>Selected Board</h3>
+        <div> {selectedBoard.title} - {selectedBoard.owner}</div>
+      </section>
+
       <h2>Cards</h2>
       <main>
         <CardList cards={cards} onClickCallback={testfunction} deleteCallback={testDeleteCardCallback} likeCallback={testLikeCallback}/>

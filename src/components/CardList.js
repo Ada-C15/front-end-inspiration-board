@@ -1,21 +1,22 @@
 import React from 'react';
-import '../App.css';
 import Card from './Card';
 import PropTypes from 'prop-types';
 
 
+                    // likeCallback={props.likeCallback}
+                    // deleteCallback={props.deleteCallback}
+
 const CardList = (props) => {
 
     console.log('cardsList props', props.cards)
-    const cardComponents = props.cards.map((card, index)=>{
+    const cardComponents = props.cards.map((card) => {
         return(
-            <li key={index}>
+            <li>
                 <Card
-                    id={card.card_id}
+                    id={card.id}
                     message={card.message}
-                    onClick={props.onClickCallback}
-                    likeCallback={props.likeCallback}
-                    deleteCallback={props.deleteCallback}>
+                    onClick={props.onClickCallback}>
+
                 </Card>
             </li>  
         ); 
