@@ -20,7 +20,6 @@ function App() {
       setBoardsData(response.data);
     })
   }, []);
-  //selectedBoard is an array
 
   const [cardsData, setCardsData] = useState([])
 
@@ -66,16 +65,26 @@ function App() {
     setCardsData(cards)
   }
 
+  const [showBoardForm, setShowBoardForm] = useState(true)
+
+  const boardFormClick = () => {
+    setShowBoardForm(!showBoardForm)
+
+  }
+  console.log(showBoardForm)
+  
+
+  console.log(showBoardForm)
+  console.log(setShowBoardForm)
   return (
     <div>
       <h1> Inspiration Board </h1>
       <main>
       <section className='new-board-form__container'>
         <h2>Create a New Board</h2>
+        {showBoardForm ? <NewBoardForm createNewBoard={ createNewBoard }/> : '' }
         <section>
-          < NewBoardForm 
-            createNewBoard={ createNewBoard }
-          />
+          <button onClick={boardFormClick}>{showBoardForm ? 'Hide Me!' : 'Show Me!'}</button>
         </section>
       </section>
       <section className='boards__container'>
@@ -87,6 +96,7 @@ function App() {
         />
       </section>
       <section> 
+        <div>{selectedBoard.title}</div>
         < CardList 
         cardsData= { cardsData }
         upvoteCard = {upvoteCard}
