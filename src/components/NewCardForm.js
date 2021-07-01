@@ -1,57 +1,40 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import './newCardForm.css';
+import { useState } from 'react';
 
 const NewCardForm = (props) => {
 
-    const [card, setCard] = useState({
-        message: "",
-        // likes_count: ""
-    })
+    const [message, setMessage] = useState('');
 
-
-    const onMessageChange = (event) => {
-        setCard({
-            ...card,
-            message: event.target.value
-        })
+    const messageChange = (event) => { 
+        setMessage(event.target.value) 
     };
 
-    const onFormSubmit = (event) => {
+    const submitNewCard = (event) => {
         event.preventDefault();
-
-        props.addCardCallback({
-            messageData: card.message
-        });
-
-        setCard({
-            message: "",
-            // likes_count: ""
-        })
+        console.log("This is the message that will be send from NewCardForm: ",message)
+        props.postNewCard(message);
+        setMessage('');
     };
 
     return (
-        <section class= "new_card-form__container">
-            <form class= "new-card-form__form" 
-                onSubmit={onFormSubmit}>
-                <div>
-                    <label htmlFor="message">Message </label>
-                    <input
-                        type="text"
-                        name="message"
-                        value={card.message}
-                        onChange={onMessageChange} />
+
+        <section className="new_card-form__container">
+        <h2>Create a New Card</h2>
+        <form onSubmit={submitNewCard} 
+              className="new-card-form__form">
+               <div>
+                  <label htmlFor="message">Message</label>
+                  <input type="text" onChange={messageChange} value={message}></input>
                 </div>
-                    <p> <div>Preview: {card.message}</div></p>
-                <div>
-                    <p><input 
-                        className="smallButton"
-                        type="submit" 
-                        value="submit"/></p>
-                </div>
-            </form>
+                <p> <div>Preview: {message}</div></p>
+                 <div>
+                  <p> <input 
+                       type="Submit" 
+                        disabled={message.length === 0 || message.length > 40} 
+                       className="new-card-form__form-submit-btn"></input></p>
+                 </div>
+        </form>
         </section>
-    )
-}
+    );
+};
 
 export default NewCardForm;
