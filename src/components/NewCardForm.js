@@ -33,11 +33,13 @@ const NewCardForm = (props) => {
                 <input
                     value={cardForm.message}
                     onChange={ onMessageChange }
+                    className={(cardForm.message.length === 0) || (cardForm.message.length > 40)? 'invalid-form-input' : ''}
                 />
             </div>
             <input 
                 type="submit"
                 value="Submit The Message"
+                disabled={((cardForm.message.length === 0) || (cardForm.message.length >40))}
             />
         </form>
     );

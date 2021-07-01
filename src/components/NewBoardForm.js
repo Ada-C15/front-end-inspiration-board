@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import React from 'react';
+import '../App.css'
 import PropTypes from 'prop-types';
+
 
 const NewBoardForm = (props) => {
     const [boardForm, setBoardForm] = useState({
@@ -43,6 +45,7 @@ const NewBoardForm = (props) => {
                 <input
                     value={boardForm.title}
                     onChange={ onTitleChange }
+                    className={(boardForm.title.length === 0)? 'invalid-form-input' : ''}
                 />
             </div>
             <div>
@@ -50,11 +53,13 @@ const NewBoardForm = (props) => {
                 <input
                     value={boardForm.owner}
                     onChange={ onOwnerChange }
+                    className={(boardForm.owner.length === 0)? 'invalid-form-input' : ''}
                 />
             </div>
             <input 
                 type="submit"
                 value="Submit The Board"
+                disabled={((boardForm.title.length === 0) || (boardForm.owner.length === 0))}
             />
         </form>
     );
