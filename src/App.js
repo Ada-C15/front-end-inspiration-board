@@ -1,20 +1,12 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import CardList from './components/CardList.js';
-import Card from './components/Card.js';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import BoardList from './components/BoardList'
 import axios from 'axios';
 
 
-//BLUEPRINTS: 
-//"/cards", "/<int:id>/cards", "/<int:id>", "/<int:id>/like"
-//"/boards"
-
-// process.env.REACT_APP_BACKEND_URL
-// axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
-  // ...
 /*In the container component that holds data about boards
 
 State:
@@ -22,27 +14,9 @@ boardsData
 selectedBoard
 isBoardFormVisible */
 
-//Creates helper data array to test with
-// const createCards = () => {
-//   const cards = [];
-
-//   let current_id = 0
-
-//   for(let row = 0; row < 9; row +=1) {
-//     cards.push({
-//       card_id: current_id,
-//       likes_count: 0,
-//       message: 'This works!'});
-//       current_id += 1
-//   }  
-//   console.log('cards', cards)
-//   return cards;
-// }
 
 
 function App() {
-  const BASE_URL = 'http://localhost:5000';
-
   const [boardsData, setBoardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState({
     title: '',
@@ -91,34 +65,49 @@ function App() {
       // .then(() =>);
     }
 
-    const testLikeCallback = (card_id) => {
+  // useEffect(() => {
+  //     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/1/cards`)
+  //     .then((response) => {
+  //       console.log('get cards ', response.data)
+  //     })
+  //     .catch((error) => console.log(error));
+  //   }, []);
+
+    const likeCallback = (card_id) => {
       console.log('Im in Like', card_id)
 
-      //still needs logic
+      // const cardsData = [...cards];
 
-      // axios.patch(`${BASE_URL}/cards/card_id`)
-      //.then(setCards(response.data.card))
-      //.catch((error) => console.log(error))
+      axios.patch(`${process.env.REACT_APP_BACKEND_URL}/cards/${card_id}/like`)
+      .then((response) => {
+        console.log('like response ', response.data.card)
+        // console.log('cardsData ', cardsData)
+        // setCards(response.data.card)
+        // cardsData.push(response.data.card)
+        // setCards(cardsData)
+        console.log('cards ', cards)
+        const responseCardData = cards.map((card) => {
+          if (card.id === card_id) {
+            
+            card = response.data.card
+            console.log('map card ', card)
+            return card
+          } 
+          
+        })
+        setCards(responseCardData)
+        // console.log('map data ', responseCardData)
+      })
+      .catch((error) => {
+        console.log(error.message)
+        // console.log(`${process.env.REACT_APP_BACKEND_URL}/${card_id}/like`)
+      })
 
 
       // update state/iterate through cards and find the one I want and change the likes count
       //then display the updated card
       //check out update student
     }
-
-    const testfunction = () => {
-      console.log('This is a test function')
-    }
-
-  // return(
-  //   <div className="Cards">
-  //     <h2>Cards</h2>
-  //     <main>
-  //       <CardList cards={cards} onClickCallback={testfunction} deleteCallback={testDeleteCardCallback} likeCallback={testLikeCallback}/>
-  //       <NewCardForm createNewCard={createNewCard} />
-  //     </main>
-  //   </div>
-  // )
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
@@ -189,11 +178,12 @@ function App() {
         <div> {selectedBoard.title} - {selectedBoard.owner}</div>
       </section>
 
-      <h2>Cards</h2>
-      <main>
-        <CardList cards={cards} onClickCallback={testfunction} deleteCallback={testDeleteCardCallback} likeCallback={testLikeCallback}/>
+      <section>
+        <h2>Create New Card</h2>
         <NewCardForm createNewCard={createNewCard} />
-      </main>
+        <h2>Cards</h2>
+        <CardList cards={cards} deleteCallback={testDeleteCardCallback} likeCallback={likeCallback}/>
+      </section>
     </div>
   );
 

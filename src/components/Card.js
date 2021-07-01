@@ -1,28 +1,30 @@
-import '../App.css';
-import App from '../App.js';
-import CardList from './CardList.js';
-import { useState } from 'react';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
+// import PropTypes from 'prop-types';
 
 
 const Card = (props) => {
   console.log('Card:', props)
 
-  // const handleLikeClick = () => {
-  //   props.likeCallback(props.id)
-  // }
+
 
   // const handleDeleteClick = () => {
   //   props.deleteCallback(props.id)
   // }
 
+
+  const handleLikeClick = () => {
+    props.likeCallback(props.id)
+  }
+
   return (
     <div>
         <span>{props.message}</span>
-        {/* <button className="deleteButton" onClick={handleDeleteClick}>Delete</button>
-        {/* <span className="likeCount">{props.likeCount}</span> */}
-        {/*<button className='likeButton' onClick={handleLikeClick}>Like</button> */}
+        {/* <button className="deleteButton" onClick={handleDeleteClick}>Delete</button> */}
+        <div>
+          <span className="likeCount">{props.like_count}</span>
+          <button className='likeButton' onClick={handleLikeClick}>Like</button>
+        </div>
     </div>
   )
 }
