@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const NewCardForm = (props) => {
@@ -8,9 +8,6 @@ const NewCardForm = (props) => {
 
     const onMessageEntry = (event) => {
         setMessage(event.target.value)
-        // setMessage({
-        //     message: event.target.value
-        // })
     };
 
     const submitCard = (event) => {
@@ -19,9 +16,6 @@ const NewCardForm = (props) => {
         props.createNewCard(message)
 
         setMessage('');
-        //     {
-        //     message: ''
-        // })
     };
     
 
