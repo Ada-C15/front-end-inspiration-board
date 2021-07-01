@@ -18,6 +18,8 @@ function App() {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`).then((response) => {
       setBoardsData(response.data);
+    }).catch((error) => {
+      console.log(error.data.details)
     })
   }, []);
 
@@ -39,6 +41,8 @@ function App() {
       axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
         setCardsData(response.data);
         console.log('Response is:',response.data)
+      }).catch((error) => {
+        console.log(error.data.details)
       })
     }
   }, [selectedBoard]);
@@ -106,8 +110,10 @@ function App() {
           return card
       })
         setCardsData(cards)
-      });};
-
+    }).catch((error) => {
+      console.log(error.data.details)
+    })
+  };
 
 
   const deleteBoard = (selectedBoardId) => {
