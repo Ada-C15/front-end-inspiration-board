@@ -30,6 +30,13 @@ const Board = (props) => {
                     : ''
                 }
             </div>
+            <label>Sort By:</label>
+            <select id='sort' onChange={(event) => props.onSortCallback(event)} value={props.sortMethod}>
+                <option value=''>None</option>
+                <option value='id'>Id</option>
+                <option value='alphabetical'>Alphabetical</option>
+                <option value='likes'># Likes</option>
+            </select>
         </div>
     );
 
