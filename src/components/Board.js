@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 const Board = (props) => {
 
     const onBoardClick = () => {
-        props.onBoardSelect(props.board)
+        props.onBoardSelect(props.id)
     }
     
 
     return(
-        <span onClick={onBoardClick}>{props.board.titleData}</span>
+        <span onClick={onBoardClick}>{props.title}</span>
     )
 }
 // Add Proptypes

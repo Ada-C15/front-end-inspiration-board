@@ -5,7 +5,8 @@ const NewBoardForm = (props) => {
 
     const [formFields, setFormFields] = useState({
         title: "",
-        owner: ""
+        owner: "",
+        cards: []
     })
 
 
@@ -28,12 +29,14 @@ const NewBoardForm = (props) => {
 
         props.addBoardCallback({
             titleData: formFields.title,
-            ownerData: formFields.owner
+            ownerData: formFields.owner,
+            cards:[]
         });
 
         setFormFields({
             title: "",
-            owner: ""
+            owner: "",
+            cards: []
         })
     };
 
