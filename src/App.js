@@ -170,25 +170,35 @@ function App() {
 
   return (
     <div className="App">
-      
+
       <header className="App-header">
         <h1>Inspiration Board</h1>
       </header>
-      
+
       <main>
-        <h3>Boards List:</h3>
-        {/* Created this as a drop-down list, not sure if I like it */}
-        <select id="boards" onChange={handleChange} value={currentBoard.title}>
-          <option value=""></option>
-          {generateBoardTitles(boardData)}
-        </select>
-        
-        <h3>Selected Board: {currentBoard.title}</h3>
-        
-        <h3>Create a New Board:</h3>  
-        { showNewBoardForm ? <NewBoardForm onSubmitCallback={handleBoardSubmit}></NewBoardForm> : '' }
-        <button onClick={() => toggleNewBoardForm(!showNewBoardForm)}>Show New Board Form</button>
-        <Board data={currentBoard} cards={cards} onLikeClickCallback={increaseLikeCount} onDeleteClickCallback={deleteCard} onSubmitCallback={handleCardSubmit}></Board>
+        <div className='BoardStuff'>
+          <div className="BoardList">
+            <h3>Boards List:</h3>
+            {/* Created this as a drop-down list, not sure if I like it */}
+            <select id="boards" onChange={handleChange} value={currentBoard.title}>
+              <option value=""></option>
+              {generateBoardTitles(boardData)}
+            </select>
+          </div>
+
+          <div className="SelectedBoard">
+            <h3>Selected Board: </h3>
+            <h4>{currentBoard.title}</h4>
+          </div>
+
+          <div className="NewBoardForm">
+            <h3>Create a New Board:</h3>  
+            { showNewBoardForm ? <NewBoardForm onSubmitCallback={handleBoardSubmit}></NewBoardForm> : '' }
+            <button onClick={() => toggleNewBoardForm(!showNewBoardForm)}>Show New Board Form</button>
+          </div>
+        </div>
+
+        <Board className="board" data={currentBoard} cards={cards} onLikeClickCallback={increaseLikeCount} onDeleteClickCallback={deleteCard} onSubmitCallback={handleCardSubmit}></Board>
       </main>
     </div>
   );

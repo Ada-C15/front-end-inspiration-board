@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card.js'
 import PropTypes from 'prop-types';
+import './CardList.css';
 
 const generateCardComponents = (cards, likeCallback, deleteCallback) => {
     const cardList = [];
@@ -15,7 +16,7 @@ const CardList = (props) => {
     const cardList = generateCardComponents(props.cards, props.onLikeClickCallback, props.onDeleteClickCallback);
 
     return (
-        <div>
+        <div className='cardsList'>
             { cardList }
         </div>
     );

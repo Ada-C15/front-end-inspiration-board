@@ -2,18 +2,25 @@ import React from 'react';
 import NewCardForm from './NewCardForm';
 import CardList from './CardList.js';
 import PropTypes from 'prop-types';
+import './Board.css';
 
 const Board = (props) => {
     console.log("I'm in Board and this is the data passed to me: ", props.data);
     
     return (
         <div className="board">
-            <h2>{props.data.title}</h2>
-            <h4>{props.data.owner}</h4>
-            <CardList cards={props.cards} onLikeClickCallback={props.onLikeClickCallback} onDeleteClickCallback={props.onDeleteClickCallback}></CardList>
-            <div className='NewCardForm'>
-                <h3>Create a New Card</h3>
-                <NewCardForm onSubmitCallback={(newCardData) => props.onSubmitCallback(newCardData)}></NewCardForm>
+            <div className="boardHeader">
+                <h2>{props.data.title}</h2>
+                <h3>{props.data.owner}</h3>
+            </div>
+            <div className='boardDisplay'>
+                <div className='cardDisplay'>
+                    <CardList cards={props.cards} onLikeClickCallback={props.onLikeClickCallback} onDeleteClickCallback={props.onDeleteClickCallback}></CardList>
+                </div>
+                <div className='newCardForm'>
+                    <h3>Create a New Card</h3>
+                    <NewCardForm onSubmitCallback={(newCardData) => props.onSubmitCallback(newCardData)}></NewCardForm>
+                </div>
             </div>
         </div>
     );

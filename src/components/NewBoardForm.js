@@ -6,7 +6,7 @@ const NewBoardForm = (props) => {
     title: '',
     owner: ''
   });
-
+  
   const onFormSubmit = (event) => {
     event.preventDefault();
     props.onSubmitCallback({
