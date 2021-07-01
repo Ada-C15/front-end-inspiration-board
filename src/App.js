@@ -1,18 +1,16 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './App.css';
 import CardList from './components/CardList'
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
+// import logo from './star01.gif';
 
 function App () {
   const BASE_URL = "https://inspiration-board-tashforce.herokuapp.com";
-  // const BASE_URL = "https://localhost:5000";
   const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
   const [cards, setCards] = useState([]);
-  // const [likeCount, setLikeCount] = useState(0);
   const [errors, setErrors] = useState(null);
   const [toggle, setToggle] = useState(true);
 
@@ -27,48 +25,36 @@ function App () {
       });
   }, []);
 
-
-  // const onSubmit = (event) =>{
-  //   event.preventDefault();
-  //   axios.post();
-  // };
-
   // Create a new board
   const createNewBoard = (boardFieldDict) =>{
-    // console.log(boardFieldDict)
     axios.post(`${BASE_URL}/boards`, boardFieldDict)
       .then((response) =>{
         const newboards = [...boards];
         newboards.push(response.data)
         setBoards(newboards);
-        // console.log(response.data);
       })
-      .catch((response) => {
+      .catch(() => {
         setErrors("Fail to create a new board");
-        // console.log(response.data)
       });
   }
 
   // Create a new card
   const createNewCard = (cardFieldDict) =>{
-
     axios.post(`${BASE_URL}/boards/${selectedBoard.board_id}/cards`, cardFieldDict)
       .then((response) =>{
         const newcards = [...cards];
         newcards.push(response.data)
         setCards(newcards);
-        console.log(response.data);
       })
-      .catch((response) => {
+      .catch(() => {
         setErrors("Fail to create a new card");
-        console.log(response.data)
       });
   }
 
   // Delete a card
   const deleteCard = (card_id) =>{
     axios.delete(`${BASE_URL}/cards/${card_id}`)
-      .then((response) =>{
+      .then(() =>{
         const allCards = [...cards];
         let i = 0;
         for (const card of allCards){
@@ -90,10 +76,10 @@ function App () {
     setToggle(!toggle);
   }
 
-  const buttonText = toggle === true ? "Hide" : "Show";
+  const buttonText = toggle === true ? "Hide New Board Form" : "Show New Board Form";
 
   let newBoard;
-  if (toggle){
+  if (toggle) {
     newBoard = <NewBoardForm setBoards={setBoards} createNewBoard={createNewBoard}/>
   } else{
     newBoard = null;
@@ -119,7 +105,6 @@ function App () {
   const likeIncrease = (card_id) => {
     axios.put(`${BASE_URL}/cards/${card_id}/like`)
     .then((response) => {
-      // setLikeCount(likeCount + 1);
       const allCards = [...cards];
         // find the updated cards
       for (const card of allCards){
@@ -138,9 +123,11 @@ function App () {
   return (
     <div className="App">
       <header className="App-header">
-        <header>
+        <section className="header">
+          {/* <img src={logo} alt="" id="star" />  */}
           <h1>INSPIRATION BOARD</h1>
-        </header>
+          {/* <img src={logo} alt="" id="star" />  */}
+        </section>
           <div>{errors}</div>
         <main>
           {/* all boards section */}
@@ -158,15 +145,20 @@ function App () {
             <div>{selectedBoard?.title}</div>
           </div>
           {/* new board section */}
-          <h2>CREATE A NEW BOARD</h2>
-          {newBoard}
-          <button onClick={toggler}>{buttonText}</button>
+          <div className="new-board">
+            <h2>CREATE A NEW BOARD</h2>
+            {newBoard}
+            <button onClick={toggler}>{buttonText}</button>
+          </div>
           {/* cards for selected board section */}
-          <div className="Cards">
-          <h3>CARDS FOR {selectedBoard?.title}</h3>
-          <CardList cards={cards} likeIncreaseCallback={likeIncrease} deleteCard={deleteCard}/>
+          <div className="cards">
+            <h2>CARDS FOR {selectedBoard?.title}</h2>
+            <CardList cards={cards} likeIncreaseCallback={likeIncrease} deleteCard={deleteCard}/>
+          </div>
           {/* new card section */}
-          <NewCardForm createNewCard={createNewCard}/>
+          <div className="new-card">
+            <h2>CREATE A NEW CARD</h2>
+            <NewCardForm createNewCard={createNewCard}/>
           </div>
         </main>
       </header>

@@ -15,8 +15,12 @@
 
 .App-header {
   background-color: #282c34;
-  /* background-image: url("../images/background01.jpg"); */
   background-image: url("./background01.jpeg");
+  height: 50%;
+  /* background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  background-size: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -39,11 +43,24 @@
   }
 }
 
-.all-boards{
+.all-boards, .new-board, .cards, .new-card {
   font-size: 20px;
   border: 3px solid blue;
+  padding: 20px;
+}
+.card_div {
+  background-color: rgb(247, 247, 180);
+  padding: 50px;
+  margin: 20px;
 }
 
-.Cards{
-  border: 3px solid blue;
+.header{
+  display: inline;
+  font-style: italic;
+  float: left;
+}
+
+#star {
+  max-width: 35%;  
+  max-height: 35%;  
 }

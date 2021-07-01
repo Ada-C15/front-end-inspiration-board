@@ -23,13 +23,8 @@ const NewBoardForm = (props) => {
 
     const onSubmit= (event) => {
         event.preventDefault();
-        props.createNewBoard(formFields)
+        props.createNewBoard(formFields);
       };
-
-//     const onSubmit = (event) =>{
-//     event.preventDefault();
-
-//   };
 
     return (
         <form onSubmit={onSubmit}>

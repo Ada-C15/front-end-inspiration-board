@@ -17,7 +17,6 @@ const CardList = (props) => {
             </li>
         );
     });
-    // sdofjd
 
     return (
         <section>
@@ -34,8 +33,8 @@ CardList.propTypes = {
         message: PropTypes.string.isRequired,
         likes_count: PropTypes.number.isRequired,
     })),
-    // addCard: PropTypes.func.isRequired,
-    // likeIncreaseCallback: PropTypes.func.isRequired
+        deleteCard: PropTypes.func.isRequired,
+        likeIncreaseCallback: PropTypes.func.isRequired
 };
 
 export default CardList;
