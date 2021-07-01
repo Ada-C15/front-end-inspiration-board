@@ -16,15 +16,18 @@ const Card = (props) => {
     };
 
     return (
-    <section>
-        <ul>
-            <li> Sticky Note: { props.id }</li>
-            <li>Board ID: { props.boardId }</li>
-            <li>Message: { props.message }</li>
-            <button type='button' onClick={upvoteClick}> Upvote: {props.likesCount}</button>
-            <button type='button' onClick={deleteCardClick}>Delete</button>
-        </ul>
-    </section>
+    <div>
+        <section>
+            <ul>
+                <li> Sticky Note: { props.id }</li>
+                <li>Board ID: { props.boardId }</li>
+                <li>Message: { props.message }</li>
+                <button type='button' onClick={upvoteClick}> Upvote: {props.likesCount}</button>
+                <button type='button' onClick={deleteCardClick}>Delete</button>
+            </ul>
+        </section>
+        <section></section>
+    </div>
     )
 }
 export default Card;

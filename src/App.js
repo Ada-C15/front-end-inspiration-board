@@ -131,11 +131,18 @@ function App() {
         cardsData= { cardsData }
         upvoteCard = { upvoteCard }
         deleteCard = { deleteCard }
+        createNewCard={ createNewCard }
         />
       </section>
       <section>
           <div>
-            <h3>Create A New Card</h3> < NewCardForm createNewCard={ createNewCard }/> 
+            {selectedBoard.id !== null ? 
+            <>
+              <h3>Create A New Card</h3> 
+              < NewCardForm createNewCard={ createNewCard }/>
+            </>
+            : ''
+            }
           </div>
         </section>
       </main>
