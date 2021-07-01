@@ -13,10 +13,11 @@ const CardList = (props) => {
             <li key={card.id}>
                 <Card
                     id={card.id}
+                    board_id={card.board_id}
                     message={card.message}
                     like_count={card.like_count}
                     likeCallback={props.likeCallback}
-                    // deleteCallback={props.deleteCallback}
+                    deleteCallback={props.deleteCallback}
                     >
 
                 </Card>
