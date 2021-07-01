@@ -132,34 +132,41 @@ function App () {
         <main>
           {/* all boards section */}
           <div className="all-boards">
-            <h2>BOARDS</h2> 
+            <h2>PICK A BOARD</h2> 
             {boards.map(board => (
               <p key={board.board_id} onClick={() => onClickBoard(board)}>
                 {board.board_id}. {board.title}
               </p>
             ))}
-          </div>
-          {/* selected board section */}
-          <div>
-            <h2>SELECTED BOARD</h2>
-            <div>{selectedBoard?.title}-{selectedBoard?.owner}</div>
-          </div>
-          {/* new board section */}
-          <div className="new-board">
+            {/* new board section */}
             <h2>CREATE A NEW BOARD</h2>
             {newBoard}
             <button onClick={toggler}>{buttonText}</button>
           </div>
-          {/* cards for selected board section */}
-          <div className="cards">
-            <h2>CARDS FOR {selectedBoard?.title}</h2>
-            <CardList cards={cards} likeIncreaseCallback={likeIncrease} deleteCard={deleteCard}/>
-          </div>
-          {/* new card section */}
-          <div className="new-card">
+          {/* selected board section */}
+          <div className="selected-board">
+            <h2>SELECTED BOARD</h2>
+            <div>✨{selectedBoard?.title}✨ - {selectedBoard?.owner}</div>
+            {/* new card section */}
             <h2>CREATE A NEW CARD</h2>
             <NewCardForm createNewCard={createNewCard}/>
           </div>
+          {/* new board section */}
+          {/* <div className="new-board">
+            <h2>CREATE A NEW BOARD</h2>
+            {newBoard}
+            <button onClick={toggler}>{buttonText}</button>
+          </div> */}
+          {/* cards for selected board section */}
+          <div className="cards">
+            <h2>CARDS FOR ✨{selectedBoard?.title}✨</h2>
+            <CardList cards={cards} likeIncreaseCallback={likeIncrease} deleteCard={deleteCard}/>
+          </div>
+          {/* new card section */}
+          {/* <div className="new-card">
+            <h2>CREATE A NEW CARD</h2>
+            <NewCardForm createNewCard={createNewCard}/>
+          </div> */}
         </main>
       </header>
     </div>

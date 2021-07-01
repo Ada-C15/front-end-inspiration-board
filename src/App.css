@@ -8,6 +8,12 @@
   }
 }
 
+main{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
 .App-header {
   background-color: #282c34;
   background-image: url("./background01.jpeg");
@@ -25,7 +31,7 @@
   color: rgb(91, 118, 227);
 }
 
-.all-boards, .new-board, .cards, .new-card {
+.all-boards, .selected-board, .new-board, .cards, .new-card {
   font-size: 20px;
   border: 3px solid blue;
   padding: 20px;
@@ -36,15 +42,19 @@
   margin: 20px;
 }
 
+.preview{
+  border: 3px solid blue;
+  background-color: white;
+  padding: 50px;
+  margin: 20px;
+}
+
 .header{
-  /* display: inline-block; */
   font-style: italic;
-  /* float: left; */
-  /* position: relative; */
 }
 
 h1{
-  display: inline-block;
+  display: inline;
   vertical-align: middle;
 }
 
@@ -57,4 +67,27 @@ h1{
 
 button{
   margin: 10px;
+  
+}
+.all-boards {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.add_board_btn, .add_card_btn{
+  box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+	background-color:#ffc477;
+	border-radius:6px;
+	border:1px solid #eeb44f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #cc9f52;
+  margin-top: 20px;
 }
