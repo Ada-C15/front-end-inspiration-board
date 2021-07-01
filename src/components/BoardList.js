@@ -7,7 +7,7 @@ const BoardList = (props) => {
 
     const boardComponents = props.boards.map((board) => {
         return (
-            <div>
+            <div key={board.id}>
                 <Board 
                     // title = {board.title}
                     // owner = {board.ownerName}\

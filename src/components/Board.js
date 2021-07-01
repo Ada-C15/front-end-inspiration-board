@@ -10,7 +10,7 @@ onBoardSelect
 const Board = (props) => {
     return (
         <div onClick = {() => props.onBoardSelect(props.board)}>
-            {props.board.title}
+            {props.board.id}. {props.board.title}
         </div>
     )
 }
