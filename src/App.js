@@ -16,13 +16,13 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`).then((response) => {
+    axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`).then((response) => {
       setBoardsData(response.data);
     })
   }, []);
 
   const createNewBoard = (newBoard) => { 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard).then((response) => {
+    axios.post(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`, newBoard).then((response) => {
       console.log("Response:", response.data)
       const newBoards = [...boardsData]
       newBoards.push(response.data.board);
@@ -36,7 +36,7 @@ function App() {
 
   useEffect(() => {
     if (selectedBoard?.id) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
+      axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
         setCardsData(response.data);
         console.log('Response is:',response.data)
       })
@@ -44,7 +44,7 @@ function App() {
   }, [selectedBoard]);
 
   const createNewCard = (newCard) => { 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard).then((response) => {
+    axios.post(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard).then((response) => {
       const newCards = [...cardsData]
       newCards.push(response.data.card)
       setCardsData(newCards);
@@ -56,7 +56,7 @@ function App() {
 
   const upvoteCard = (selectedCardId) => {
     axios
-    .put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}/upvote`)
+    .put(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/cards/${selectedCardId}/upvote`)
     .then((response) => {
         console.log(response.data.card)
         updateCardsList(response.data.card)
@@ -68,10 +68,10 @@ function App() {
 
   const deleteCard = (selectedCardId) => {
     axios
-    .delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`)
+    .delete(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/cards/${selectedCardId}`)
     .then((response) => {
       axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`)
+      .get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`)
       .then((response) => {
         setCardsData(response.data)
       })
@@ -95,6 +95,7 @@ function App() {
     setCardsData(cards)
   };
 
+
   const updateSingleCard = (selectedCardId, newMessage) => {
     axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`, newMessage) 
       .then((response) => {
@@ -106,10 +107,23 @@ function App() {
         })
         console.log(response.data)
         setCardsData(cards)
+
+  const deleteBoard = (selectedBoardId) => {
+    axios
+    .delete(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoardId}`)
+    .then((response) => {
+      axios
+      .get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`)
+      .then((response) => {
+        setBoardsData(response.data)
       })
       .catch((error) => {
         console.log(error.data.details)
       })
+    })
+    .catch((error) => {
+      console.log(error.data.details)
+    })
   };
 
   const [showBoardForm, setShowBoardForm] = useState(true)
@@ -135,6 +149,7 @@ function App() {
         < BoardList 
         boardsData={ boardsData }
         selectedBoard={ setSelectedBoard }
+        deleteBoard={ deleteBoard }
         />
       </section>
       <section> 
@@ -144,11 +159,19 @@ function App() {
           upvoteCard={ upvoteCard }
           deleteCard={ deleteCard }
           editCard={ updateSingleCard }
+          createNewCard={ createNewCard }
+
         />
       </section>
       <section>
           <div>
-            <h3>Create A New Card</h3> < NewCardForm createNewCard={ createNewCard }/> 
+            {selectedBoard.id !== null ? 
+            <>
+              <h3>Create A New Card</h3> 
+              < NewCardForm createNewCard={ createNewCard }/>
+            </>
+            : ''
+            }
           </div>
         </section>
       </main>

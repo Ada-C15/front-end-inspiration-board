@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap');
+
+/* doesnt line up w 'choose' prompt */
+button { 
+    background-color: #8C705F;
+    color: #CCFCCB;
+    font-weight: bolder;
+    font-family: 'Gaegu', cursive; 
+    display: flex; /* or in-line block? */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 810px;
+    margin: 20px auto 0;
+    padding: 5px; /*space bw button txt and edge of button */
+    border-radius: 25% 10%; /* from: https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
+}
+
+button:hover {
+    background-color: #9b806e;
+    text-decoration: underline dotted#CCFCCB; /* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration */
+
+}

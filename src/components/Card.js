@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+
 
 const Card = (props) => {
 
@@ -35,6 +37,7 @@ const Card = (props) => {
     };
 
     return (
+
     <section>
         <ul>
             <>
@@ -50,7 +53,21 @@ const Card = (props) => {
             <button type='button' onClick={editButtonClick}>Edit</button>
         </ul>
     </section>
+
+
     )
 }
+
 export default Card;
+
+
+Card.propTypes = {
+id: PropTypes.number.isRequired,
+message: PropTypes.string.isRequired,
+likesCount: PropTypes.number.isRequired,
+boardId: PropTypes.number.isRequired,
+upvoteCard: PropTypes.func.isRequired,
+deleteCard: PropTypes.func.isRequired
+
+}
 
