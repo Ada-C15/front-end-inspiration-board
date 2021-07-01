@@ -10,6 +10,7 @@ function App() {
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
   const [boardCount, setBoardCount] = useState(0);
+  const [cards, setCards] = useState([]);
   
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`,
@@ -77,7 +78,6 @@ function App() {
   };
 
   const handleSubmit = (boardData) => {
-    console.log(boardData);
     postNewBoard(boardData);
   }
 
