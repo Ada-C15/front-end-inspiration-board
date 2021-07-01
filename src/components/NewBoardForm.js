@@ -11,14 +11,14 @@ owner */
 
 const NewBoardForm = (props) => {
     const [title, setTitle] = useState('');
-    const [ownerName, setOwnerName] = useState('');
+    const [owner, setOwner] = useState('');
 
     const onTitleChange = (event) => {
         setTitle(event.target.value);
     }
 
-    const onOwnerNameChange = (event) => {
-        setOwnerName(event.target.value);
+    const onOwnerChange = (event) => {
+        setOwner(event.target.value);
     }
 
     const onBoardSubmit = (event) => {
@@ -27,12 +27,12 @@ const NewBoardForm = (props) => {
         //Work on callback function
         props.createNewBoard({
             title: title, 
-            ownerName: ownerName
+            owner: owner
         })
 
         //Reset fields
         setTitle('');
-        setOwnerName('');
+        setOwner('');
     }
 
     return (
@@ -45,8 +45,8 @@ const NewBoardForm = (props) => {
             <label htmlFor="owner-input">Owner's Name</label>
             <input 
                 name="owner-name"
-                value={ownerName}
-                onChange={onOwnerNameChange}/>
+                value={owner}
+                onChange={onOwnerChange}/>
             <input type="submit" value="Submit"/>
         </form>
     )

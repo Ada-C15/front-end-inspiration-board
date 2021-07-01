@@ -22,32 +22,36 @@ function App() {
     // board_id: null
   })
 
-  // useEffect(() => {
-  //   axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, 
-  //   {headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
-  //   .then((response) => console.log(response))
-  //   .catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    axios.get('http://localhost:5000/boards', 
+    {headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
+    .then((response) => {
+      console.log(response.data)
+      setBoardsData(response.data)
+    })
+    .catch((error) => console.log(error));
+  }, []);
 
 
   const CreateNewBoard = (newBoard) => {
     // const BASE_URL = "http://localhost:5000";
     console.log('newBoard ', newBoard)
     const board = [...boardsData];
-    board.push({
-      title: newBoard.title,
-      owner: newBoard.ownerName
-    })
-    setBoardsData(board);
+    // board.push({
+    //   title: newBoard.title,
+    //   owner: newBoard.owner
+    // })
+    // setBoardsData(board);
     // axios.post(`${BASE_URL}/boards`, newBoard)
-    // axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`)
-    //     .then((response) => {
-    //       console.log('response ', response.data.board)
-    //       board.push(response.data.board);
-    //       setBoardsData(board);
-    //     }).catch((error) => {
-    //       console.log('error ', error)
-    //     });
+    axios.post("http://localhost:5000/boards", newBoard)
+    // axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
+        .then((response) => {
+          console.log('response ', response.data.board)
+          board.push(response.data.board);
+          setBoardsData(board);
+        }).catch((error) => {
+          console.log('error ', error)
+        });
     
   }
   console.log('boardData ', boardsData);
@@ -56,13 +60,15 @@ function App() {
     // const test = () => {
       setSelectedBoard(board)
       console.log('boardSelect ', board)
-    // }
 
-    // return test
-    // setSelectedBoard({
-    //   title: title,
-    //   owner: owner
-    // })
+      //   axios.get('http://localhost:5000/boards/board_id/cards', 
+      //   {headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
+      //   .then((response) => {
+      //     console.log(response.data)
+      //     setCardsData(response.data)
+      //   })
+      //   .catch((error) => console.log(error));
+      // };
   }
 
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
@@ -78,6 +84,7 @@ function App() {
   //tenery is board form visible, render newboard form, if not ''
   return (
     <div>
+      <h1>Inspiration Board</h1>
       <h2>Create a New Board</h2>
       {isBoardFormVisible ? <NewBoardForm createNewBoard={CreateNewBoard}/> : ''}
       <input type="button" value={changeBoardForm} onClick = {() => setIsBoardFormVisible(!isBoardFormVisible)}/>
