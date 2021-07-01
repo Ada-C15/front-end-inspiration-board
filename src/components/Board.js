@@ -1,4 +1,5 @@
 import React from 'react';
+import NewCardForm from './NewCardForm';
 
 // Need to add './Board.css' back into the main
 // import './Board.css';
@@ -14,6 +15,10 @@ const Board = (props) => {
             <h2>{props.data.title}</h2>
             <h4>{props.data.owner}</h4>
             {/* <CardList boardId={id}></CardList> */}
+            <div className='NewCardForm'>
+                <h3>Create a New Card</h3>
+                <NewCardForm onSubmitCallback={(newCardData) => props.onSubmitCallback(newCardData)}></NewCardForm>
+            </div>
         </div>
     );
 
