@@ -16,7 +16,7 @@ const NewCardForm = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        props.addCardCallback({
+        props.createNewCard({
             message: cardForm.message
         })
 

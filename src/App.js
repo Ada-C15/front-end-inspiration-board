@@ -4,6 +4,7 @@ import './App.css';
 import BoardList from './components/BoardList';
 import CardList from './components/CardList';
 import NewBoardForm from './components/NewBoardForm';
+import NewCardForm from './components/NewCardForm';
 
 function App() {
 
@@ -21,6 +22,17 @@ function App() {
   }, []);
   //selectedBoard is an array
 
+  const createNewBoard = (newBoard) => { 
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard).then((response) => {
+      console.log("Response:", response.data)
+      const newBoards = [...boardsData]
+      newBoards.push(response.data.board);
+      setBoardsData(newBoards);
+    }).catch((error) => {
+      console.log('Error:', error);
+      alert('Couldn\'t create a new board.');
+    })}
+  
   const [cardsData, setCardsData] = useState([])
 
   useEffect(() => {
@@ -32,16 +44,16 @@ function App() {
     }
   }, [selectedBoard]);
 
-  const createNewBoard = (newBoard) => { 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard).then((response) => {
-      console.log("Response:", response.data)
-      const newBoards = [...boardsData]
-      newBoards.push(response.data.board);
-      setBoardsData(newBoards);
+  const createNewCard = (newCard) => { 
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard).then((response) => {
+      const newCards = [...cardsData]
+      newCards.push(response.data.card)
+      setCardsData(newCards);
     }).catch((error) => {
-      console.log('Error:', error);
-      alert('Couldn\'t create a new board.');
-    })}
+        console.log('Error:', error);
+        alert('Couldn\'t create a new card.');
+    })
+  }
 
   const upvoteCard = (selectedCardId) => {
     axios
@@ -54,7 +66,6 @@ function App() {
       console.log(error.data.details)
     })
   };
-
 
   const deleteCard = (selectedCardId) => {
     axios
@@ -112,6 +123,11 @@ function App() {
         deleteCard = { deleteCard }
         />
       </section>
+      <section>
+          <div>
+            <h3>Create A New Card</h3> < NewCardForm createNewCard={ createNewCard }/> 
+          </div>
+        </section>
       </main>
     </div>
     
