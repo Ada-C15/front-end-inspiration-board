@@ -160,35 +160,25 @@ function App() {
       setSelectedBoard(board)
       console.log('boardSelect ', board)
 
-      //   axios.get('http://localhost:5000/boards/board_id/cards', 
-      //   {headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
-      //   .then((response) => {
-      //     console.log(response.data)
-      //     setCardsData(response.data)
-      //   })
-      //   .catch((error) => console.log(error));
-      // };
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${board.id}/cards`)
+        .then((response) => {
+          console.log('select board response ', response.data)
+          console.log('select board card ', response.data.cards)
+          setCards(response.data.cards)
+        })
+        .catch((error) => console.log(error));
   }
 
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
-  // const changeBoardForm = () => {
-  //   if (isBoardFormVisible) {
-  //     return "Hide Board Form"
-  //   }else {
-  //     return "Show Board Form"
-  //   }
-  // };
+
   const changeBoardForm = isBoardFormVisible ? 'Hide Board Form' : 'Show Board Form';
 
-  //tenery is board form visible, render newboard form, if not ''
   return (
     <div>
       <h1>Inspiration Board</h1>
       <h2>Create a New Board</h2>
       {isBoardFormVisible ? <NewBoardForm createNewBoard={CreateNewBoard}/> : ''}
       <input type="button" value={changeBoardForm} onClick = {() => setIsBoardFormVisible(!isBoardFormVisible)}/>
-      {/* <NewBoardForm createNewBoard={CreateNewBoard}/> */}
-      {/* <input type="button" value="Hide Board Form" onClick = {() => setIsBoardFormVisible(false)}/> */}
 
       <section>
         <h3>Boards</h3>
