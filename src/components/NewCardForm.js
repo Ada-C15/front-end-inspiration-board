@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const NewCardForm = (props) => {
     const [cardForm, setCardForm] = useState({
@@ -32,14 +33,22 @@ const NewCardForm = (props) => {
                 <input
                     value={cardForm.message}
                     onChange={ onMessageChange }
+                    className={(cardForm.message.length === 0) || (cardForm.message.length > 40)? 'invalid-form-input' : ''}
                 />
             </div>
             <input 
                 type="submit"
                 value="Submit The Message"
+                disabled={((cardForm.message.length === 0) || (cardForm.message.length >40))}
             />
         </form>
     );
 };
 
 export default NewCardForm;
+
+
+NewCardForm.propTypes = {
+    createNewCard: PropTypes.func.isRequired
+}
+
