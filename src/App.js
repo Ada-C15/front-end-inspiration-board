@@ -141,7 +141,7 @@ function App() {
       <div className="cards_container">
 
         <section className="card_items_container">
-          {selectedBoard.board_id ? <CardList board={selectedBoard} /> : ''}
+          {selectedBoard.board_id ? <CardList board={selectedBoard} likeCallBack={cardLikes} deleteCallBack={cardDelete} /> : ''}
         </section> 
 
       </div>
