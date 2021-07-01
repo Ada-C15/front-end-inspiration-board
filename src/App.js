@@ -3,7 +3,6 @@ import axios from 'axios';
 import './App.css';
 import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
-import NewCardForm from './components/NewCardForm';
 
 // getBoardData
 function App() {
@@ -117,27 +116,48 @@ function App() {
   }
 
   const postNewBoard = (newBoardData) => {
-    // alert(title);
     console.log(newBoardData);
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoardData)
       .then((response) => {
         console.log('success! New board Created');
+        console.log(response.data);
         setBoardCount(boardCount + 1);
       })
       .catch((error) => {
-        console.log(
-          "Anything that isn't status code 2XX is an error:",
-          error.response.status
-        );
-        console.log(
-          "The data from response with an error:",
-          error.response.data
-        );
+        console.log('Yeah that did not work quite right...');
+        console.log(error.response.data);
       });
   };
 
-  const handleSubmit = (boardData) => {
-    postNewBoard(boardData);
+  const postNewCard = (newCardData) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${currentBoard.board_id}/cards`, newCardData, {headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-type': 'application/json',
+    }})
+      .then((response) => {
+        console.log('success! New card Created');
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log("Error. That didn't work.")
+        console.log(error.response.status);
+      });
+  };
+
+  const handleBoardSubmit = (newBoardData) => {
+    console.log(newBoardData);
+    postNewBoard(newBoardData);
+  }
+
+  const handleCardSubmit = (newCardData) => {
+    console.log(newCardData);
+    console.log(currentBoard);
+    if (Object.keys(currentBoard).length === 0) {
+      alert('You must first select a board!');
+    } else {
+      postNewCard(newCardData);
+    }
+    
   }
 
   return (
@@ -157,14 +177,10 @@ function App() {
         
         <h3>Selected Board: {currentBoard.title}</h3>
         
-        <h3>Create a New Board:</h3>
-        <NewBoardForm onSubmitCallback={handleSubmit}></NewBoardForm>
+        <h3>Create a New Board:</h3>  
 
-        <Board data={currentBoard} cards={cards} onLikeClickCallback={increaseLikeCount} onDeleteClickCallback={deleteCard}></Board>
-
-        <h3>Create a New Card</h3>
-        <NewCardForm board_id={currentBoard.board_id}></NewCardForm>
-
+        <NewBoardForm onSubmitCallback={handleBoardSubmit}></NewBoardForm>
+        <Board data={currentBoard} cards={cards} onLikeClickCallback={increaseLikeCount} onDeleteClickCallback={deleteCard} onSubmitCallback={handleCardSubmit}></Board>
       </main>
     </div>
   );
