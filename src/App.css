@@ -29,6 +29,9 @@ header {
   display: inline-block;
   margin: 0 auto;
   background-color: rgb(242, 4, 186, 0.932);
+  border: 2px solid black;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .left {
@@ -59,7 +62,13 @@ header {
   margin-left: 250px;
 }
 
-
+.new-board-form__form,
+.new-card-form__form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  width: 100%;
+}
 
 @keyframes App-logo-spin {
   from {
