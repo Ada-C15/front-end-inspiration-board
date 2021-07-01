@@ -19,13 +19,9 @@ const NewCardForm = (props) => {
         props.createNewCard(message)
 
         setMessage('');
-        //     {
-        //     message: ''
-        // })
     };
     
 
-//why doesnt this form render on the UI?
     return(
         <form onSubmit={submitCard}>
             <label htmlFor='message-input'>Message</label>

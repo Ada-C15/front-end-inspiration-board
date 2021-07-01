@@ -9,21 +9,21 @@ import PropTypes from 'prop-types';
 const Card = (props) => {
   console.log('Card:', props)
 
-  // const handleLikeClick = () => {
-  //   props.likeCallback(props.id)
-  // }
+  const handleLikeClick = () => {
+    props.likeCallback(props.id)
+  }
 
-  // const handleDeleteClick = () => {
-  //   props.deleteCallback(props.id)
-  // }
+  const handleDeleteClick = () => {
+    props.deleteCallback(props.id)
+  }
 
   return (
     <div>
         <span>{props.message}</span>
-        {/* <button className="deleteButton" onClick={handleDeleteClick}>Delete</button>
-        {/* <span className="likeCount">{props.likeCount}</span> */}
-        {/*<button className='likeButton' onClick={handleLikeClick}>Like</button> */}
-    </div>
+        <button className="deleteButton" onClick={handleDeleteClick}>Delete</button>
+        <span className="likeCount">{props.like_Count}</span>
+        <button className='likeButton' onClick={handleLikeClick}>Like</button>
+    </div> 
   )
 }
 
