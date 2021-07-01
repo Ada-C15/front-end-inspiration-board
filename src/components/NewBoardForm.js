@@ -2,61 +2,47 @@ import './NewBoardForm.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const NewBoardForm = (props) => {
-    
-    //  create state to handle 'title' and 'owner name' changes
+const NewBoardForm = (props) => { 
+    //  creates state for 'title' and 'owner name':
     const [title, setTitle] = useState('');
     const [owner, setOwner] = useState('');
 
-
-    // function to handle new title input
+    // event handler for new title input
     const onTitleChange = (event) => {
         setTitle(event.target.value)
     };
 
-    //  function to handle new owner input
+    // event handler for new owner input
     const onOwnerChange = (event) => {
         setOwner(event.target.value)
     };
 
-    // call back function to submit board
+    // event handler for posting a new board
     const submitNewBoard = (event) => {
         event.preventDefault();
-
         props.addBoardCallBack({
             title: title,
             owner: owner
         });
-
-        setTitle({
-            title: ''
-        });
-
-        setOwner({
-            owner: ''
-        });
-    
+        setTitle('');
+        setOwner('');
     };
 
-    // return jsx w/ label & input
-
+    // return jsx w/ label & input 
     return (
-        <section className="new-board-form_container">
-            <form onSubmit={submitNewBoard} className="new-board-form_form">
-                <div>
-                    <label htmlFor="title-input">Title</label>
-                    <input name="title" value={title} onChange={onTitleChange} />
-                </div>
-                <div>
-                    <label htmlFor="owner-input">Owner's Name</label>
-                    <input name="owner" value={owner} onChange={onOwnerChange} />
-                </div>
-                <div>
-                <input type="submit" value="Add Board" className="new-board-form_submit"/>
-                </div>
-            </form>
-        </section>
+        <form onSubmit={submitNewBoard}>
+            <div>
+                <label>Title: </label>
+                <input type="text" name="title" value={title} onChange={onTitleChange} />
+            </div>
+            <div>
+                <label>Owner: </label>
+                <input type="text" name="owner" value={owner} onChange={onOwnerChange} />
+            </div>
+            <input type="submit" value="Add this board" />
+        </form>
     );
+
 };
 
 export default NewBoardForm;

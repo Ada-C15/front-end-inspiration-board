@@ -14,7 +14,6 @@ const NewCardForm = (props) => {
     // callback function to submit message
     const submitNewCard = (event) => {
         event.preventDefault();
-
         props.addCardCallback(formFields);
         setFormFields('');
     }
