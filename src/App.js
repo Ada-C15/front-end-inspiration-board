@@ -1,4 +1,6 @@
 import './App.css';
+import './components/Card.css';
+import './components/Forms.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Board from './components/Board';
