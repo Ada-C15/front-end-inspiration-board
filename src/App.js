@@ -11,15 +11,13 @@ function App() {
 
 const [boardsData, setBoardsData] = useState([])
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {})
+    axios.get("https://board-inspo-app.herokuapp.com/boards", {})
     .then((response) => {
       console.log(response)
       setBoardsData(response.data);
     })
   }, []);
 
-  
-  console.log("This is my boardData", boardsData)
 
  
 
@@ -30,14 +28,10 @@ const [boardsData, setBoardsData] = useState([])
   
 // Add a new board
   const addBoardsData = newBoard => {
-
-    console.log("This is my newBoard",newBoard);
     axios.post("https://board-inspo-app.herokuapp.com/boards", newBoard)
     .then((response) => {
-      console.log("this is my response", response)
       axios.get("https://board-inspo-app.herokuapp.com/boards")
       .then((response) => {
-        console.log("This is my response in the get",response.data);
         setBoardsData(response.data)
 
       })
@@ -48,7 +42,6 @@ const [boardsData, setBoardsData] = useState([])
     });
   }
   
-  console.log("This is my list of boards: ",boardsData)
 
   
 
@@ -65,7 +58,7 @@ const [boardsData, setBoardsData] = useState([])
 
     listOfCards.push({
       id: nextId,
-      messageData: newCard.messageData
+      message: newCard.message
       // likes_count
     });
 
@@ -75,10 +68,10 @@ const [boardsData, setBoardsData] = useState([])
     //   // likes_count
     // });
 
-    setSelectedBoard({
-      ...selectedBoard,
-      cards:listOfCards
-    })
+    // setSelectedBoard({
+    //   ...selectedBoard,
+    //   cards:listOfCards
+    // })
     // setSelectedBoard({
     //   ...selectedBoard,
     //   cards:newCardList
@@ -94,24 +87,23 @@ const [boardsData, setBoardsData] = useState([])
     id: 0,
     title:"",
     owner:"",
-    cards:[]
+    // cards:[]
   })
-    // Select a board
 
+  // Select a board
   const selectABoard = (id) =>{
     axios.get(`https://board-inspo-app.herokuapp.com/boards/${id}`)
     .then((response) => {
       console.log("This is my response in the selectboard",response.data);
       setSelectedBoard(response.data)
-
+      console.log("This is my variable in the selectboard",selectedBoard);
     })
-    .catch((error) => {console.log(error.response.data)})
+    .catch((error) => {console.log(error)})
 
   }
   
 
   // rendering the boards to the Board component
-
   const boardComponent = boardsData.map((board) => {
     return <li key={board.id}><Board id={board.id} title={board.title} owner={board.owner} onBoardSelect={selectABoard}></Board></li>
       })
@@ -157,13 +149,9 @@ const [boardsData, setBoardsData] = useState([])
           </div>
           <div className="bottom-left"> 
               {/* <CardList oneBoard={selectedBoard}></CardList> */}
-            {/* {selectedBoard.id ? <CardList board={selectedBoard}></CardList> : ''} */}
+            {selectedBoard.id ? <CardList board={selectedBoard}></CardList> : ''}
           </div>
           <div className="bottom-right">
-            <section className= "newCardForm">
-              <h2>Create a new card</h2>
-              <NewCardForm addCardCallback={addCardsData}></NewCardForm>
-            </section>
           </div>
 
           

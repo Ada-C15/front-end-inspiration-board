@@ -1,52 +1,30 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import './newCardForm.css';
+import { useState } from 'react';
 
 const NewCardForm = (props) => {
 
-    const [card, setCard] = useState({
-        message: "",
-        // likes_count: ""
-    })
+    const [message, setMessage] = useState('');
 
-
-    const onMessageChange = (event) => {
-        setCard({
-            ...card,
-            message: event.target.value
-        })
+    const messageChange = (event) => { 
+        setMessage(event.target.value) 
     };
 
-    const onFormSubmit = (event) => {
+    const submitNewCard = (event) => {
         event.preventDefault();
-
-        props.addCardCallback({
-            messageData: card.message
-        });
-
-        setCard({
-            message: "",
-            // likes_count: ""
-        })
+        props.postNewCard(message);
+        setMessage('');
     };
 
     return (
-        <section class= "new_card-form__container">
-            <form class= "new-card-form__form" 
-                onSubmit={onFormSubmit}>
-                <div>
-                    <label htmlFor="message">Message</label>
-                    <input
-                        type="text"
-                        name="message"
-                        value={card.message}
-                        onChange={onMessageChange} />
-                </div>Preview: {card.message}<div>
-                    <input type="submit" value="submit"/>
-                </div>
-            </form>
+        <section className="new-card-form__container">
+        <h2>Create a New Card</h2>
+        <form onSubmit={submitNewCard} className="new-card-form__form">
+            <label htmlFor="message">Message</label>
+            <input type="text" onChange={messageChange} value={message}></input>
+            <p>Preview: {message}</p>
+            <input type="Submit" disabled={message.length === 0 || message.length > 40} className="new-card-form__form-submit-btn"></input>
+        </form>
         </section>
-    )
-}
+    );
+};
 
 export default NewCardForm;
