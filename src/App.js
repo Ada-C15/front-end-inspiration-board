@@ -127,8 +127,6 @@ function App() {
         
         {/* <CardList  selectedBoardCallback/> */}
         <section className="new-card-form__container">
-          {/* <h2>Create a New Card</h2>
-          <NewCardForm addCardCallback={createCard}/> */}
         </section>
       <div>
         {/* {selectedBoard.board_id ? <CardsList board={selectedBoard}/> : ''} */}

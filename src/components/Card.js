@@ -6,7 +6,7 @@ const Card = ({card_id, likes_count, message, deleteCardCallback, updateLikesCal
 
     const onMessageDelete = (event) => {
         deleteCardCallback(card_id)};
-    
+
     return (
         <div className="card-item">
         <div className="card-item__message">

@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 const CardList = (props) => {
     const [cardsData, setCardsData] = useState([]);
 
-
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${props.board.board_id}/cards`)
         .then((response) => {
@@ -67,6 +66,8 @@ const CardList = (props) => {
   
             })
           };
+        return (<Card card_id={card.card_id} message={card.message} like_count={card.like_count} deleteCardCallback={deleteCardItem}/>)
+    });
 
     return (
     <section className='cards__container'>
