@@ -116,7 +116,6 @@ function App() {
           <NewCardForm board_id={currentBoard.board_id}></NewCardForm>
         </div>
         <Board data={currentBoard}></Board>
-        
       </main>
     </div>
   );
