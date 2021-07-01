@@ -1,5 +1,8 @@
 import React from 'react';
-import './Board.css';
+
+// Need to add './Board.css' back into the main
+// import './Board.css';
+
 // import CardList from './CardList';
 import PropTypes from 'prop-types';
 

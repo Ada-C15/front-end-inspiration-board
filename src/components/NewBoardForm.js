@@ -9,7 +9,6 @@ const NewBoardForm = (props) => {
   });
   // const [title, setTitle] = useState('');
   // const [owner, setOwner] = useState('');
-
   // const newBoard = () => {
   //   // alert(title);
   //   axios
