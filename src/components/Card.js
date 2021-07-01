@@ -1,11 +1,18 @@
 import React from 'react';
+import { useState } from 'react';
 
 const Card = (props) => {
 
+    const [newMessage, setNewMessage] = useState({'message': ''});
+
+    const [showEditBox, setShowEditBox] = useState(false)
+
+    const editButtonClick = () => {
+        setShowEditBox(!showEditBox);
+    }
 
     const upvoteClick = () => {
         const selectedCardId = props.id
-        console.log(selectedCardId)
         props.upvoteCard(selectedCardId);
 
     };
@@ -15,16 +22,37 @@ const Card = (props) => {
         props.deleteCard(selectedCardId)
     };
 
+    const onMessageChange = (message) => {
+        setNewMessage({
+            ...newMessage,
+            'message': message.target.value
+        })
+    }
+
+    const onSubmitMessage = () => {
+        props.editCard(props.id, newMessage);
+        setShowEditBox(!showEditBox)
+    };
+
     return (
     <section>
         <ul>
-            <li> Sticky Note: { props.id }</li>
+            <li>Sticky Note: { props.id }</li>
             <li>Board ID: { props.boardId }</li>
-            <li>Message: { props.message }</li>
             <button type='button' onClick={upvoteClick}> Upvote: {props.likesCount}</button>
             <button type='button' onClick={deleteCardClick}>Delete</button>
+            <>
+                {showEditBox ? (
+                <>
+                    <textarea defaultValue={props.message} onChange={ onMessageChange }></textarea>
+                    <button onClick={() => onSubmitMessage(newMessage)}>Save</button>
+                </>
+                ) : <li>Message: { props.message }</li>}
+                </>
+            <button type='button' onClick={editButtonClick}>Edit</button>
         </ul>
     </section>
     )
 }
 export default Card;
+
