@@ -199,23 +199,23 @@ function App() {
 
   //tenery is board form visible, render newboard form, if not ''
   return (
-    <div>
-      <h1>Inspiration Board</h1>
-      <h2>Create a New Board</h2>
-      {isBoardFormVisible ? <NewBoardForm createNewBoard={CreateNewBoard}/> : ''}
-      <input type="button" value={changeBoardForm} onClick = {() => setIsBoardFormVisible(!isBoardFormVisible)}/>
-      {/* <NewBoardForm createNewBoard={CreateNewBoard}/> */}
-      {/* <input type="button" value="Hide Board Form" onClick = {() => setIsBoardFormVisible(false)}/> */}
+    // <div>
+    //   <h1>Inspiration Board</h1>
+    //   <h2>Create a New Board</h2>
+    //   {isBoardFormVisible ? <NewBoardForm createNewBoard={CreateNewBoard}/> : ''}
+    //   <input type="button" value={changeBoardForm} onClick = {() => setIsBoardFormVisible(!isBoardFormVisible)}/>
+    //   {/* <NewBoardForm createNewBoard={CreateNewBoard}/> */}
+    //   {/* <input type="button" value="Hide Board Form" onClick = {() => setIsBoardFormVisible(false)}/> */}
 
-      <section>
-        <h3>Boards</h3>
-        <BoardList boards={boardsData} onBoardSelect={onBoardSelect}/>
-      </section>
-      <section>
-        <h3>Selected Board</h3>
-        <div> {selectedBoard.title} - {selectedBoard.owner}</div>
-      </section>
-
+    //   <section>
+    //     <h3>Boards</h3>
+    //     <BoardList boards={boardsData} onBoardSelect={onBoardSelect}/>
+    //   </section>
+    //   <section>
+    //     <h3>Selected Board</h3>
+    //     <div> {selectedBoard.title} - {selectedBoard.owner}</div>
+    //   </section>
+      <div>
       <h2>Cards</h2>
       <main>
         <CardList cards={cards} onClickCallback={testfunction} deleteCallback={testDeleteCardCallback} likeCallback={testLikeCallback}/>
