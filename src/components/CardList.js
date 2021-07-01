@@ -1,27 +1,31 @@
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
+import React from 'react';
+import Card from './Card.js'
+import PropTypes from 'prop-types';
 
-// const CardList = (boardId) => {
-//     const [cards, setCards] = useState([])
-//     useEffect(() => {
-//         axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${boardId}/cards`,
-//             {
-//             params: {
-//             format: 'json'
-//             }
-//             })
-//         .then( (response) => {
-//             setCards(response.data);
-//             console.log(cards);
-//             console.log('success in finding card list')
-//         })
-//         .catch( (error) => {
-//             console.log('error in getting card list');
-//             console.log(error.response)
-//         });
-//     }, []);
-//     return ("");
+const generateCardComponents = (cards, likeCallback, deleteCallback) => {
+    const cardList = [];
+    for (let card of cards) {
+        cardList.push(<Card id={card.card_id} message={card.message} likes={card.likes_count} onLikeClickCallback={likeCallback} onDeleteClickCallback={deleteCallback}/>);
+    }
+    return cardList;
+}
 
-// };
+const CardList = (props) => {
 
-// export default CardList;
+    const cardList = generateCardComponents(props.cards, props.onLikeClickCallback, props.onDeleteClickCallback);
+
+    return (
+        <div>
+            { cardList }
+        </div>
+    );
+
+};
+
+CardList.propTypes = {
+    cards: PropTypes.array,
+    onLikeClickCallback: PropTypes.func,
+    onDeleteClickCallback: PropTypes.func
+}
+
+export default CardList;
