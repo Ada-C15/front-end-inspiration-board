@@ -20,7 +20,7 @@ function App() {
   });
 
   const getBoards = () => {
-  axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
+  axios.get(`${process.env.REACT_APP_HEROKU_URL}/boards`)
     .then((response) => {
       console.log(response.data);
       const newData = response.data
@@ -36,7 +36,7 @@ function App() {
   }, [])
 
   const createBoard = (newBoard) => {
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
+    axios.post(`${process.env.REACT_APP_HEROKU_URL}/boards`, newBoard)
       .then((response) => {
         console.log(response.data);
         const boardThing = response.data
@@ -70,7 +70,7 @@ function App() {
 
     const board_id = selectedBoard.board.board_id
 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/${board_id}/cards`, newCard)
+    axios.post(`${process.env.REACT_APP_HEROKU_URL}/${board_id}/cards`, newCard)
       .then((response) => {
         console.log(response.data);
         const cardThing = response.data
@@ -93,7 +93,7 @@ function App() {
 
 
   const displayCards = (board_id) => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${board_id}/cards`)
+    axios.get(`${process.env.REACT_APP_HEROKU_URL}/boards/${board_id}/cards`)
     .then((response) => {
       console.log(response.data.cards)
       const cardData = response.data.cards

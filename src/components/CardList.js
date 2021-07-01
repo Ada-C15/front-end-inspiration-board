@@ -7,7 +7,7 @@ const CardList = (props) => {
     const [cardsData, setCardsData] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${props.board.board_id}/cards`)
+        axios.get(`${process.env.REACT_APP_HEROKU_URL}/boards/${props.board.board_id}/cards`)
         .then((response) => {
             setCardsData(response.data);
             console.log(props)
@@ -17,7 +17,7 @@ const CardList = (props) => {
     }, [props]);
 
     const updateLikes = (card_id) => {
-      axios.patch(`${ process.env.REACT_APP_BACKEND_URL }/cards/${ card_id }`)
+      axios.patch(`${ process.env.REACT_APP_HEROKU_URL }/cards/${ card_id }`)
       .then ((response) => {
         const newData = response.data
         const newCardsData = cardsData.map(card =>{
@@ -34,7 +34,7 @@ const CardList = (props) => {
     }
 
     const deleteCardItem = (card_id) => {
-        axios.delete(`${ process.env.REACT_APP_BACKEND_URL }/cards/${ card_id }`)
+        axios.delete(`${ process.env.REACT_APP_HEROKU_URL }/cards/${ card_id }`)
             .then((response) => {
                 const newCardsData = cardsData.filter((existingCard) => {
                     return existingCard.card_id !== card_id;
@@ -54,7 +54,7 @@ const CardList = (props) => {
     const createCard = (newCard) => {
       console.log(`props is ${props}, new card is ${newCard}`)
 
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${props.board.board_id}/cards`, newCard)
+      axios.post(`${process.env.REACT_APP_HEROKU_URL}/boards/${props.board.board_id}/cards`, newCard)
         .then((response) => {
           console.log(response.data);
           const cardThing = response.data
