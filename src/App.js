@@ -64,10 +64,10 @@ function App() {
     </li>)
   });
 
-  
+
 
   const createCard = (newCard, selectedBoard) => {
-    
+
     const board_id = selectedBoard.board.board_id
 
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/${board_id}/cards`, newCard)
@@ -109,7 +109,7 @@ function App() {
         <section className="boards__container">
           <section>
             <h2>Boards</h2>
-            <ol>
+            <ol className="boards__list">
               {boardComponents}
             </ol>
           </section>
@@ -124,17 +124,10 @@ function App() {
           </section>
         </section>
         {<CardList board={selectedBoard} />}
-        
-        {/* <CardList  selectedBoardCallback/> */}
-        <section className="new-card-form__container">
-        </section>
-      <div>
-        {/* {selectedBoard.board_id ? <CardsList board={selectedBoard}/> : ''} */}
       </div>
       <footer>
         <span>Copyright 2021 Just a Flask Wound</span>
       </footer>
-    </div>
     </div>
   );
 }

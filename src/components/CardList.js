@@ -74,11 +74,9 @@ const CardList = (props) => {
         <div className='card-items__container'>
           {cardElements}
         </div>
-        <h2>Create a New Card</h2>
-          <NewCardForm addCardCallback={createCard}/>
       </section>
-      <NewCardForm createCardCallback={createCard} />
-    </section>)
+        <NewCardForm addCardCallback={createCard}/>
+      </section>)
 };
 
 export default CardList;

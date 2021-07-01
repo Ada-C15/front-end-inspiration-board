@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 body {
   margin: 3rem;
   font-family: 'Open Sans', sans-serif;
@@ -15,7 +17,7 @@ h2 {
 }
 
 h1 {
-  background-color: yellow;
+  background-color: coral;
   transform: rotate(-5deg) skew(-10deg);
 }
 
@@ -74,8 +76,8 @@ h2 {
 }
 
 .card-item {
-  font-family: "Homemade Apple", cursive;
-  font-family: 'Concert One', cursive;
+  font-family: "Indie Flower", cursive;
+  /* font-family: 'Indie Flower', cursive; */
   background-color: rgb(255, 248, 165);
   box-shadow: -10px 7px 7px lightgrey;
   min-height: 200px;
@@ -101,8 +103,22 @@ h2 {
   word-break: break-word;
 }
 
-.card-item__controls > li:hover, .footer__delete-btn:hover {
+/* .card-item__controls > li:hover, .footer__delete-btn:hover {
   text-decoration: underline;
+} */
+
+.card-item__controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-item__button > li:hover, .footer__delete-btn:hover  {
+}
+
+.card-item__button {
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
 }
 
 input {

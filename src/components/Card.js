@@ -12,9 +12,9 @@ const Card = ({card_id, likes_count, message, deleteCardCallback, updateLikesCal
         <div className="card-item__message">
             <p>{message}</p>
             <ul className="card-item__controls">
-                <li><button onClick={ onPlusOne }>💖 ⬆️</button></li>
+                <li><button className="card-item__button" onClick={ onPlusOne }>💖 ⬆️</button></li>
                 <li><p>Like count: {likes_count}</p></li>
-                {<li><button onClick={ onMessageDelete }>Delete</button></li>}
+                {<li><button className="card-item__button" onClick={ onMessageDelete }>Delete</button></li>}
             </ul>
         </div>
         </div>

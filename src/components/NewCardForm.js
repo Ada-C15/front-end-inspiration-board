@@ -16,8 +16,6 @@ const NewCardForm = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        // props.addBoardCallback(formFields.title, formFields.owner);
-
         props.addCardCallback({
             message: formFields.message
         });
@@ -27,12 +25,15 @@ const NewCardForm = (props) => {
         });
     }
     return (
-        <form onSubmit={onFormSubmit} className="new-card-form__container">
-            
-            <label htmlFor="owner">Enter Your Message</label>
-            <input type="text" className="invalid-form-input" value={formFields.message} onChange={onMessageChange} />
-            <input type="Submit" className="new-board-form__form-submit-btn" />
-        </form>
+        <section className="new-card-form__container">
+            <h2>Create a New Card</h2>
+            <form onSubmit={onFormSubmit} className="new-card-form__form">
+
+                <label htmlFor="owner">Enter Your Message</label>
+                <input type="text" className="invalid-form-input" value={formFields.message} onChange={onMessageChange} />
+                <input type="Submit" className="new-board-form__form-submit-btn" />
+            </form>
+        </section>
     )
 
 };
