@@ -86,10 +86,7 @@ const [boardsData, setBoardsData] = useState([])
 
   }
 
-  // Select a board
-  // const selectABoard = (board) =>{
-  //     setSelectedBoard(board)
-  //       }
+
 
    // Select a board
 
@@ -110,24 +107,12 @@ const [boardsData, setBoardsData] = useState([])
     })
     .catch((error) => {console.log(error.response.data)})
 
-
-
-    // const boards = boardsData.map(board => {
-    //   if(board.id === id) {
-      
-    //   setSelectedBoard(board)
-    //     }
-    //     console.log(selectedBoard)
-    //     return board
-    //   })
-    // setBoardsData(boards)
   }
-    
+  
 
   // rendering the boards to the Board component
 
   const boardComponent = boardsData.map((board) => {
-    // return (<li key={board.id}><Board board={board} onBoardSelect={selectABoard}></Board></li>)
     return <li key={board.id}><Board id={board.id} title={board.title} owner={board.owner} onBoardSelect={selectABoard}></Board></li>
       })
 
