@@ -11,10 +11,11 @@ const CardList = (props) => {
                 key= { card.id }
                 id={ card.id } 
                 message={ card.message }
-                likesCount= { card.likes_count }
-                boardId= { card.board_id }
-                upvoteCard={ props.upvoteCard }
-                deleteCard={ props.deleteCard }/>
+                likesCount= { card.likes_count}
+                boardId= {card.board_id }
+                upvoteCard={props.upvoteCard}
+                deleteCard={props.deleteCard}
+                editCard={props.editCard}/>
             </li>
         );
     });

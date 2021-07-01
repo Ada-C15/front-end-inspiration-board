@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
+
 const Board = (props) => {
 
     const deleteBoardClick = () => {
@@ -23,7 +24,7 @@ export default Board;
 
 
 
-// proptypes -BP
+
 Board.propTypes = {
     id: PropTypes.number.isRequired, 
     title: PropTypes.string.isRequired, 

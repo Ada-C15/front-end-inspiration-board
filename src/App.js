@@ -95,6 +95,19 @@ function App() {
     setCardsData(cards)
   };
 
+
+  const updateSingleCard = (selectedCardId, newMessage) => {
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`, newMessage) 
+      .then((response) => {
+        const cards = cardsData.map(card => {
+          if (selectedCardId === card.id) {
+            card.message = response.data.card.message
+          }
+          return card
+        })
+        console.log(response.data)
+        setCardsData(cards)
+
   const deleteBoard = (selectedBoardId) => {
     axios
     .delete(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoardId}`)
@@ -119,11 +132,7 @@ function App() {
     setShowBoardForm(!showBoardForm)
 
   }
-  console.log(showBoardForm)
-  
 
-  console.log(showBoardForm)
-  console.log(setShowBoardForm)
   return (
     <div>
       <h1> Inspiration Board </h1>
@@ -136,10 +145,9 @@ function App() {
         </section>
       </section>
       <section className='boards__container'>
-
         <h2>Choose A Board</h2> 
         < BoardList 
-        boardsData= { boardsData }
+        boardsData={ boardsData }
         selectedBoard={ setSelectedBoard }
         deleteBoard={ deleteBoard }
         />
@@ -147,10 +155,12 @@ function App() {
       <section> 
         <div>{selectedBoard.title}</div>
         < CardList 
-        cardsData= { cardsData }
-        upvoteCard = { upvoteCard }
-        deleteCard = { deleteCard }
-        createNewCard={ createNewCard }
+          cardsData={ cardsData }
+          upvoteCard={ upvoteCard }
+          deleteCard={ deleteCard }
+          editCard={ updateSingleCard }
+          createNewCard={ createNewCard }
+
         />
       </section>
       <section>
