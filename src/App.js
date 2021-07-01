@@ -95,6 +95,24 @@ function App() {
     setCardsData(cards)
   };
 
+  const deleteBoard = (selectedBoardId) => {
+    axios
+    .delete(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoardId}`)
+    .then((response) => {
+      axios
+      .get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`)
+      .then((response) => {
+        setBoardsData(response.data)
+      })
+      .catch((error) => {
+        console.log(error.data.details)
+      })
+    })
+    .catch((error) => {
+      console.log(error.data.details)
+    })
+  };
+
   const [showBoardForm, setShowBoardForm] = useState(true)
 
   const boardFormClick = () => {
@@ -123,6 +141,7 @@ function App() {
         < BoardList 
         boardsData= { boardsData }
         selectedBoard={ setSelectedBoard }
+        deleteBoard={ deleteBoard }
         />
       </section>
       <section> 
