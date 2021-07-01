@@ -65,7 +65,12 @@ function App() {
 
   //this updates the cards whenever the current board is changed. This is necessary for CardList to work.
   useEffect(() => {
-    renderCards();
+    if(Object.keys(currentBoard).length === 0) {
+      console.log("no board selected so we won't try to render cards")
+      setCards([]);
+    } else {
+      renderCards();
+    }
   }, [currentBoard])
 
 
@@ -111,7 +116,7 @@ function App() {
   const generateBoardTitles = (boardData) => {
     const boardTitles = [];
     for (let board of boardData) {
-        boardTitles.push(<option key={board.id} value={board.title}>{board.title}</option>);
+        boardTitles.push(<option key={board.board_id} value={board.title}>{board.title}</option>);
     }
     return boardTitles;
   }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import PropTypes from "prop-types";
 
 const NewCardForm = (props) => {
@@ -31,6 +30,7 @@ const NewCardForm = (props) => {
         id="message"
         value={formFields.message}
         onChange={onMessageChange}
+        required
       />
 
       <button type='submit'>SUBMIT</button>
