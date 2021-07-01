@@ -137,6 +137,7 @@ function App() {
       .then((response) => {
         console.log('success! New card Created');
         console.log(response.data)
+        renderCards()
       })
       .catch((error) => {
         console.log("Error. That didn't work.")
