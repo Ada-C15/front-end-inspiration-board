@@ -133,11 +133,11 @@ function App() {
                 <ol>
                   {boardComponent}
                 </ol>
-              </section>
+            </section>
           </div>
           <div className="middle">
             <section>
-              <h2>Selected Board</h2>
+              <h2> ✴ Selected Board ✴ </h2>
               <p>{selectedBoard.id ? `${selectedBoard.titleData} - ${selectedBoard.ownerData}` : 'Select a Board from the Board List!'}</p>
             </section>
           </div>
@@ -145,7 +145,13 @@ function App() {
             <section className= "newBoardForm">
             <h2>Create a new board</h2>
               {isBoardFormVisible ? <NewBoardForm addBoardCallback = {addBoardsData}/> : ""}
-            <input type="button" value={isBoardFormVisible? "Hide New Board Form" : "Show New Board Form" } onClick={onClickCallback}/>
+            <div>
+              <input 
+                className= "newFormHideButton"
+                type="button" 
+                value={isBoardFormVisible? "Hide New Board Form" : "Show New Board Form" } 
+                onClick={onClickCallback}/>
+            </div>
             </section>
           </div>
           <div className="bottom-left"> 
