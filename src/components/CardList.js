@@ -27,7 +27,7 @@ const CardList = (props) => {
           return card;
 
       });
-      
+
         setCardsData(newCardsData)
       }
       )
@@ -53,21 +53,19 @@ const CardList = (props) => {
 
     const createCard = (newCard) => {
       console.log(`props is ${props}, new card is ${newCard}`)
-  
+
       axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${props.board.board_id}/cards`, newCard)
         .then((response) => {
           console.log(response.data);
           const cardThing = response.data
           const newData = [...cardsData]
-  
+
           newData.push(cardThing)
-  
+
           setCardsData(newData)
-  
+
             })
           };
-        return (<Card card_id={card.card_id} message={card.message} like_count={card.like_count} deleteCardCallback={deleteCardItem}/>)
-    });
 
     return (
     <section className='cards__container'>
@@ -81,6 +79,6 @@ const CardList = (props) => {
       </section>
       <NewCardForm createCardCallback={createCard} />
     </section>)
-}
+};
 
 export default CardList;
