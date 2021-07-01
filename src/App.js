@@ -4,6 +4,7 @@ import './App.css';
 import BoardList from './components/BoardList';
 import CardList from './components/CardList';
 import NewBoardForm from './components/NewBoardForm';
+import NewCardForm from './components/NewCardForm';
 
 function App() {
 
@@ -19,18 +20,6 @@ function App() {
       setBoardsData(response.data);
     })
   }, []);
-  //selectedBoard is an array
-
-  const [cardsData, setCardsData] = useState([])
-
-  useEffect(() => {
-    if (selectedBoard?.id) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
-        setCardsData(response.data);
-        console.log('Response is:',response.data)
-      })
-    }
-  }, [selectedBoard]);
 
   const createNewBoard = (newBoard) => { 
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard).then((response) => {
@@ -42,6 +31,28 @@ function App() {
       console.log('Error:', error);
       alert('Couldn\'t create a new board.');
     })}
+  
+  const [cardsData, setCardsData] = useState([])
+
+  useEffect(() => {
+    if (selectedBoard?.id) {
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
+        setCardsData(response.data);
+        console.log('Response is:',response.data)
+      })
+    }
+  }, [selectedBoard]);
+
+  const createNewCard = (newCard) => { 
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard).then((response) => {
+      const newCards = [...cardsData]
+      newCards.push(response.data.card)
+      setCardsData(newCards);
+    }).catch((error) => {
+        console.log('Error:', error);
+        alert('Couldn\'t create a new card.');
+    })
+  }
 
   const upvoteCard = (selectedCardId) => {
     axios
@@ -54,7 +65,6 @@ function App() {
       console.log(error.data.details)
     })
   };
-
 
   const deleteCard = (selectedCardId) => {
     axios
@@ -85,16 +95,26 @@ function App() {
     setCardsData(cards)
   };
 
+  const [showBoardForm, setShowBoardForm] = useState(true)
+
+  const boardFormClick = () => {
+    setShowBoardForm(!showBoardForm)
+
+  }
+  console.log(showBoardForm)
+  
+
+  console.log(showBoardForm)
+  console.log(setShowBoardForm)
   return (
     <div>
       <h1> Inspiration Board </h1>
       <main>
       <section className='new-board-form__container'>
         <h2>Create a New Board</h2>
+        {showBoardForm ? <NewBoardForm createNewBoard={ createNewBoard }/> : '' }
         <section>
-          < NewBoardForm 
-            createNewBoard={ createNewBoard }
-          />
+          <button onClick={boardFormClick}>{showBoardForm ? 'Hide Me!' : 'Show Me!'}</button>
         </section>
       </section>
       <section className='boards__container'>
@@ -106,12 +126,18 @@ function App() {
         />
       </section>
       <section> 
+        <div>{selectedBoard.title}</div>
         < CardList 
         cardsData= { cardsData }
         upvoteCard = { upvoteCard }
         deleteCard = { deleteCard }
         />
       </section>
+      <section>
+          <div>
+            <h3>Create A New Card</h3> < NewCardForm createNewCard={ createNewCard }/> 
+          </div>
+        </section>
       </main>
     </div>
     

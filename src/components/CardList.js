@@ -2,7 +2,6 @@ import React from 'react';
 import Card from './Card';
 import PropTypes from 'prop-types';
 
-
 const CardList = (props) => { 
 
     const listofCards = props.cardsData.map((card) => {
