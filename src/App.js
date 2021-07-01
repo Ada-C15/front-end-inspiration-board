@@ -64,6 +64,33 @@ function App() {
     </li>)
   });
 
+  
+
+  const createCard = (newCard, selectedBoard) => {
+    
+    const board_id = selectedBoard.board.board_id
+
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/${board_id}/cards`, newCard)
+      .then((response) => {
+        console.log(response.data);
+        const cardThing = response.data
+        // const cardList = getCardList(board_id)
+
+        // cardList.push(cardThing)
+
+        const newData = boardData.map(board => {
+          if (board.board_id === board_id) {
+            board.cards.push(cardThing)
+          }
+          return board
+        })
+
+        setBoardData(newData)
+
+          })
+        };
+
+
 
   const displayCards = (board_id) => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${board_id}/cards`)
@@ -73,9 +100,7 @@ function App() {
     })
   }
 
-  // useEffect(() => {
-  //   createBoard();
-  // }, [boardData]);
+
 
   return (
     <div className="page__container">
@@ -99,17 +124,9 @@ function App() {
           </section>
         </section>
         {<CardList board={selectedBoard} />}
+        
         {/* <CardList  selectedBoardCallback/> */}
         <section className="new-card-form__container">
-          <h2>Create a New Card</h2>
-          {/* <NewCardForm addCardCallback={createCard}/> */}
-          {/* <NewCardForm addCardCallback={createCard}/> */}
-          {/* <form className="new-card-form__form">
-            <label>Message</label>
-            <input type="text" className="invalid-form-input" value="message" />
-            <p>Preview: </p>
-            <input type="Submit" className="new-card-form__form-submit-btn" />
-          </form> */}
         </section>
       <div>
         {/* {selectedBoard.board_id ? <CardsList board={selectedBoard}/> : ''} */}
