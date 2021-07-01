@@ -14,7 +14,7 @@ const Card = ({message, likeIncreaseCallback, id, deleteCard, likeCount}) => {
     return (
         <div className="card_div">
             <p>{message}</p>
-            <div>{likeCount}</div>
+            <div>{likeCount} Likes</div>
             <div className='btn_div'>
                 <button onClick={onLikeClick}>UP ❤️</button>
                 <button onClick={deleteClick}>DELETE</button>

@@ -4,10 +4,10 @@ import axios from 'axios';
 import CardList from './components/CardList'
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
-// import logo from './star01.gif';
+import logo from './star01.gif';
 
 function App () {
-  const BASE_URL = "https://inspiration-board-tashforce.herokuapp.com";
+  // const BASE_URL = "https://inspiration-board-tashforce.herokuapp.com";
   const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
   const [cards, setCards] = useState([]);
@@ -16,7 +16,7 @@ function App () {
 
   // Displaying all boards
   useEffect(() => {
-    axios.get(`${BASE_URL}/boards`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
       .then((response) => {
         setBoards(response.data);
       })
@@ -27,7 +27,7 @@ function App () {
 
   // Create a new board
   const createNewBoard = (boardFieldDict) =>{
-    axios.post(`${BASE_URL}/boards`, boardFieldDict)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, boardFieldDict)
       .then((response) =>{
         const newboards = [...boards];
         newboards.push(response.data)
@@ -40,7 +40,7 @@ function App () {
 
   // Create a new card
   const createNewCard = (cardFieldDict) =>{
-    axios.post(`${BASE_URL}/boards/${selectedBoard.board_id}/cards`, cardFieldDict)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.board_id}/cards`, cardFieldDict)
       .then((response) =>{
         const newcards = [...cards];
         newcards.push(response.data)
@@ -53,7 +53,7 @@ function App () {
 
   // Delete a card
   const deleteCard = (card_id) =>{
-    axios.delete(`${BASE_URL}/cards/${card_id}`)
+    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${card_id}`)
       .then(() =>{
         const allCards = [...cards];
         let i = 0;
@@ -90,7 +90,7 @@ function App () {
     // update "selected board"
     setSelectedBoard(board);
     // update "cards for"
-    axios.get(`${BASE_URL}/boards/${board.board_id}/cards`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${board.board_id}/cards`)
     .then((response) => {
       const allCards = [...cards];
       allCards.push(response.data)
@@ -103,7 +103,7 @@ function App () {
 
   // Increase like for a card
   const likeIncrease = (card_id) => {
-    axios.put(`${BASE_URL}/cards/${card_id}/like`)
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${card_id}/like`)
     .then((response) => {
       const allCards = [...cards];
         // find the updated cards
@@ -124,9 +124,9 @@ function App () {
     <div className="App">
       <header className="App-header">
         <section className="header">
-          {/* <img src={logo} alt="" id="star" />  */}
+          <img src={logo} alt="" id="star1" /> 
           <h1>INSPIRATION BOARD</h1>
-          {/* <img src={logo} alt="" id="star" />  */}
+          <img src={logo} alt="" id="star2" />
         </section>
           <div>{errors}</div>
         <main>
@@ -142,7 +142,7 @@ function App () {
           {/* selected board section */}
           <div>
             <h2>SELECTED BOARD</h2>
-            <div>{selectedBoard?.title}</div>
+            <div>{selectedBoard?.title}-{selectedBoard?.owner}</div>
           </div>
           {/* new board section */}
           <div className="new-board">

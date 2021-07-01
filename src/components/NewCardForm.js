@@ -24,7 +24,8 @@ const NewCardForm = (props) => {
                 <label htmlFor="message">message:</label>
                 <input name="message"
                     value={formFields.message}
-                    onChange={onMessageChange} />
+                    onChange={onMessageChange}
+                />
             </div>
             <div>
                 <p>Preview: {formFields.message}</p>

@@ -5,24 +5,21 @@ import Card from './Card';
 const CardList = (props) => {
     const cardComponents = props.cards.map((card) => {
         return (
-            <li key={card.card_id}>
+            <ul key={card.card_id}>
                 <Card
                     id={card.card_id}  
                     message={card.message}
-                    // onUpdate={props.addCard}
-                    likeCount={card.likes_count}
+                    likeCount={card.likes_count} Likes
                     likeIncreaseCallback={props.likeIncreaseCallback}
                     deleteCard={props.deleteCard}
                 ></Card>
-            </li>
+            </ul>
         );
     });
 
     return (
-        <section>
-            <ul>
-                {cardComponents}
-            </ul>
+        <section className="each-card">
+            {cardComponents}
         </section>
     );
 };
