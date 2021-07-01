@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
+import NewCardForm from './components/NewCardForm';
 
 // getBoardData
 function App() {
@@ -10,7 +11,7 @@ function App() {
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
   const [boardCount, setBoardCount] = useState(0);
-  
+
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`,
     {
@@ -83,21 +84,39 @@ function App() {
 
   return (
     <div className="App">
+
       <header className="App-header">
         <h1>Inspiration Board</h1>
       </header>
-      <main>
-        <h3>Boards List:</h3>
-        {/* Created this as a drop-down list, not sure if I like it */}
-        <select id="boards" onChange={handleChange} value={currentBoard.title}>
-          <option value=""></option>
-          {generateBoardTitles(boardData)}
-        </select>
-        <h3>Selected Board: {currentBoard.title}</h3>
-        <h3>Create a New Board:</h3>
-        <NewBoardForm onSubmitCallback={handleSubmit}></NewBoardForm>
 
+      <main>
+        <div className='BoardStuff'>
+          <div className="BoardList">
+            <h3>Boards List:</h3>
+            {/* Created this as a drop-down list, not sure if I like it */}
+            <select id="boards" onChange={handleChange} value={currentBoard.title}>
+              <option value=""></option>
+              {generateBoardTitles(boardData)}
+            </select>
+          </div>
+
+          <div className="SelectedBoard">
+            <h3>Selected Board: </h3>
+            <h4>{currentBoard.title}</h4>
+          </div>
+
+          <div className="NewBoardForm">
+            <h3>Create a New Board:</h3>
+            <NewBoardForm onSubmitCallback={handleSubmit}></NewBoardForm>
+          </div>
+        </div>
+
+        <div className='NewCardForm'>
+          <h3>Create a New Card</h3>
+          <NewCardForm board_id={currentBoard.board_id}></NewCardForm>
+        </div>
         <Board data={currentBoard}></Board>
+        
       </main>
     </div>
   );
