@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 const CardList = (props) => {
     const [cardsData, setCardsData] = useState([]);
 
+
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${props.board.board_id}/cards`)
         .then((response) => {
@@ -15,6 +16,23 @@ const CardList = (props) => {
             console.log('Error:', error);
         })
     }, [props]);
+
+    const updateLikes = (card_id) => {
+      axios.patch(`${ process.env.REACT_APP_BACKEND_URL }/cards/${ card_id }`)
+      .then ((response) => {
+        const newData = response.data
+        const newCardsData = cardsData.map(card =>{
+          if (card_id === card.card_id) {
+            return newData;
+          }
+          return card;
+
+      });
+      
+        setCardsData(newCardsData)
+      }
+      )
+    }
 
     const deleteCardItem = (card_id) => {
         axios.delete(`${ process.env.REACT_APP_BACKEND_URL }/cards/${ card_id }`)
@@ -31,7 +49,7 @@ const CardList = (props) => {
     };
 
     const cardElements = cardsData.map((card) => {
-        return (<Card card_id={card.card_id} message={card.message} like_count={card.like_count} deleteCardCallback={deleteCardItem}/>)
+        return (<Card card_id={card.card_id} message={card.message} likes_count={card.likes_count} deleteCardCallback={deleteCardItem} updateLikesCallback= {updateLikes}/>)
     });
 
     const createCard = (newCard) => {

@@ -100,9 +100,7 @@ function App() {
     })
   }
 
-  // useEffect(() => {
-  //   createBoard();
-  // }, [boardData]);
+
 
   return (
     <div className="page__container">
