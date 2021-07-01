@@ -101,8 +101,8 @@ function App() {
 
     const testDeleteCardCallback = (card_id) => {
       console.log('Im in delete')
-      axios.delete(`${BASE_URL}/cards/card_id`)
-      .then(() => ());
+      // axios.delete(`${BASE_URL}/cards/card_id`)
+      // .then(() =>);
     }
 
     const testLikeCallback = (card_id) => {
