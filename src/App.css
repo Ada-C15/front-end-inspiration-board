@@ -2,16 +2,19 @@
 
 .App {
   text-align: center;
+  font-size: 1.2em;
   /* background-color: rgb(255, 232, 245); */
 }
 
 .App-header {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 2px solid black;
   font-family: 'Nanum Pen Script', cursive;
+  font-size: 1.3em;
+  margin: 10px;
+  padding: 0;
 }
 
 .BoardStuff {
@@ -39,6 +42,13 @@ h3 {
   font-family: 'Nanum Pen Script', cursive;
   font-size: 1.5em;
 }
+
+/* .board {
+  background-image: url("https://images-na.ssl-images-amazon.com/images/I/91G8asH3H7L._AC_SL1500_.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+} */
 
 /* .displayOn {
   background-color: blue;

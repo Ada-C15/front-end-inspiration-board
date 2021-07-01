@@ -1,19 +1,27 @@
 import React from 'react';
-
-// Need to add './Board.css' back into the main
-// import './Board.css';
-
-// import CardList from './CardList';
+import NewCardForm from './NewCardForm';
+import CardList from './CardList.js';
 import PropTypes from 'prop-types';
+import './Board.css';
 
 const Board = (props) => {
-    console.log(props.data);
+    console.log("I'm in Board and this is the data passed to me: ", props.data);
     
     return (
         <div className="board">
-            <h2>{props.data.title}</h2>
-            <h4>{props.data.owner}</h4>
-            {/* <CardList boardId={id}></CardList> */}
+            <div className="boardHeader">
+                <h2>{props.data.title}</h2>
+                <h3>{props.data.owner}</h3>
+            </div>
+            <div className='boardDisplay'>
+                <div className='cardDisplay'>
+                    <CardList cards={props.cards} onLikeClickCallback={props.onLikeClickCallback} onDeleteClickCallback={props.onDeleteClickCallback}></CardList>
+                </div>
+                <div className='newCardForm'>
+                    <h3>Create a New Card</h3>
+                    <NewCardForm onSubmitCallback={(newCardData) => props.onSubmitCallback(newCardData)}></NewCardForm>
+                </div>
+            </div>
         </div>
     );
 
@@ -24,6 +32,16 @@ Board.propTypes = {
             board_id: PropTypes.number,
             owner: PropTypes.string,
             title: PropTypes.string
-    })
+    }),
+    cards: PropTypes.arrayOf(
+        PropTypes.shape({
+            card_id: PropTypes.number,
+            message: PropTypes.string,
+            likes_count: PropTypes.number
+        })
+    ),
+    onLikeClickCallback: PropTypes.func,
+    onDeleteClickCallback: PropTypes.func,
+    onSubmitCallback: PropTypes.func
 };
 export default Board;

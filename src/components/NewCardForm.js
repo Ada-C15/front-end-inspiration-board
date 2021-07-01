@@ -2,37 +2,38 @@ import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-//need to connect NewCardForm to Selected Board & BoardsList
 const NewCardForm = (props) => {
-  const [message, setTitle] = useState("");
+  const [formFields, setFormFields] = useState({
+    message: ''
+  });
 
-  const newCard = () => {
-    // alert(title);
-    axios
-      .post(
-        `${process.env.REACT_APP_BACKEND_URL}/boards/${props.board_id}/cards`,
-        { "message": message }
-      )
-      
-      .then((response) => {
-        console.log("...", response.data)
-      })
-      .catch((error) => {
-        console.log("...", error.response.status);
-      });
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    props.onSubmitCallback({
+      message: formFields.message
+    });
+    setFormFields({
+      message: ''
+    });
   };
 
+  const onMessageChange = (event) => {
+    setFormFields({
+        ...formFields,
+        message: event.target.value
+    })
+  };
   return (
-    <form>
+    <form onSubmit={onFormSubmit}>
 
       <input
         name="message"
         id="message"
-        value={message}
-        onChange={(event) => setTitle(event.target.value)}
+        value={formFields.message}
+        onChange={onMessageChange}
       />
 
-      <button onClick={newCard}>SUBMIT</button>
+      <button type='submit'>SUBMIT</button>
 
     </form>
   );

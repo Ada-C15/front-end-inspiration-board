@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+.board {
+    background-image: url("https://images-na.ssl-images-amazon.com/images/I/91G8asH3H7L._AC_SL1500_.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    font-family: 'Nanum Pen Script', cursive;
+    min-height: 580px;
+    padding-top: 20px;
+}
+
+.boardHeader {
+    background-color: rgb(134, 201, 255);
+    margin-left: 30%;
+    margin-right: 30%;
+    min-width: 200px;
+}
+
+h2 {
+    font-size: 250%;
+    margin-bottom: 0;
+}
+h3 {
+    margin-top: 0;
+}
+
+.boardDisplay {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+/* .cardDisplay {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+} */
+
+.newCardForm {
+    border: 2px solid black;
+    background-image: url("https://incompetech.com/graphpaper/notelined/Wide%20Blue%20Lined.png");
+    background-size: cover;
+}
