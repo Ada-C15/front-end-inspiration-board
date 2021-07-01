@@ -108,13 +108,13 @@ function App() {
             card.message = response.data.card.message
           }
           return card
-        })
-        console.log(response.data)
+      })
         setCardsData(cards)
     }).catch((error) => {
       console.log(error.data.details)
     })
   };
+
 
   const deleteBoard = (selectedBoardId) => {
     axios
@@ -138,7 +138,6 @@ function App() {
 
   const boardFormClick = () => {
     setShowBoardForm(!showBoardForm)
-
   }
 
   return (
