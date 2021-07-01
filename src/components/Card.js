@@ -1,31 +1,22 @@
-import axios from 'axios';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const Card = (props) => {
 
-    // this will go in App.js, card_id will be provided by lifting up state
-    const increaseLikeCount = (card_id) => {
-        axios.patch(`${process.env.REACT_APP_BACKEND_URL}/cards/${card_id}/like`,
-        {
-            params: {
-                format: 'json'
-            }
-        })
-        .then( (response) => {
-            // somehow get the card to re-render, so it reflects the updated like count
-            console.log(response.data);
-        })
-        .catch( (error) => {
-            console.log(error.response);
-            alert("Could not like card")
-        });
+    const onLikeClick = () => {
+        props.onLikeClickCallback(props.id);
+    }
+
+    const onDeleteClick = () => {
+        props.onDeleteClickCallback(props.id);
     }
 
     return (<div>
         <p>{props.message}</p>
         <span>{props.likes}</span>
-        <button onClick={ () => increaseLikeCount(props.id) }>Like</button>
+        <button onClick={ onLikeClick }>Like</button>
+        <button onClick={ onDeleteClick }>Delete</button>
     </div>);
 
 };
@@ -33,7 +24,9 @@ const Card = (props) => {
 Card.propTypes = {
     id: PropTypes.number,
     message: PropTypes.string,
-    likes: PropTypes.number
+    likes: PropTypes.number,
+    onLikeClickCallback: PropTypes.func,
+    onDeleteClickCallback: PropTypes.func
 };
 
 export default Card;

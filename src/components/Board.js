@@ -10,7 +10,7 @@ const Board = (props) => {
         <div className="board">
             <h2>{props.data.title}</h2>
             <h4>{props.data.owner}</h4>
-            <CardList cards={props.cards}></CardList>
+            <CardList cards={props.cards} onLikeClickCallback={props.onLikeClickCallback} onDeleteClickCallback={props.onDeleteClickCallback}></CardList>
         </div>
     );
 
@@ -28,6 +28,8 @@ Board.propTypes = {
             message: PropTypes.string,
             likes_count: PropTypes.number
         })
-    )
+    ),
+    onLikeClickCallback: PropTypes.func,
+    onDeleteClickCallback: PropTypes.func
 };
 export default Board;
