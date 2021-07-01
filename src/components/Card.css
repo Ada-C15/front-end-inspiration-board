@@ -1,0 +1,58 @@
+
+.cards__container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.card-items__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  margin: 2rem;
+}
+
+.card-item {
+  font-family: "Indie Flower", cursive;
+  /* font-family: 'Indie Flower', cursive; */
+  background-color: rgb(255, 248, 165);
+  box-shadow: -10px 7px 7px lightgrey;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  flex-direction: column;
+}
+
+.card-item__controls {
+  font-family: "Open Sans", sans-serif;
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.card-item__message {
+  text-align: center;
+  font-size: 1.4rem;
+  word-break: break-word;
+}
+
+/* .card-item__controls > li:hover, .footer__delete-btn:hover {
+  text-decoration: underline;
+} */
+
+.card-item__controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-item__button > li:hover, .footer__delete-btn:hover  {
+}
+
+.card-item__button {
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
