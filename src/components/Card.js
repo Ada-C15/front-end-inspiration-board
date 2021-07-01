@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Card = (props) => {
 
@@ -31,3 +32,15 @@ const Card = (props) => {
     )
 }
 export default Card;
+
+
+Card.propTypes = {
+id: PropTypes.number.isRequired,
+message: PropTypes.string.isRequired,
+likesCount: PropTypes.number.isRequired,
+boardId: PropTypes.number.isRequired,
+upvoteCard: PropTypes.func.isRequired,
+deleteCard: PropTypes.func.isRequired
+
+}
+

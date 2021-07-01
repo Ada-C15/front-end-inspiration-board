@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
 const Board = (props) => {
 
@@ -12,3 +13,14 @@ const Board = (props) => {
 };
 
 export default Board;
+
+
+
+// proptypes -BP
+Board.propTypes = {
+    id: PropTypes.number.isRequired, 
+    title: PropTypes.string.isRequired, 
+    owner: PropTypes.string.isRequired,
+    onBoardSelect: PropTypes.func.isRequired
+
+}
