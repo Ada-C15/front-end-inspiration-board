@@ -19,7 +19,6 @@ const NewCardForm = (props) => {
     };
     
 
-//why doesnt this form render on the UI?
     return(
         <form onSubmit={submitCard}>
             <label htmlFor='message-input'>Message</label>

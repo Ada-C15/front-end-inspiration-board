@@ -7,6 +7,11 @@ import BoardList from './components/BoardList'
 import axios from 'axios';
 
 
+<<<<<<< HEAD
+function App() {
+  const BASE_URL = 'http://localhost:3000';
+
+=======
 /*In the container component that holds data about boards
 
 State:
@@ -17,6 +22,7 @@ isBoardFormVisible */
 
 
 function App() {
+>>>>>>> 4b0427fcaebb9ac97ade65adf0919df92c7851c5
   const [boardsData, setBoardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState({
     title: '',
@@ -52,7 +58,7 @@ function App() {
           console.log('post response ', response.data)
           console.log('post response.card ', response.data.card)
 
-          cardsData.push(response.data.card)
+          // cardsData.push(response.data.card)
           setCards(cardsData)
         })
         .catch((error)=>console.log('error post', error));
@@ -61,9 +67,21 @@ function App() {
 
     const testDeleteCardCallback = (card_id) => {
       console.log('Im in delete')
-      // axios.delete(`${BASE_URL}/cards/card_id`)
-      // .then(() =>);
-    }
+
+    //   axios.delete(`${BASE_URL}/cards/card_id`)
+    //   .then((response) => {console.log(response.data.status)
+            //get all cards to get a list of al cards
+        //     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${board.id}/cards`)
+        //     .then((response) => {
+        //     console.log('select board response ', response.data)
+        //     console.log('select board card ', response.data.cards)
+                //update state with setCards
+        //     setCards(response.data.cards)
+        //     })
+        //     .catch((error) => console.log(error));
+    // )
+    // .catch((error)=>console.log('error post', error.message));  
+    } 
 
   // useEffect(() => {
   //     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/1/cards`)
@@ -73,6 +91,37 @@ function App() {
   //     .catch((error) => console.log(error));
   //   }, []);
 
+      // Request: “card_id” passed in the route. Card not found will give an error
+      //   {
+      //     "error_message": "Card 7 not found"
+      //   }
+
+      //   Response will be  
+      //   {
+      //     "card": {
+      //         "board_id": 1,
+      //         "id": 5,
+      //         "like_count": 2,
+      //         "message": "TESTING"
+      //     }
+     //}
+
+
+    //   axios.patch(`${BASE_URL}/cards/card_id/like)
+    //   .then(
+          // axios.get(`${process.env.BASE_URL}/boards/${board.id}/cards`)
+          // .then((response)=>{
+          //   console.log(response.data)
+          //   setCards(response.data.cards)
+          // })
+    //)
+    //   .catch((error) => console.log(error))
+
+
+    //   // update state/iterate through cards and find the one I want and change the likes count
+    //   // then display the updated card
+    //   // check out update student
+  }
     const likeCallback = (card_id) => {
       console.log('Im in Like', card_id)
 
@@ -159,7 +208,6 @@ function App() {
   }
 
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
-
   const changeBoardForm = isBoardFormVisible ? 'Hide Board Form' : 'Show Board Form';
 
   return (
@@ -173,11 +221,22 @@ function App() {
         <h3>Boards</h3>
         <BoardList boards={boardsData} onBoardSelect={onBoardSelect}/>
       </section>
+
+      { selectedBoard.title ? 
+      <section className='cardsDisplay'>
       <section>
-        <h3>Selected Board</h3>
+        <h3>{selectedBoard.owner}'s Selected Board</h3>
         <div> {selectedBoard.title} - {selectedBoard.owner}</div>
       </section>
 
+        <h2>{selectedBoard.owner}'s Cards</h2>
+        <main>
+          <CardList cards={cards} deleteCallback={testDeleteCardCallback} likeCallback={testLikeCallback}/>
+          <NewCardForm createNewCard={createNewCard} />
+        </main>
+      </section>
+      : null 
+    }
       <section>
         <h2>Create New Card</h2>
         <NewCardForm createNewCard={createNewCard} />
@@ -186,7 +245,5 @@ function App() {
       </section>
     </div>
   );
-
 }
-
 export default App;
