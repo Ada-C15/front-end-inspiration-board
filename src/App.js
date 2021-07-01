@@ -9,10 +9,6 @@ import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import CardList from './components/CardList';
 
-// I cannot get the process.env object to work so this is
-// will have to do for now:
-const REACT_APP_BACKEND_URL = 'http://localhost:5000'
-
 function App() {
 
   // creates state for board (default: empty array, meaning no boards created):
@@ -30,10 +26,11 @@ function App() {
 
   useEffect(() => {
     axios
-    .get(`${REACT_APP_BACKEND_URL}/boards`, {
+    .get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
     })
     .then((response) => {
       setBoardsData(response.data);
+      
     })
   }, []); 
   
@@ -50,13 +47,16 @@ function App() {
 
   const postNewBoard = (newBoardData) => {
     axios
-      .post(`${REACT_APP_BACKEND_URL}/boards`, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
         title: newBoardData.title,
         owner: newBoardData.owner
       })
       .then((response) => {
         console.log('response:', response);
         console.log('response data:', response.data);
+        const board = [...boardsData]
+        board.push(response.data)
+        setBoardsData(board)
       })
       .catch((error) => {
         console.log('error:', error);
@@ -78,7 +78,7 @@ function App() {
       message: message,
       board_id: selectedBoard.id
     }
-    axios.post(`${REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard)
+    axios.post(`${process.envREACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard)
       .then((response) => {
         console.log(response);
       })
@@ -89,7 +89,7 @@ function App() {
 
   // create function for card likes
   const cardLikes = (cardId) => {
-    axios.put(`${REACT_APP_BACKEND_URL}/cards/${cardId}/like`, )
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}/like`, )
       .then((response) => {
         console.log(response);
       })
@@ -100,7 +100,7 @@ function App() {
 
   // create function to delete cards
   const cardDelete = (cardId) => {
-    axios.delete(`${REACT_APP_BACKEND_URL}/cards/${cardId}`, )
+    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardId}`, )
       .then((response) => {
         console.log(response);
       })
