@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NewCardForm from './NewCardForm';
 import CardList from './CardList.js';
 import PropTypes from 'prop-types';
@@ -6,7 +6,12 @@ import './Board.css';
 
 const Board = (props) => {
     console.log("I'm in Board and this is the data passed to me: ", props.data);
-    
+    const [showNewCardForm, toggleNewCardForm] = useState(false);
+
+    useEffect(() => {
+        props.data.board_id ? toggleNewCardForm(true) : toggleNewCardForm(false);
+    }, [props.data]);
+
     return (
         <div className="board">
             <div className="boardHeader">
@@ -17,10 +22,13 @@ const Board = (props) => {
                 <div className='cardDisplay'>
                     <CardList cards={props.cards} onLikeClickCallback={props.onLikeClickCallback} onDeleteClickCallback={props.onDeleteClickCallback}></CardList>
                 </div>
-                <div className='newCardForm'>
-                    <h3>Create a New Card</h3>
-                    <NewCardForm onSubmitCallback={(newCardData) => props.onSubmitCallback(newCardData)}></NewCardForm>
-                </div>
+                { showNewCardForm ?
+                    <div className='newCardForm'>
+                        <h3>Create a New Card</h3>
+                        <NewCardForm onSubmitCallback={(newCardData) => props.onSubmitCallback(newCardData)}></NewCardForm>
+                    </div>
+                    : ''
+                }
             </div>
             <label>Sort By:</label>
             <select id='sort' onChange={(event) => props.onSortCallback(event)} value={props.sortMethod}>
