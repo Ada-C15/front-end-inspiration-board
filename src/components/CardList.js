@@ -3,6 +3,7 @@ import Card from "./Card"
 const CardList = (props) => {
 
     const listCards = props.oneBoard.cards.map(card => {
+        
         return (
         <li key={card.id}>
             <Card id={card.id} message={card.messageData}/> 

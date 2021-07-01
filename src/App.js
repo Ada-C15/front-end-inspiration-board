@@ -1,32 +1,27 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import Board from './components/Board';
 import Card from './components/Card';
 import CardList from './components/CardList';
+import axios from 'axios';
 
 function App() {
 
-  // Get list of boards
-  const [boardsData, setBoardsData] = useState([
-    {
-    id: 1,
-    titleData:"Shopping List",
-    ownerData:"Priscille",
-    cards:[]
-  }
-])
+const [boardsData, setBoardsData] = useState([])
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {})
+    .then((response) => {
+      console.log(response)
+      setBoardsData(response.data);
+    })
+  }, []);
 
+  
+  console.log("This is my boardData", boardsData)
 
-  // Select a board
-
-  const [selectedBoard, setSelectedBoard] = useState({
-    id: 0,
-    titleData:"",
-    ownerData:"",
-    cards:[]
-  })
+ 
 
 
 // Hide and Show Board
@@ -35,19 +30,27 @@ function App() {
   
 // Add a new board
   const addBoardsData = newBoard => {
-    const newBoardList = [...boardsData];
 
-    const nextId = Math.max(...newBoardList.map(board => board.id)) + 1;
+    console.log("This is my newBoard",newBoard);
+    axios.post("https://board-inspo-app.herokuapp.com/boards", newBoard)
+    .then((response) => {
+      console.log("this is my response", response)
+      axios.get("https://board-inspo-app.herokuapp.com/boards")
+      .then((response) => {
+        console.log("This is my response in the get",response.data);
+        setBoardsData(response.data)
 
-    newBoardList.push({
-      id: nextId,
-      titleData: newBoard.titleData,
-      ownerData: newBoard.ownerData,
-      cards:[]
+      })
+      .catch((error) => {console.log(error.response.data)})
+    }).catch((error) => {
+      console.log('Error:', error);
+      alert('Couldn\'t create a new board.');
     });
-    console.log(selectedBoard)
-    setBoardsData(newBoardList)
   }
+  
+  console.log("This is my list of boards: ",boardsData)
+
+  
 
   // Add a new card
   const addCardsData = newCard => {
@@ -88,17 +91,36 @@ function App() {
   //     setSelectedBoard(board)
   //       }
 
+   // Select a board
+
+  const [selectedBoard, setSelectedBoard] = useState({
+    id: 0,
+    title:"",
+    owner:"",
+    cards:[]
+  })
     // Select a board
+
   const selectABoard = (id) =>{
-    const boards = boardsData.map(board => {
-      if(board.id === id) {
+    axios.get(`https://board-inspo-app.herokuapp.com/boards/${id}`)
+    .then((response) => {
+      console.log("This is my response in the selectboard",response.data);
+      setSelectedBoard(response.data)
+
+    })
+    .catch((error) => {console.log(error.response.data)})
+
+
+
+    // const boards = boardsData.map(board => {
+    //   if(board.id === id) {
       
-      setSelectedBoard(board)
-        }
-        console.log(selectedBoard)
-        return board
-      })
-    setBoardsData(boards)
+    //   setSelectedBoard(board)
+    //     }
+    //     console.log(selectedBoard)
+    //     return board
+    //   })
+    // setBoardsData(boards)
   }
     
 
@@ -106,7 +128,7 @@ function App() {
 
   const boardComponent = boardsData.map((board) => {
     // return (<li key={board.id}><Board board={board} onBoardSelect={selectABoard}></Board></li>)
-    return <li key={board.id}><Board id={board.id} title={board.titleData} owner={board.ownerData} onBoardSelect={selectABoard}></Board></li>
+    return <li key={board.id}><Board id={board.id} title={board.title} owner={board.owner} onBoardSelect={selectABoard}></Board></li>
       })
 
   // ClikButton to hide or show the board form
@@ -137,7 +159,7 @@ function App() {
           <div className="middle">
             <section>
               <h2>Selected Board</h2>
-              <p>{selectedBoard.id ? `${selectedBoard.titleData} - ${selectedBoard.ownerData}` : 'Select a Board from the Board List!'}</p>
+              <p>{selectedBoard.id ? `${selectedBoard.title} - ${selectedBoard.owner}` : 'Select a Board from the Board List!'}</p>
             </section>
           </div>
           <div className="right">
@@ -150,7 +172,7 @@ function App() {
             <NewCardForm addCardCallback={addCardsData}></NewCardForm>
           </div>
           <div className="bottom-left"> 
-              <CardList oneBoard={selectedBoard}></CardList>
+              {/* <CardList oneBoard={selectedBoard}></CardList> */}
             {/* {selectedBoard.id ? <CardList board={selectedBoard}></CardList> : ''} */}
           </div>
         </section>  
