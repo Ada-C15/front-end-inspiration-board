@@ -1,16 +1,28 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import CardList from './components/CardList.js';
-import Card from './components/Card.js';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import BoardList from './components/BoardList'
 import axios from 'axios';
 
 
+<<<<<<< HEAD
 function App() {
   const BASE_URL = 'http://localhost:3000';
 
+=======
+/*In the container component that holds data about boards
+
+State:
+boardsData
+selectedBoard
+isBoardFormVisible */
+
+
+
+function App() {
+>>>>>>> 4b0427fcaebb9ac97ade65adf0919df92c7851c5
   const [boardsData, setBoardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState({
     title: '',
@@ -71,8 +83,13 @@ function App() {
     // .catch((error)=>console.log('error post', error.message));  
     } 
 
-    const testLikeCallback = (card_id) => {
-      console.log('Im in Like', card_id)
+  // useEffect(() => {
+  //     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/1/cards`)
+  //     .then((response) => {
+  //       console.log('get cards ', response.data)
+  //     })
+  //     .catch((error) => console.log(error));
+  //   }, []);
 
       // Request: “card_id” passed in the route. Card not found will give an error
       //   {
@@ -105,6 +122,41 @@ function App() {
     //   // then display the updated card
     //   // check out update student
   }
+    const likeCallback = (card_id) => {
+      console.log('Im in Like', card_id)
+
+      // const cardsData = [...cards];
+
+      axios.patch(`${process.env.REACT_APP_BACKEND_URL}/cards/${card_id}/like`)
+      .then((response) => {
+        console.log('like response ', response.data.card)
+        // console.log('cardsData ', cardsData)
+        // setCards(response.data.card)
+        // cardsData.push(response.data.card)
+        // setCards(cardsData)
+        console.log('cards ', cards)
+        const responseCardData = cards.map((card) => {
+          if (card.id === card_id) {
+            
+            card = response.data.card
+            console.log('map card ', card)
+            return card
+          } 
+          
+        })
+        setCards(responseCardData)
+        // console.log('map data ', responseCardData)
+      })
+      .catch((error) => {
+        console.log(error.message)
+        // console.log(`${process.env.REACT_APP_BACKEND_URL}/${card_id}/like`)
+      })
+
+
+      // update state/iterate through cards and find the one I want and change the likes count
+      //then display the updated card
+      //check out update student
+    }
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
@@ -185,6 +237,12 @@ function App() {
       </section>
       : null 
     }
+      <section>
+        <h2>Create New Card</h2>
+        <NewCardForm createNewCard={createNewCard} />
+        <h2>Cards</h2>
+        <CardList cards={cards} deleteCallback={testDeleteCardCallback} likeCallback={likeCallback}/>
+      </section>
     </div>
   );
 }
