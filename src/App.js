@@ -1,5 +1,4 @@
 import './App.css';
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import CardList from './components/CardList.js';
 import Card from './components/Card.js';
@@ -11,13 +10,6 @@ import axios from 'axios';
 //BLUEPRINTS: 
 //"/cards", "/<int:id>/cards", "/<int:id>", "/<int:id>/like"
 //"/boards"
-
-=======
-import { useState, useEffect } from 'react';
-import NewBoardForm from './components/NewBoardForm';
-import BoardList from './components/BoardList';
-import axios from 'axios';
->>>>>>> b21fa46498d6e8061c1b5c7e612f0463c1b74911
 
 // process.env.REACT_APP_BACKEND_URL
 // axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {
@@ -131,15 +123,15 @@ function App() {
       console.log('This is a test function')
     }
 
-  return(
-    <div className="Cards">
-      <h2>Cards</h2>
-      <main>
-        <CardList cards={cards} onClickCallback={testfunction} deleteCallback={testDeleteCardCallback} likeCallback={testLikeCallback}/>
-        <NewCardForm createNewCard={createNewCard} />
-      </main>
-    </div>
-  )
+  // return(
+  //   <div className="Cards">
+  //     <h2>Cards</h2>
+  //     <main>
+  //       <CardList cards={cards} onClickCallback={testfunction} deleteCallback={testDeleteCardCallback} likeCallback={testLikeCallback}/>
+  //       <NewCardForm createNewCard={createNewCard} />
+  //     </main>
+  //   </div>
+  // )
   const [selectedBoard, setSelectedBoard] = useState({
     title: '',
     owner: '',
@@ -223,6 +215,12 @@ function App() {
         <h3>Selected Board</h3>
         <div> {selectedBoard.title} - {selectedBoard.owner}</div>
       </section>
+
+      <h2>Cards</h2>
+      <main>
+        <CardList cards={cards} onClickCallback={testfunction} deleteCallback={testDeleteCardCallback} likeCallback={testLikeCallback}/>
+        <NewCardForm createNewCard={createNewCard} />
+      </main>
     </div>
   );
 
