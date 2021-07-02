@@ -1,0 +1,6 @@
+.listofBoards {
+    display: flex;
+    flex-direction: row;
+    margin: 0px 10px 0px 10px;
+    justify-content: center;
+}

@@ -1,0 +1,51 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.stickynote {
+    text-decoration:none;
+    color:#000;
+    background:#ffc;
+    display:block;
+    height:10em;
+    width:10em;
+    padding:1em;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.cards_container {
+    position: relative;
+}
+ul li{
+    margin:1em;
+}
+
+.stickybutton {
+    margin-top: 10px;
+    width: 41px;
+    background-color: #8C705F;
+    color: #CCFCCB;
+    font-weight: bolder;
+    font-family: 'Gaegu', cursive; 
+    border-radius: 25% 10%;
+    margin: 20px auto 0;
+    padding: 2px;
+}
+
+.card-message {
+    text-align: start;
+    margin: 2px
+}

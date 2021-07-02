@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap');
+
+.boardbutton { 
+    background-color: #8C705F;
+    color: #CCFCCB;
+    font-weight: bolder;
+    font-family: 'Gaegu', cursive; 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 810px;
+    margin: 20px auto 0;
+    padding: 5px;
+    border-radius: 25% 10%;
+    width: 200px;
+    justify-content: center;
+    margin-left: 20px;
+    height: 50px;
+    font-size: large;
+
+}
+
+.deletebutton { 
+    background-color: #8C705F;
+    color: #CCFCCB;
+    font-weight: bolder;
+    font-family: 'Gaegu', cursive; 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 810px;
+    margin: 20px auto 0;
+    padding: 5px;
+    border-radius: 25% 10%;
+
+}
+
+button:hover {
+    background-color: #9b806e;
+    text-decoration: underline dotted#CCFCCB;
+
+}
