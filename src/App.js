@@ -16,13 +16,13 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`).then((response) => {
+    axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`).then((response) => {
       setBoardsData(response.data);
     })
   }, []);
 
   const createNewBoard = (newBoard) => { 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard).then((response) => {
+    axios.post(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`, newBoard).then((response) => {
       const newBoards = [...boardsData]
       newBoards.push(response.data.board);
       setBoardsData(newBoards);
@@ -35,14 +35,14 @@ function App() {
 
   useEffect(() => {
     if (selectedBoard?.id) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
+      axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
         setCardsData(response.data);
       })
     }
   }, [selectedBoard]);
 
   const createNewCard = (newCard) => { 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard).then((response) => {
+    axios.post(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard).then((response) => {
       const newCards = [...cardsData]
       newCards.push(response.data.card)
       setCardsData(newCards);
@@ -54,7 +54,7 @@ function App() {
 
   const upvoteCard = (selectedCardId) => {
     axios
-    .put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}/upvote`)
+    .put(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/cards/${selectedCardId}/upvote`)
     .then((response) => {
         updateCardsList(response.data.card)
     })
@@ -65,10 +65,10 @@ function App() {
 
   const deleteCard = (selectedCardId) => {
     axios
-    .delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`)
+    .delete(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/cards/${selectedCardId}`)
     .then((response) => {
       axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`)
+      .get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`)
       .then((response) => {
         setCardsData(response.data)
       })
@@ -94,7 +94,7 @@ function App() {
 
 
   const updateSingleCard = (selectedCardId, newMessage) => {
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`, newMessage) 
+    axios.put(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/cards/${selectedCardId}`, newMessage) 
       .then((response) => {
         const cards = cardsData.map(card => {
           if (selectedCardId === card.id) {
@@ -111,10 +111,10 @@ function App() {
 
   const deleteBoard = (selectedBoardId) => {
     axios
-    .delete(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoardId}`)
+    .delete(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoardId}`)
     .then((response) => {
       axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
+      .get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`)
       .then((response) => {
         setBoardsData(response.data)
         setCardsData([])
