@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import './NewCardForm.css';
 
 const NewCardForm = (props) => {
     const [cardForm, setCardForm] = useState({
@@ -36,7 +37,7 @@ const NewCardForm = (props) => {
                     className={(cardForm.message.length === 0) || (cardForm.message.length > 40)? 'invalid-form-input' : ''}
                 />
             </div>
-            <input 
+            <input className='fieldPrompt'
                 type="submit"
                 value="Submit The Message"
                 disabled={((cardForm.message.length === 0) || (cardForm.message.length >40))}

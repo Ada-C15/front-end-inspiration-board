@@ -138,7 +138,7 @@ function App() {
 
   return (
     <div>
-      <h1> Inspiration Board </h1>
+      <h1 className='homepage-title'> Inspiration Board </h1>
       <main>
       <section className='new-board-form__container'>
         <h2>Create a New Board</h2>
@@ -166,7 +166,7 @@ function App() {
 
         />
       </section>
-      <section>
+      <section className='new-card-form__container'>
           <div>
             {selectedBoard.id !== null ? 
             <>

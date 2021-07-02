@@ -19,24 +19,13 @@
     border-radius: 25% 10%; /* from: https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
 }
 
-/* .titleElements {
-    top: 475px;
-    left: 250px;
-    width: 100px;
-    height: 30px;
-    margin-top: 15px;
-}
-
-.ownerElements {
-    top: 475px;
-    right: 250px;
-    width: 350px;
-    height: 120px;
-    margin-top: 15px;
-} */
-
 .fieldItself:hover, .fieldPrompt:hover {
     background-color: #9b806e;
     text-decoration: underline dotted#CCFCCB; /* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration */
 
 }
+
+.invalid-form-input {
+    border: 2px solid red;
+}
+
