@@ -6,10 +6,11 @@ onBoardSelect
 
 ****** onClick = {() => props.onBoardsSelect(props.title, props.owner)} ******
 */
+import './Board.css'
 
 const Board = (props) => {
     return (
-        <div onClick = {() => props.onBoardSelect(props.board)}>
+        <div className='board_item' onClick = {() => props.onBoardSelect(props.board)}>
             {props.board.id}. {props.board.title}
         </div>
     )

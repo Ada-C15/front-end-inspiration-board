@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import './CardList.css'
 // import PropTypes from 'prop-types';
 
 
@@ -10,7 +11,7 @@ const CardList = (props) => {
     console.log('cardsList props', props.cards)
     const cardComponents = props.cards.map((card) => {
         return(
-            <li key={card.id}>
+            <li className='card_list' key={card.id}>
                 <Card
                     id={card.id}
                     board_id={card.board_id}
