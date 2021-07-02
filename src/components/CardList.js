@@ -19,44 +19,47 @@ const CardList = (props) => {
 
     console.log("Cards Data in UseEffect: ",cardsData);
 
-    // const deleteCardItem = (card) => {
-    //     axios.delete(`https://board-inspo-app.herokuapp.com/cards/${card.card_id}`).then((response) => {
-    //     const newCardsData = cardsData.filter((existingCard) => {
-    //         return existingCard.card_id !== card.card_id;
-    //     });
-    //     setCardsData(newCardsData);
-    //     }).catch((error) => {
-    //     console.log('Error:', error);
-    //     alert('Couldn\'t delete the card.');
-    //     });
-    // };
+    const deleteCard = (card) => {
+        axios.delete(`https://board-inspo-app.herokuapp.com/cards/${card.card_id}`).then((response) => {
+        const newCardsData = cardsData.filter((existingCard) => {
+            return existingCard.card_id !== card.card_id;
+        });
+        console.log("New Cards Data: ", newCardsData)
+        setCardsData(newCardsData);
+        }).catch((error) => {
+        console.log('Error:', error);
+        alert('Couldn\'t delete the card.');
+        });
+    };
 
-    // const plusOneCardItem = (card) => {
-    //     axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${card.card_id}/like`).then((response) => {
-    //     const newCardsData = cardsData.map((existingCard) => {
-    //     return existingCard.card_id !== card.card_id ? existingCard : {...card, likes_count: card.likes_count + 1}
-    //     });
-    //     setCardsData(newCardsData);
-    //     }).catch((error) => {
-    //     console.log('Error:', error);
-    //     alert('Couldn\'t +1 the card.');
-    //     });
-    // };
+    const plusOneCard = (card) => {
+        console.log("This is the card to plus one: ",card)
+        const request_body = {"likes_count":card.likes_count};
+        axios.put(`https://board-inspo-app.herokuapp.com/cards/${card.card_id}/likes`,request_body)
+        .then((response) => {
+        const newCardsData = cardsData.map((existingCard) => {
+        return existingCard.card_id !== card.card_id ? existingCard : {...card, likes_count: response.data.likes}
+        });
+        setCardsData(newCardsData);
+        }).catch((error) => {
+        console.log('Error:', error);
+        alert('Couldn\'t +1 the card.');
+        });
+    };
 
     const cardElements = cardsData.map((card) => {
         return (<Card
             card={card}
-            // plusOneCardItem={plusOneCardItem}
+            deleteCard={deleteCard}
+            plusOneCard={plusOneCard}
             ></Card>)
     });
     
 
     const postNewCard = (text) => {
         const message = {"message":text}
-        console.log("This is the message that will be send from CardList: ",message)
         axios.post(`https://board-inspo-app.herokuapp.com/cards`,message)
         .then((response) => {
-            console.log("ID new card created: 🌻",response.data.id)
             const new_card_id = response.data.id
             const bodyToLinkToBoard = {"card_ids": [new_card_id]}
             axios.post(`https://board-inspo-app.herokuapp.com/boards/${props.board.id}/cards`, bodyToLinkToBoard)
