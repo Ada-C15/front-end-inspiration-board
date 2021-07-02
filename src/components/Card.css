@@ -24,12 +24,12 @@ ul{
     padding:1em;
     font-size: 1rem;
     font-weight: normal;
+    /* margin: 20px auto 0;
+    flex-wrap: wrap; */
 }
 
 .cards_container {
-    position: absolute;
-    top: 300px;
-    left: 100px;
+    position: relative;
 }
 ul li{
     margin:1em;
