@@ -1,0 +1,168 @@
+
+/* @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap'); */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.header {
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(20px + 2vmin);
+  color: #1c7398;
+  text-shadow: .1em .1em .2em rgb(99, 39, 58);
+  font-family: 'Shadows Into Light', cursive;
+}
+
+.app {
+  height: 500px;
+  
+  /* text-align: center; */
+  /* background-color: blue; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: calc(3px + 1.5vmin);
+  color: #144a61;
+  /* font-weight: bold; */
+  /* color: rgb(67, 0, 21); */
+  /* text-shadow: .05em .05em .05em #78664e; */
+  font-family: 'Roboto';
+
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+main > section {
+  width: 1000px;
+  max-width: 100%;
+}
+
+body{
+  background-image: url(https://jooinn.com/images/sand-waves-2.jpg);
+  font-size: calc(5px + 2vmin);
+  /* color: #1c7398; */
+  /* color: rgb(67, 0, 21); */
+  /* text-shadow: .1em .1em .1em #c19c69; */
+  /* background-color: olive; */
+}
+
+/* red box when input is invalid */
+input.invalid-form {
+    border: red solid 3px;
+    box-shadow: 0 0 7px rgb(223, 34, 113);
+  }
+
+/*  beginning of conflicts*/
+.post-it {
+  background-image: url(https://www.pikpng.com/pngl/b/300-3001249_us-know-the-thrill-of-spotting-a-little.png);
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 15px;
+  margin: 10px;
+  flex: 0 0 auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: rgb(61, 18, 7);
+  font-size: 15px;
+}
+
+.cards-list {
+  /* color: rgb(51, 5, 5); */
+  color: #1c7398;
+  /* font-weight: bold; */
+  width: 70%;
+  margin: 10px; 
+  /* border: solid 10px black; */
+
+/*   width: 20%; */
+  padding: 10px;
+  box-sizing: border-box;
+  word-break: break-all;
+}
+/*  end of conflicts here*/
+
+/* .post-it > div {
+  background-color: rgb(29, 27, 24);
+  padding: 5px;
+  height: 100%;
+} */
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.align-base {
+  align-items: baseline;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.cards-list{
+  margin: 0 -10px;
+}
+
+.delete-button {
+  background-color: rgb(189, 129, 25);
+  color: white;
+  font-size: 15px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  margin: 15px 10px;
+  /* cursor: url("https://images.freeimages.com/images/large-previews/be5/seashell-1407012.jpg"), default; */
+}
+
+.star-button {
+  margin: 15px 10px;
+}
+
+footer {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-weight: bold;
+  margin-top: 250px;
+}
+
+.padding-left{
+  padding-left: 200px
+}
+
+.order-by {
+  margin-top: 15px;
+}
+
+.large-font{
+  font-size: x-large;
+}
+
+.bold-type {
+  font-weight: bold;
+}
