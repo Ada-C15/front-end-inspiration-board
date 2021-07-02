@@ -11,12 +11,14 @@ const Board = (props) => {
     };
 
     return (
-        <div>
-            <button onClick={() => props.onBoardSelect({id:props.id,title:props.title,owner:props.owner})}>
-                {props.id}: {props.title}
-            </button>
-            <button onClick={deleteBoardClick} >Delete Board</button>
-        </div>
+        
+            <div>
+                <button className="boardbutton" onClick={() => props.onBoardSelect({id:props.id,title:props.title,owner:props.owner})}>
+                    {props.title}
+                </button>
+                <button className="deletebutton" onClick={deleteBoardClick} >Delete Board</button>
+            </div>
+    
     );
     
 };

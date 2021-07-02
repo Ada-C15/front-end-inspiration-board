@@ -122,11 +122,12 @@ function App() {
         setBoardsData(response.data)
       })
       .catch((error) => {
-        console.log(error.data.details)
+        console.log(error)
       })
+
     })
     .catch((error) => {
-      console.log(error.data.details)
+      console.log(error)
     })
   };
 
