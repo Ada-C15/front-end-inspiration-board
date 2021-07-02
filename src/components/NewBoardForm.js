@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import '../App.css'
+import './NewBoardForm.css'
 import PropTypes from 'prop-types';
 
 
@@ -41,7 +41,7 @@ const NewBoardForm = (props) => {
 
     return (
         <form onSubmit={onFormSubmit}>
-            <div>
+            <div className='fieldItself'>
                 <label>Title</label> 
                 <input
                     value={boardForm.title}
@@ -49,7 +49,7 @@ const NewBoardForm = (props) => {
                     className={(boardForm.title.length === 0)? 'invalid-form-input' : ''}
                 />
             </div>
-            <div>
+            <div className='fieldItself'>
                 <label>Owner</label> 
                 <input
                     value={boardForm.owner}
@@ -57,7 +57,7 @@ const NewBoardForm = (props) => {
                     className={(boardForm.owner.length === 0)? 'invalid-form-input' : ''}
                 />
             </div>
-            <input 
+            <input className='fieldPrompt'
                 type="submit"
                 value="Submit The Board"
                 disabled={((boardForm.title.length === 0) || (boardForm.owner.length === 0))}
