@@ -39,7 +39,7 @@ const NewCardForm = (props) => {
 };
 
 NewCardForm.propTypes = {
-  board_id: PropTypes.number,
+  onSubmitCallback: PropTypes.func
 };
 
 export default NewCardForm;
