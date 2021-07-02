@@ -1,0 +1,59 @@
+
+.cards__container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.card-items__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  margin: 2rem;
+}
+
+.card-item {
+  font-family: "Indie Flower", cursive;
+  /* background-color: rgb(255, 248, 165); */
+  background-image: url("https://www.vippng.com/png/full/37-376010_objects-transparent-sticky-note-png.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  flex-direction: column;
+}
+
+.card-item__controls {
+  font-family: "Open Sans", sans-serif;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  padding: 0;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.card-item__message {
+  text-align: center;
+  font-size: 1.4rem;
+  word-break: break-word;
+}
+
+.card-item__button {
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  background-color: #FFFFC5
+}
+
+.card-item__button:hover {
+  background-color: #FFB0B8;
+  cursor: pointer;
+}
+
+.card-item__like-count {
+  font-size: 16px;
+}

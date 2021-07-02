@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+body {
+  margin: 3rem;
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+  background-color: #BBFFFF;
+}
+
+h1,
+h2 {
+  font-family: "Permanent Marker", cursive;
+  padding: 0.6em 1em;
+  display: inline-block;
+  color: black;
+  background-color: #C8E4FF;
+}
+
+h1 {
+  background-color: #FFB1B8;
+  transform: rotate(-5deg) skew(-10deg);
+}
+
+h2 {
+  border: 2px solid black;
+  box-shadow: -15px 7px 1px black;
+  border-radius: 5px;
+}
+
+.boards__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.boards__list {
+  max-height: 9rem;
+  min-height: 9rem;
+  overflow: scroll;
+  margin-right: 2rem;
+  border: none;
+  background-color: #FFFFC5;
+  border-radius: 5px;
+  padding-top: 10px;
+}
+
+.board-list__item:hover {
+  background-color: #ADDC00;
+  cursor: pointer;
+}
+
+
+input {
+  box-sizing: content-box;
+}
+
+.invalid-form-input {
+  border: #FFB1B8 solid 1px;
+  box-shadow: 0 0 7px #FFB0B8;
+}
+
+footer {
+  text-align: center;
+}
+
+.page__container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content__container {
+  flex: 1 0 auto;
+}
+
+.selected-board__title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.selected-board__owner {
+  font-style: italic;
+}
