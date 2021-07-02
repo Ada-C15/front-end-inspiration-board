@@ -18,72 +18,82 @@
     margin-top: 0;
 }
 
-.flex-container {
+.flex-container-wrap {
     padding: 0;
     margin: 0;
-    list-style: none;
     border: 1px solid  #7F534B;
-    -ms-box-orient: horizontal;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-flex;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    list-style: none;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.flex-container h2 { /*Create a New Board*/
-    color: #FFB86F;
-    margin-left: 0px;
-    font-size: 40px;
+.hide-button__container {
+    display: flex;
 }
 
-.flex-item { /*Hide Me toggle button*/
-    background: #8C705f;
+.hide-button {
+    align-self: center;
+    background-color: #8C705F;
     color: #CCFCCB;
+    font-weight: bolder;
+    font-family: 'Gaegu', cursive; 
+    margin: 20px auto 0;
     padding: 5px;
+    border-radius: 25% 10%;
     width: 100px;
     height: 50px;
-    margin: 5px 5px 5px 5px;
-    
-    line-height: 15px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
+    font-size: large;
 }
 
-.choose-board-prompt h2 { /*Choose a Board*/
+.flex-container-wrap h2 {
+    color: #FFB86F;
+    margin-left: 20px;
+    font-size: 40px;
+    align-self: center;
+}
+
+.flex-container-wrap form {
+    align-self: center;
+}
+
+
+.choose-board-prompt { /*Choose a Board*/
+    display: flex;
+    flex-direction: column;
     color: #FFB86F;
     margin-left: 20px;
     font-size: 40px;
 }
 
+.choose-board-prompt h2 {
+    color: #FFB86F;
+    margin-left: 20px;
+    font-size: 40px;
+    align-self: center;
+}
+
+.create-card-prompt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .create-card-prompt h3 { /*Create new card, /!\ when you click to enter data, the styling drops...*/
     color: #FFB86F;
     margin-top: 70px;
     margin-left: 20px;
     font-size: 40px;
+    align-self: center;
 }
 
 .currentboard {
+    display: flex;
     color: #FFB86F;
-    font-size: 25px;
-    font-weight: bolder;
-    font-family: 'Gaegu', cursive; 
-    display: flex; 
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    max-width: 810px;
-    width: 300px;
-    margin: 20px auto 0;
-    padding: 5px; 
-    border-radius: 25% 10%; 
+    text-decoration: underline;
     margin-left: 20px;
+    font-size: 40px;
+    justify-content: center;
 }
+
 .wrap    { /*Affects Create New Board prompt + Hide Me button*/
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
