@@ -38,7 +38,7 @@
 
 .flex-container h2 { /*Create a New Board*/
     color: #FFB86F;
-    margin-left: 20px;
+    margin-left: 0px;
     font-size: 40px;
 }
 
@@ -64,10 +64,28 @@
 
 .create-card-prompt h3 { /*Create new card /!\ when you click to enter data, the styling drops...*/
     color: #FFB86F;
+    margin-top: 70px;
     margin-left: 20px;
     font-size: 40px;
 }
 
+.currentboard {
+    color: #FFB86F;
+    font-size: 25px;
+    /* background-color: #8C705F; */
+    font-weight: bolder;
+    font-family: 'Gaegu', cursive; 
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 810px;
+    width: 300px;
+    margin: 20px auto 0;
+    padding: 5px; 
+    border-radius: 25% 10%; 
+    margin-left: 20px;
+}
 .wrap    { /*Affects Create New Board prompt + Hide Me button*/
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -86,8 +104,6 @@ body { /*whole page*/
     font-family: 'Gaegu', cursive; 
     margin: 0px 0px 10px 0px;
 }
-
-
 
 
 /* .new-board-form__container  */

@@ -22,7 +22,7 @@ const CardList = (props) => {
     });
     return (
         <div>
-            <ul>
+            <ul className='listofcards'>
                 { listofCards }
             </ul>
         </div>
