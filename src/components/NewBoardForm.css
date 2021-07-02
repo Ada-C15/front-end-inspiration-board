@@ -1,0 +1,4 @@
+.boardFormInputs {
+    display: flex;
+    flex-direction: column;
+}
