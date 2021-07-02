@@ -49,7 +49,7 @@ const NewBoardForm = (props) => {
                     className={(boardForm.title.length === 0)? 'invalid-form-input' : ''}
                 />
             </div>
-            <div className='fieldItself'>
+            <div className='fieldItselfs'>
                 <label>Owner</label> 
                 <input
                     value={boardForm.owner}

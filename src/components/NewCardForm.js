@@ -38,7 +38,7 @@ const NewCardForm = (props) => {
                 />
             </div>
 
-            <input className='submit-the-message'
+            <input className='submitTheMessage'
                 type="submit"
                 value="Submit The Message"
                 disabled={((cardForm.message.length === 0) || (cardForm.message.length >40))}

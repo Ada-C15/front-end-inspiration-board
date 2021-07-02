@@ -24,8 +24,6 @@ ul{
     padding:1em;
     font-size: 1rem;
     font-weight: normal;
-    /* margin: 20px auto 0;
-    flex-wrap: wrap; */
 }
 
 .cards_container {
@@ -34,4 +32,3 @@ ul{
 ul li{
     margin:1em;
 }
-
