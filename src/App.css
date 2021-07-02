@@ -1,0 +1,82 @@
+/* .App {
+  text-align: center;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+
+body {
+  font-family: 'Kirang Haerang', cursive;
+  text-align: center;
+  color:black;
+  background-color: #def068;
+}
+
+header {
+  font-size: 3em;
+}
+
+/* footer {
+
+} */
+
+/* h2 {
+  font-size: 2em;
+} */
+
+
+.boards-container, .board-header-container{
+  display:flex;
+	flex-direction:row;
+	justify-content:space-around;
+  margin-bottom: 40px;
+  list-style: none;
+  font-size: 30px;
+}
+
+.board-header-container{
+  font-size: 50px;
+}
+
+.board-header-container li{
+  margin-left: 150px;
+}
+.selected-board{
+  margin-left: 75px;
+  text-align: right;
+}
+
+.left, .right, .middle{
+  background-color: rgb(242, 4, 186, 0.932);
+  border: 2px solid black;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 1.25em;
+  height: 500px;
+}
+
+.left{
+  width: 400px;
+}
+
+.middle{
+  width: 600px;
+  height: 180px;
+}
+
+.left-board-list{
+  overflow:auto;
+}
+
+.newFormHideButton{
+  background-color: #def068;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 30px;  
+}
+
+.smallButton{
+  margin-left: 26px;
+  background-color: #def068;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 30px; 
+}

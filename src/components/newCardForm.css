@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+
+.new-card-form__form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    width: 100%;
+    text-align: left;
+}
+
+h2 {
+    text-align: center;
+}
+
+.smallButton {
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+.bottom-right {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+    height: 100;
+}
+
+.new-card-form{
+    background-color: rgb(242, 4, 186, 0.932);
+    border: 2px solid black;
+    padding: 30px;
+    font-size: 30px;
+    width: 400px;
+}
+
+.new-card-submit-btn{
+    background-color: #def068;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 30px; 
+    color: black; 
+}
