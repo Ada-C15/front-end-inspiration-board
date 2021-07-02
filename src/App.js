@@ -16,14 +16,13 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`).then((response) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`).then((response) => {
       setBoardsData(response.data);
     })
   }, []);
 
   const createNewBoard = (newBoard) => { 
-    axios.post(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`, newBoard).then((response) => {
-      console.log("Response:", response.data)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard).then((response) => {
       const newBoards = [...boardsData]
       newBoards.push(response.data.board);
       setBoardsData(newBoards);
@@ -36,15 +35,14 @@ function App() {
 
   useEffect(() => {
     if (selectedBoard?.id) {
-      axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`).then((response) => {
         setCardsData(response.data);
-        console.log('Response is:',response.data)
       })
     }
   }, [selectedBoard]);
 
   const createNewCard = (newCard) => { 
-    axios.post(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard).then((response) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`, newCard).then((response) => {
       const newCards = [...cardsData]
       newCards.push(response.data.card)
       setCardsData(newCards);
@@ -56,9 +54,8 @@ function App() {
 
   const upvoteCard = (selectedCardId) => {
     axios
-    .put(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/cards/${selectedCardId}/upvote`)
+    .put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}/upvote`)
     .then((response) => {
-        console.log(response.data.card)
         updateCardsList(response.data.card)
     })
     .catch((error) => {
@@ -68,10 +65,10 @@ function App() {
 
   const deleteCard = (selectedCardId) => {
     axios
-    .delete(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/cards/${selectedCardId}`)
+    .delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`)
     .then((response) => {
       axios
-      .get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoard.id}/cards`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.id}/cards`)
       .then((response) => {
         setCardsData(response.data)
       })
@@ -97,7 +94,7 @@ function App() {
 
 
   const updateSingleCard = (selectedCardId, newMessage) => {
-    axios.put(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/cards/${selectedCardId}`, newMessage) 
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/cards/${selectedCardId}`, newMessage) 
       .then((response) => {
         const cards = cardsData.map(card => {
           if (selectedCardId === card.id) {
@@ -107,27 +104,27 @@ function App() {
       })
         setCardsData(cards)
     }).catch((error) => {
-      console.log(error.data.details)
+      console.log(error)
     })
   };
 
 
   const deleteBoard = (selectedBoardId) => {
     axios
-    .delete(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards/${selectedBoardId}`)
+    .delete(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoardId}`)
     .then((response) => {
       axios
-      .get(`${process.env.REACT_APP_DEPLOYED_BACKEND_URL}/boards`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
       .then((response) => {
         setBoardsData(response.data)
-      })
+        setCardsData([])
       .catch((error) => {
         console.log(error)
       })
-
     })
     .catch((error) => {
       console.log(error)
+    })
     })
   };
 
@@ -146,7 +143,6 @@ function App() {
         <h2>Create a New Board</h2>
         {showBoardForm ? <NewBoardForm createNewBoard={ createNewBoard }/> : '' }
         <div className='hide-button__container'><button class='hide-button' onClick={boardFormClick}>{showBoardForm ? 'Hide Me!' : 'Show Me!'}</button></div>
-        
       </section>
 
       <section className='choose-board-prompt'>
