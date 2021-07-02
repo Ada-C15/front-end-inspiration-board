@@ -17,6 +17,13 @@
 .new-board-form__toggle-btn,
 .new-card-form__form-submit-btn {
   padding: 0.5em;
-  background-color: white;
-  border: 2px solid black;
+  margin-top: 10px;
+  background-color: #FFFFC5;
+  border-radius: 5px;
+  border: none;
+}
+
+.new-board-form__form-submit-btn:hover {
+  background-color: #AFDC00;
+  cursor: pointer;
 }

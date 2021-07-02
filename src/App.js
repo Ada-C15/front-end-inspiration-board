@@ -9,11 +9,10 @@ import CardList from './components/CardList';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import BoardList from './components/BoardList';
+import './pink-note.png';
 
 function App() {
-  // state of the list of boards
   const [boardData, setBoardData] = useState([]);
-  // state of the current board (state is the same structure as the response in flask)
   const [selectedBoard, setSelectedBoard] = useState({
     title: '',
     owner: '',
@@ -28,9 +27,10 @@ function App() {
       const newData = response.data
       setBoardData(newData);
     })
-    // .catch((error) => {
-    //   console.log('error.response.data');
-    // });
+    .catch((error) => {
+      console.log('error.response.data');
+      // alert("Could not retrieve boards.");
+    });
   }
 
   useEffect(() => {
@@ -46,14 +46,11 @@ function App() {
         newData.push(boardThing)
         setBoardData(newData)
       })
+      .catch((error) => {
+      console.log('error.response.data');
+      alert("Could not create board.");
+    });
   }
-
-  // const createCard = (newCard, selectedBoard) => {
-  //   axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards/${selectedBoard.board.board_id}/cards`, newCard)
-  //   .then((response) => {
-  //     console.log(response.data);
-  //   })
-  // }
 
   const selectBoard = (board) => {
     setSelectedBoard(board)
@@ -66,8 +63,6 @@ function App() {
     </li>)
   });
 
-
-
   const createCard = (newCard, selectedBoard) => {
 
     const board_id = selectedBoard.board.board_id
@@ -76,9 +71,6 @@ function App() {
       .then((response) => {
         console.log(response.data);
         const cardThing = response.data
-        // const cardList = getCardList(board_id)
-
-        // cardList.push(cardThing)
 
         const newData = boardData.map(board => {
           if (board.board_id === board_id) {
@@ -90,9 +82,11 @@ function App() {
         setBoardData(newData)
 
           })
+        .catch((error) => {
+          console.log(error.response.data);
+          alert("Could not create card.");
+        })
         };
-
-
 
   const displayCards = (board_id) => {
     axios.get(`${process.env.REACT_APP_HEROKU_URL}/boards/${board_id}/cards`)
@@ -100,9 +94,11 @@ function App() {
       console.log(response.data.cards)
       const cardData = response.data.cards
     })
+    .catch((error) => {
+        console.log(error.response.data);
+        // alert("Could not display cards.");
+        })
   }
-
-
 
   return (
     <div className="page__container">
@@ -117,12 +113,11 @@ function App() {
           </section>
           <section>
             <h2>Selected Board</h2>
-            <p>{selectedBoard.title} - {selectedBoard.owner}</p>
+            <p className="selected-board__title">{selectedBoard.title}</p><span className="selected-board__owner">{selectedBoard.owner}</span>
           </section>
           <section className="new-board-form__container">
             <h2>Create a New Board</h2>
             <NewBoardForm addBoardCallback={createBoard}/>
-            {/* <span className="new-board-form__toggle-btn">Hide New Board Form</span> */}
           </section>
         </section>
         {<CardList board={selectedBoard} />}
