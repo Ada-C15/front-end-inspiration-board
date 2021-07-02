@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap');
-/*line 169 in App.js wont show before smthg's clicked...wants you to select the board you'll add card to first*/
 
 /* color scheme: #C0CAAD; /*FFB86F CCFCCB 2D3319 7F534B E9B44C*/
 
@@ -19,7 +18,7 @@
     margin-top: 0;
 }
 
-.flex-container { /*copy paste for the data entry fields*/
+.flex-container {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -62,7 +61,7 @@
     font-size: 40px;
 }
 
-.create-card-prompt h3 { /*Create new card /!\ when you click to enter data, the styling drops...*/
+.create-card-prompt h3 { /*Create new card, /!\ when you click to enter data, the styling drops...*/
     color: #FFB86F;
     margin-top: 70px;
     margin-left: 20px;
@@ -72,7 +71,6 @@
 .currentboard {
     color: #FFB86F;
     font-size: 25px;
-    /* background-color: #8C705F; */
     font-weight: bolder;
     font-family: 'Gaegu', cursive; 
     display: flex; 
@@ -104,100 +102,3 @@ body { /*whole page*/
     font-family: 'Gaegu', cursive; 
     margin: 0px 0px 10px 0px;
 }
-
-
-/* .new-board-form__container  */
-/* .container {
-    color: #FFB86F;
-    display: flex; /*flex container defined
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    max-width: 810px;
-    margin: 20px auto 0;
-    top: 175px;
-    width: 350px;
-    height: 120px;
-} */
-
-/* .flex-container h2 {
-    color: #FFB86F;
-}
-
-.wrap    { 
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-}  */
-
-/*.wrap button { /*Hide Me button*//*
-    font-family: 'Gaegu', cursive; 
-    background: tomato;
-    padding: 5px;
-    width: 100px;
-    height: 50px;
-    margin: 10px;
-    
-    line-height: 100px;
-    color: white;
-    font-weight: bold;
-    font-size: 2em;
-    text-align: center;
-}
-
-
-.new-board-form__container h2 {
-    flex-direction: column;
-    color: #FFB86F;
-    font-size: 40px;
-    margin-top: 10px;
-}
-
-.new-board-form__container button {
-    font-family: 'Gaegu', cursive; 
-}
-
-
-/*.boards__container { /* needs to be on left side of page */
-    /* display: flex;
-    flex-wrap: wrap;
-    align-items: normal;
-    justify-content: space-between;
-    left: 20px;
-    max-width: 810px;
-    margin: 20px auto 0; 
-    color: #FFB86F;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-items: center;
-    position: absolute;
-    top: 475px;
-    left: 250px;
-    width: 350px;
-    height: 120px;
-} */
-/*
-.boards__container h2 {
-    font-size: 30px;
-    margin-top: 10px;
-
-}
-
-.new-card-form__container { /* needs to be on right side of page */
-    /*color: #FFB86F;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-items: center;
-    position: absolute;
-    top: 475px;
-    right: 250px;
-    width: 350px;
-    height: 120px;
-    margin: 20px auto 0; 
-} 
-
-.new-card-form__container h3 {
-    font-size: 30px;
-    margin-top: 10px;
-    align-items: center; /*necessary?*/
-/*} */
