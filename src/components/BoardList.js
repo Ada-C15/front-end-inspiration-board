@@ -1,6 +1,7 @@
 import React from 'react';
 import Board from './Board';
 import PropTypes from 'prop-types';
+import './BoardList.css';
 
 const BoardList = (props) => { 
     
@@ -16,7 +17,7 @@ const BoardList = (props) => {
             />
         )
     })  
-    return <div>{ listofBoards }</div>
+    return <div className='listofBoards'>{ listofBoards }</div>
 }
 
 export default BoardList;

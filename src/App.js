@@ -139,15 +139,17 @@ function App() {
   return (
     <div>
       <h1 className='homepage-title'> Inspiration Board </h1>
+
       <main>
-      <section className='new-board-form__container'>
+      <section className='flex-container wrap'>
         <h2>Create a New Board</h2>
         {showBoardForm ? <NewBoardForm createNewBoard={ createNewBoard }/> : '' }
         <section>
-          <button onClick={boardFormClick}>{showBoardForm ? 'Hide Me!' : 'Show Me!'}</button>
+          <button class='flex-item border-box' onClick={boardFormClick}>{showBoardForm ? 'Hide Me!' : 'Show Me!'}</button>
         </section>
       </section>
-      <section className='boards__container'>
+
+      <section className='choose-board-prompt'>
         <h2>Choose A Board</h2> 
         < BoardList 
         boardsData={ boardsData }
@@ -155,7 +157,9 @@ function App() {
         deleteBoard={ deleteBoard }
         />
       </section>
+
       <section className='cards_container'> 
+
         <div>{selectedBoard.title}</div>
         < CardList 
           cardsData={ cardsData }
@@ -166,7 +170,8 @@ function App() {
 
         />
       </section>
-      <section className='new-card-form__container'>
+
+      <section className='create-card-prompt'> 
           <div>
             {selectedBoard.id !== null ? 
             <>
@@ -177,6 +182,7 @@ function App() {
             }
           </div>
         </section>
+
       </main>
     </div>
     
