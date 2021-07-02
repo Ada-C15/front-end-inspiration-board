@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 const CardList = (props) => {
 
     const [cardsData, setCardsData] = useState([]);
-  
+
     useEffect(() => {
         axios.get(`https://board-inspo-app.herokuapp.com/boards/${props.board.id}/cards`).then((response)=> {
         setCardsData(response.data.cards);

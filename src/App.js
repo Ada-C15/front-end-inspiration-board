@@ -127,22 +127,16 @@ const [boardsData, setBoardsData] = useState([])
       <main>
         <section className= "boards__container">
           <div className="left">
-            <section className="displayBoard">
                 <h2>Boards</h2>
                 <ol>
                   {boardComponent}
                 </ol>
-            </section>
           </div>
           <div className="middle">
-            <section>
               <h2> ✴ Selected Board ✴ </h2>
               <p>{selectedBoard.id ? `${selectedBoard.title} - ${selectedBoard.owner}` : 'Select a Board from the Board List!'}</p>
-
-            </section>
           </div>
           <div className="right">
-            <section className= "newBoardForm">
             <h2>Create a new board</h2>
               {isBoardFormVisible ? <NewBoardForm addBoardCallback = {addBoardsData}/> : ""}
             <div>
@@ -152,7 +146,6 @@ const [boardsData, setBoardsData] = useState([])
                 value={isBoardFormVisible? "Hide New Board Form" : "Show New Board Form" } 
                 onClick={onClickCallback}/>
             </div>
-            </section>
           </div>
           <div className="bottom-left"> 
               {/* <CardList oneBoard={selectedBoard}></CardList> */}
@@ -160,7 +153,6 @@ const [boardsData, setBoardsData] = useState([])
           </div>
           <div className="bottom-right">
           </div>
-
           
         </section>  
       </main>
