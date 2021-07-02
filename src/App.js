@@ -147,6 +147,19 @@ function App() {
           setCards(response.data.cards)
         })
         .catch((error) => console.log(error));
+
+  }
+  
+  const [sortLikes, setSortLikes] = useState(true);
+  const sortByLikes = () => {
+    if (sortLikes) {
+      setSortLikes(!sortLikes)
+      return cards.sort((a, b) => Number(b.like_count) - Number(a.like_count)); 
+
+    } else {
+      setSortLikes(!sortLikes)
+      return cards.sort((a, b) => Number(a.like_count) - Number(b.like_count));
+    }
   }
 
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
@@ -177,6 +190,9 @@ function App() {
             </section>
 
             <h2>Cards for {selectedBoard.title}</h2>
+            <div>
+              <button className="sort" onClick={() => sortByLikes()}>Sort by Likes</button>
+            </div>
             <main>
               <CardList cards={cards} deleteCallback={deleteCardCallback} likeCallback={likeCallback}/>
               <NewCardForm createNewCard={createNewCard} />

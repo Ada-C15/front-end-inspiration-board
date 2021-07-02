@@ -17,6 +17,9 @@ const Card = (props) => {
             <button className='likeButton' onClick={() => props.likeCallback(props.id)}>Like</button>
             <button className="deleteButton" onClick={() => props.deleteCallback(props)}>Delete</button>
         </div>
+        {/* <div>
+          <button className="sort">Sort by Likes</button>
+        </div> */}
     </div>
   )
 }
