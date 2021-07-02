@@ -7,9 +7,6 @@ import BoardList from './components/BoardList'
 import axios from 'axios';
 
 
-// function App() {
-//   const BASE_URL = 'http://localhost:3000';
-
 /*In the container component that holds data about boards
 
 State:
@@ -110,8 +107,6 @@ function App() {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
-    // axios.get('http://localhost:5000/boards', 
-    // {headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
     .then((response) => {
       console.log(response.data)
       setBoardsData(response.data)
@@ -121,7 +116,6 @@ function App() {
 
 
   const CreateNewBoard = (newBoard) => {
-    // const BASE_URL = "http://localhost:5000";
     console.log('newBoard ', newBoard)
     const board = [...boardsData];
     // board.push({
@@ -129,8 +123,7 @@ function App() {
     //   owner: newBoard.owner
     // })
     // setBoardsData(board);
-    // axios.post(`${BASE_URL}/boards`, newBoard)
-    // axios.post("http://localhost:5000/boards", newBoard)
+
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
         .then((response) => {
           console.log('response ', response.data.board)
@@ -144,7 +137,6 @@ function App() {
   console.log('boardData ', boardsData);
 
   const onBoardSelect = (board) => {
-    // const test = () => {
       setSelectedBoard(board)
       console.log('boardSelect ', board)
 
@@ -169,8 +161,6 @@ function App() {
           <section class="board__container"> </section>
           {isBoardFormVisible ? <NewBoardForm createNewBoard={CreateNewBoard}/> : ''}
           <input type="button" value={changeBoardForm} onClick = {() => setIsBoardFormVisible(!isBoardFormVisible)}/>
-          {/* <NewBoardForm createNewBoard={CreateNewBoard}/> */}
-          {/* <input type="button" value="Hide Board Form" onClick = {() => setIsBoardFormVisible(false)}/> */}
 
           <section>
             <h3>Boards</h3>
@@ -178,37 +168,27 @@ function App() {
             <ol class= "boards_list">
             </ol>
           </section>
+
+          { selectedBoard.title ? 
+          <section className='cardsDisplay'>
           <section>
             <h3>Selected Board</h3>
             <div> {selectedBoard.title} - {selectedBoard.owner}</div>
           </section>
+
+            <h2>Cards for {selectedBoard.title}</h2>
+            <main>
+              <CardList cards={cards} deleteCallback={deleteCardCallback} likeCallback={likeCallback}/>
+              <NewCardForm createNewCard={createNewCard} />
+            </main>
+          </section>
+          : null 
+        }
+
         </div>
       </div>
-      <h1>Inspiration Board</h1>
-      <h2>Create a New Board</h2>
-      {isBoardFormVisible ? <NewBoardForm createNewBoard={CreateNewBoard}/> : ''}
-      <input type="button" value={changeBoardForm} onClick = {() => setIsBoardFormVisible(!isBoardFormVisible)}/>
 
-      <section>
-        <h3>Boards</h3>
-        <BoardList boards={boardsData} onBoardSelect={onBoardSelect}/>
-      </section>
 
-      { selectedBoard.title ? 
-      <section className='cardsDisplay'>
-      <section>
-        <h3>Selected Board</h3>
-        <div> {selectedBoard.title} - {selectedBoard.owner}</div>
-      </section>
-
-        <h2>Cards for {selectedBoard.title}</h2>
-        <main>
-          <CardList cards={cards} deleteCallback={deleteCardCallback} likeCallback={likeCallback}/>
-          <NewCardForm createNewCard={createNewCard} />
-        </main>
-      </section>
-      : null 
-    }
     </div>
   );
 }
