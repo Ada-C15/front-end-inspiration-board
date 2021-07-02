@@ -171,10 +171,10 @@ function App() {
 
           { selectedBoard.title ? 
           <section className='cardsDisplay'>
-          <section>
-            <h3>Selected Board</h3>
-            <div> {selectedBoard.title} - {selectedBoard.owner}</div>
-          </section>
+            <section>
+                <h3>Selected Board</h3>
+                <div> {selectedBoard.title} - {selectedBoard.owner}</div>
+            </section>
 
             <h2>Cards for {selectedBoard.title}</h2>
             <main>
