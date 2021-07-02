@@ -158,7 +158,8 @@ function App() {
         />
       </section>
 
-      <section> 
+      <section className='cards_container'> 
+
         <div>{selectedBoard.title}</div>
         < CardList 
           cardsData={ cardsData }
