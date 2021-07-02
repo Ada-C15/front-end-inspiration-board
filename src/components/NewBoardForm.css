@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap');
 
-.fieldItself { 
+/* .fieldItself { 
     background-color: #8C705F;
     color: #CCFCCB;
     font-weight: bolder;
@@ -16,9 +16,9 @@
     margin-right: 450px;
     padding: 5px;
     border-radius: 25% 10%; 
-}
+} */
 
-.fieldItselfs { 
+/* .fieldItselfs { 
     background-color: #8C705F;
     color: #CCFCCB;
     font-weight: bolder;
@@ -35,7 +35,7 @@
     margin-top: 50px;
     padding: 5px; 
     border-radius: 25% 10%; 
-}
+} */
 
 .fieldPrompt {
     margin-right: 450px;
