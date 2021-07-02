@@ -1,0 +1,8 @@
+.card_list {
+    list-style-type: none;
+    margin: 1.5rem;
+    background-color: rgb(245, 245, 143);
+    text-align: center;
+    width: 220px;
+    height:100px;
+}
