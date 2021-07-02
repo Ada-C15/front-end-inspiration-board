@@ -1,0 +1,15 @@
+.card-item {
+    background: #d7b9d5;
+    margin: 2rem;
+    width: 250px;
+    height: 250px;
+    justify-content: center;
+}
+
+.card-item, p {
+    text-align: center;
+}
+
+ul li {
+    list-style-type: none;
+}
