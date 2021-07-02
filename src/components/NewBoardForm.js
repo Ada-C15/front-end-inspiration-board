@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './NewBoardForm.css';
+import PropTypes from 'prop-types';
 
 const NewBoardForm = (props) => {
   const [formFields, setFormFields] = useState({
@@ -56,6 +57,10 @@ const onOwnerChange = (event) => {
       <button type='submit'>SUBMIT</button>
     </form>
   );
+};
+
+NewBoardForm.propTypes = {
+  onSubmitCallback: PropTypes.func
 };
 
 export default NewBoardForm;
