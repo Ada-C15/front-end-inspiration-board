@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import './NewBoardForm.css';
 
 const NewBoardForm = (props) => {
   const [formFields, setFormFields] = useState({
@@ -35,22 +35,24 @@ const onOwnerChange = (event) => {
 
   return (
     <form onSubmit={onFormSubmit}>
-      <label>Board Title: </label>
-      <input
-        name="title"
-        id="title"
-        value={formFields.title}
-        onChange={onTitleChange}
-        required
-      />
-      <label>Board Owner: </label>
-      <input
-        name="owner"
-        id="owner"
-        value={formFields.owner}
-        onChange={onOwnerChange}
-        required
-      />
+      <div className='boardFormInputs'>
+        <label>Board Title: </label>
+        <input
+          name="title"
+          id="title"
+          value={formFields.title}
+          onChange={onTitleChange}
+          required
+        />
+        <label>Board Owner: </label>
+        <input
+          name="owner"
+          id="owner"
+          value={formFields.owner}
+          onChange={onOwnerChange}
+          required
+        />
+      </div>
       <button type='submit'>SUBMIT</button>
     </form>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import './NewCardForm.css';
 
 const NewCardForm = (props) => {
   const [formFields, setFormFields] = useState({
@@ -22,9 +23,9 @@ const NewCardForm = (props) => {
         message: event.target.value
     })
   };
+  
   return (
-    <form onSubmit={onFormSubmit}>
-
+    <form onSubmit={onFormSubmit} className='cardForm'>
       <input
         name="message"
         id="message"
@@ -32,9 +33,7 @@ const NewCardForm = (props) => {
         onChange={onMessageChange}
         required
       />
-
       <button type='submit'>SUBMIT</button>
-
     </form>
   );
 };
