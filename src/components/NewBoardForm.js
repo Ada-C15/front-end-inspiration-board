@@ -23,8 +23,6 @@ const NewBoardForm = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        // props.addBoardCallback(formFields.title, formFields.owner);
-
         props.addBoardCallback({
             title: formFields.title,
             owner: formFields.owner
@@ -41,7 +39,6 @@ const NewBoardForm = (props) => {
             <input type="text" class="invalid-form-input" value={formFields.title} onChange={onTitleChange}/>
             <label htmlFor="owner">Owner's Name </label>
             <input type="text" className="invalid-form-input" value={formFields.owner} onChange={onOwnerChange} />
-            {/* <p>Preview: </p> */}
             <input type="Submit" className="new-board-form__form-submit-btn" />
         </form>
     )

@@ -13,6 +13,7 @@ const CardList = (props) => {
             console.log(props)
         }).catch((error) => {
             console.log('Error:', error);
+            // alert("Couldn't retrieve cards.");
         })
     }, [props]);
 
@@ -63,8 +64,11 @@ const CardList = (props) => {
           newData.push(cardThing)
 
           setCardsData(newData)
-
             })
+          .catch((error) => {
+              console.log("Error:", error);
+              alert("Couldn't create the card.");
+            });
           };
 
     return (
