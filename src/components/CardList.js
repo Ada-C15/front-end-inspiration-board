@@ -78,14 +78,14 @@ const CardList = (props) => {
         });
     };
 
-    return (<section className='cards__container'>
-                <section>
+    return (<section className="cards_container">
+                <section className="cards-left">
                     <h2>Cards for {props.board.title}</h2>
-                    <div className='card-items__container'>
-                    {cardElements}
+                    <div className="card-items-container">
+                    <p>{cardElements}</p>
                     </div>
                 </section>
-                <section className= "newCardForm">
+                <section className="cards-right">
                     <NewCardForm postNewCard={postNewCard}></NewCardForm>
                 </section>
             </section>)

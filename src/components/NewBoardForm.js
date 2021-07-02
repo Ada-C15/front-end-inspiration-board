@@ -67,8 +67,8 @@ const NewBoardForm = (props) => {
                     <p> Preview: {formFields.title} </p>
                     <input 
                         className= "smallButton"
-                        type="submit" 
-                        value="submit"/>
+                        type="Submit" 
+                        value="Submit"/>
                 </div>
             </form>
         </section>

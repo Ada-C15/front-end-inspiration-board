@@ -24,69 +24,59 @@ header {
   font-size: 2em;
 } */
 
-.boards__container {
-  display: grid;
-  grid-template-columns: 20% 1fr 20%;
-  grid-template-rows: 100%;
-  padding-top: 1px;
+
+.boards-container, .board-header-container{
+  display:flex;
+	flex-direction:row;
+	justify-content:space-around;
+  margin-bottom: 40px;
+  list-style: none;
+  font-size: 30px;
 }
 
-.boards__container div {
-  margin: 15px;
+.board-header-container{
+  font-size: 50px;
 }
 
-.ol {
-  border: black solid 2.5px;
+.board-header-container li{
+  margin-left: 150px;
+}
+.selected-board{
+  margin-left: 75px;
+  text-align: right;
 }
 
-.left, .middle, .right, .bottom-left, .bottom-right {
-  /* display: inline-block; */
+.left, .right, .middle{
   background-color: rgb(242, 4, 186, 0.932);
   border: 2px solid black;
   padding-left: 8px;
   padding-right: 8px;
   font-size: 1.25em;
-  height: 400px;
+  height: 500px;
 }
 
-.left {
-  grid-column: 1 / 2 ;
-  grid-row: 1 / 2;
-  /* margin-left: 60px; */
+.left{
+  width: 400px;
 }
 
-.middle {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  height: 250px;
+.middle{
+  width: 600px;
+  height: 180px;
 }
 
-.right {
-  grid-column: 3 / 4;
-  grid-row: 1 / 2;
-  height: 400px;
+.left-board-list{
+  overflow:auto;
 }
 
-.bottom-left {
-  grid-column: 1 / 2 ;
-  grid-row: 3 / 4;
-  
-
-} 
-
-
-.newFormHideButton {
+.newFormHideButton{
   background-color: #def068;
   font-family: 'Red Hat Display', sans-serif;
-  font-size: 1em;
-
+  font-size: 30px;  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.smallButton{
+  margin-left: 26px;
+  background-color: #def068;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 30px; 
 }

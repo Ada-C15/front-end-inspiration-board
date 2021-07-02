@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './newCardForm.css';
 
 const NewCardForm = (props) => {
 
@@ -20,17 +21,17 @@ const NewCardForm = (props) => {
             <section className="new_card-form__container">
                 <h2>Create a New Card</h2>
                 <form onSubmit={submitNewCard} 
-                    className="new-card-form__form">
+                    className="new-card-form">
                     <div>
-                        <label htmlFor="message">Message</label>
-                        <input type="text" onChange={messageChange} value={message}></input>
+                        <label htmlFor="message">Message    </label>
+                        <input size="30" type="text" onChange={messageChange} value={message}></input>
                     </div>
                     <p> <div>Preview: {message}</div></p>
                         <div>
                         <p> <input 
                             type="Submit" 
                             disabled={message.length === 0 || message.length > 40} 
-                            className="new-card-form__form-submit-btn"></input></p>
+                            className="new-card-submit-btn"></input></p>
                         </div>
                 </form>
             </section>

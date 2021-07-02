@@ -125,28 +125,34 @@ const [boardsData, setBoardsData] = useState([])
         <h1> ✴ Inspiration Board ✴ </h1>
       </header>
       <main>
-        <section className= "boards__container">
+        <div className="board-header-container">
+          <li>Boards</li>
+          <li className="selected-board">✴ Selected Board ✴</li>
+          <li>Create a new board</li>
+        </div>
+        <section className= "boards-container">
           <div className="left">
-                <h2>Boards</h2>
-                <ol>
+                {/* <h2>Boards</h2> */}
+                <ol className="left-board-list">
                   {boardComponent}
                 </ol>
           </div>
           <div className="middle">
-              <h2> ✴ Selected Board ✴ </h2>
+              {/* <h2> ✴ Selected Board ✴ </h2> */}
               <p>{selectedBoard.id ? `${selectedBoard.title} - ${selectedBoard.owner}` : 'Select a Board from the Board List!'}</p>
           </div>
           <div className="right">
-            <h2>Create a new board</h2>
+            {/* <h2>Create a new board</h2> */}
               {isBoardFormVisible ? <NewBoardForm addBoardCallback = {addBoardsData}/> : ""}
-            <div>
               <input 
                 className= "newFormHideButton"
                 type="button" 
                 value={isBoardFormVisible? "Hide New Board Form" : "Show New Board Form" } 
                 onClick={onClickCallback}/>
             </div>
-          </div>
+        </section>
+        
+        <section>
           <div className="bottom-left"> 
               {/* <CardList oneBoard={selectedBoard}></CardList> */}
             {selectedBoard.id ? <CardList board={selectedBoard}></CardList> : ''}
