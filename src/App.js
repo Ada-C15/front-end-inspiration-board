@@ -9,6 +9,7 @@ import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import CardList from './components/CardList';
 
+
 function App() {
 
   // creates state for board (default: empty array, meaning no boards created):
@@ -72,9 +73,9 @@ function App() {
     <div className="page_container">
 
       <div className="header_container">
-        <h1>INSPIRATION BOARD</h1>
+        <h1>PINSPIRATION BOARD</h1>
       </div>
-
+      <main>
       <div className="boards_container">
 
         <section>
@@ -89,8 +90,8 @@ function App() {
 
         <section className="new-board-form_container"> 
           <h2>CREATE A NEW BOARD</h2>
-          <button onClick={toggleNewBoardForm}>{isBoardFormVisible ? 'Hide Form' : 'Show Form'}</button>
           {isBoardFormVisible ? <NewBoardForm addBoardCallBack={postNewBoard}></NewBoardForm> : ''}
+          <button onClick={toggleNewBoardForm}>{isBoardFormVisible ? 'Hide Form' : 'Show Form'}</button>
         </section>
         
       </div>
@@ -102,7 +103,7 @@ function App() {
         </section> 
 
       </div>
-
+      </main>
     </div>
   );
 }

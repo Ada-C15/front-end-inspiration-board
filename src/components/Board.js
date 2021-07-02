@@ -1,3 +1,5 @@
+
+
 const Board = (props) => {
     return (
         <div onClick={() => props.onBoardSelect(props.board)}>

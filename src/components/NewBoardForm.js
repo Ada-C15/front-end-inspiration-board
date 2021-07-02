@@ -28,7 +28,6 @@ const NewBoardForm = (props) => {
         setOwner('');
     };
 
-    // return jsx w/ label & input 
     return (
         <form onSubmit={submitNewBoard}>
             <div>
@@ -39,7 +38,7 @@ const NewBoardForm = (props) => {
                 <label>Owner: </label>
                 <input type="text" name="owner" value={owner} onChange={onOwnerChange} />
             </div>
-            <input type="submit" value="Add this board" />
+            <input type="submit" value="Add Board" className="new-board-form_submit"/>
         </form>
     );
 
