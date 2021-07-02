@@ -28,7 +28,7 @@ const NewCardForm = (props) => {
     }
 
     return (
-        <form onSubmit={onFormSubmit}>
+        <form className='flex-container' onSubmit={onFormSubmit}>
             <div>
                 <label>Message</label> 
                 <input
@@ -37,7 +37,8 @@ const NewCardForm = (props) => {
                     className={(cardForm.message.length === 0) || (cardForm.message.length > 40)? 'invalid-form-input' : ''}
                 />
             </div>
-            <input className='fieldPrompt'
+
+            <input className='submit-the-message'
                 type="submit"
                 value="Submit The Message"
                 disabled={((cardForm.message.length === 0) || (cardForm.message.length >40))}

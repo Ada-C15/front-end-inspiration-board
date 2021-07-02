@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap');
+/*line 169 in App.js wont show before smthg's clicked...wants you to select the board you'll add card to first*/
 
-.homepage-title {
+/* color scheme: #C0CAAD; /*FFB86F CCFCCB 2D3319 7F534B E9B44C*/
+
+.homepage-title { /*Inspiration Board + background photo*/
     background-image: url(https://images.unsplash.com/photo-1506784242126-2a0b0b89c56a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1496&q=80);
     background-size: cover;
     background-position: center center;
@@ -15,24 +18,83 @@
     margin-bottom: 5px;
     margin-top: 0;
 }
-/* how to make title pop? - LC */
-/* .homepage-title::after {
-    content: '';
-    background-color: #000;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.4; /* overlay: closer to 1, closer to black */
-/* }
 
-.homepage-title h1 {
-    opacity: 0.1;
-} */
-
-.new-board-form__container {
+.flex-container { /*copy paste for the data entry fields*/
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 1px solid  #7F534B;
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
     display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.flex-container h2 { /*Create a New Board*/
+    color: #FFB86F;
+    margin-left: 20px;
+    font-size: 40px;
+}
+
+.flex-item { /*Hide Me toggle button*/
+    background: #8C705f;
+    color: #CCFCCB;
+    padding: 5px;
+    width: 100px;
+    height: 50px;
+    margin: 5px 5px 5px 5px;
+    
+    line-height: 15px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.choose-board-prompt h2 { /*Choose a Board*/
+    color: #FFB86F;
+    margin-left: 20px;
+    font-size: 40px;
+}
+
+.create-card-prompt h3 { /*Create new card /!\ when you click to enter data, the styling drops...*/
+    color: #FFB86F;
+    margin-left: 20px;
+    font-size: 40px;
+}
+
+.wrap    { /*Affects Create New Board prompt + Hide Me button*/
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.border-box {
+    box-sizing: border-box; /*keeps letters on Hide Me button square*/
+}
+
+* { /*redundant?*/
+    box-sizing: border-box;
+}
+
+body { /*whole page*/
+    background-color: #7F534B;
+    font-family: 'Gaegu', cursive; 
+    margin: 0px 0px 10px 0px;
+}
+
+
+
+
+/* .new-board-form__container  */
+/* .container {
+    color: #FFB86F;
+    display: flex; /*flex container defined
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -41,7 +103,32 @@
     top: 175px;
     width: 350px;
     height: 120px;
+} */
+
+/* .flex-container h2 {
+    color: #FFB86F;
 }
+
+.wrap    { 
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}  */
+
+/*.wrap button { /*Hide Me button*//*
+    font-family: 'Gaegu', cursive; 
+    background: tomato;
+    padding: 5px;
+    width: 100px;
+    height: 50px;
+    margin: 10px;
+    
+    line-height: 100px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
 
 .new-board-form__container h2 {
     flex-direction: column;
@@ -54,25 +141,15 @@
     font-family: 'Gaegu', cursive; 
 }
 
-* {
-    box-sizing: border-box;
-}
 
-body {
-    background-color: #7F534B; /* color scheme: #C0CAAD; /*FFB86F CCFCCB 2D3319 7F534B E9B44C*/
-    font-family: 'Gaegu', cursive; 
-    /*font-family: 'Italiana', serif;*/
-    margin: 0;
-}
-
-.boards__container { /* needs to be on left side of page */
+/*.boards__container { /* needs to be on left side of page */
     /* display: flex;
     flex-wrap: wrap;
     align-items: normal;
     justify-content: space-between;
     left: 20px;
     max-width: 810px;
-    margin: 20px auto 0; */
+    margin: 20px auto 0; 
     color: #FFB86F;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -82,8 +159,8 @@ body {
     left: 250px;
     width: 350px;
     height: 120px;
-} 
-
+} */
+/*
 .boards__container h2 {
     font-size: 30px;
     margin-top: 10px;
@@ -91,7 +168,7 @@ body {
 }
 
 .new-card-form__container { /* needs to be on right side of page */
-    color: #FFB86F;
+    /*color: #FFB86F;
     justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
@@ -100,11 +177,11 @@ body {
     right: 250px;
     width: 350px;
     height: 120px;
-    /*margin: 20px auto 0; */
-}
+    margin: 20px auto 0; 
+} 
 
 .new-card-form__container h3 {
     font-size: 30px;
     margin-top: 10px;
     align-items: center; /*necessary?*/
-}
+/*} */
