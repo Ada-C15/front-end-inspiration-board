@@ -155,7 +155,7 @@ function App() {
         deleteBoard={ deleteBoard }
         />
       </section>
-      <section> 
+      <section className='cards_container'> 
         <div>{selectedBoard.title}</div>
         < CardList 
           cardsData={ cardsData }

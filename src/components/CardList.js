@@ -1,12 +1,13 @@
 import React from 'react';
 import Card from './Card';
 import PropTypes from 'prop-types';
+import './Card.css'
 
 const CardList = (props) => { 
 
     const listofCards = props.cardsData.map((card) => {
         return (
-            <li>
+            <li className='stickynote'>
                 <Card 
                 key= { card.id }
                 id={ card.id } 
