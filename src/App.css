@@ -1,59 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
+body {
+  background-image: url("https://cgaxisimages.fra1.cdn.digitaloceanspaces.com/2020/01/white_stucco_wall_21_97_ao.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .App {
   text-align: center;
-  font-size: 1.2em;
-  /* background-color: rgb(255, 232, 245); */
+  font-family: 'Nanum Pen Script', cursive;
 }
 
 .App-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid black;
-  font-family: 'Nanum Pen Script', cursive;
-  font-size: 1.3em;
-  margin: 10px;
+  font-family: 'Permanent Marker', cursive;
   padding: 0;
+  margin: 0px;
+  font-size: 2em;
+}
+
+h1 {
+  margin: 10px;
+}
+
+main {
+  background-image: url("https://images-na.ssl-images-amazon.com/images/I/91G8asH3H7L._AC_SL1500_.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 580px;
+  margin-left: 30px;
+  margin-right:30px;
+  margin-top: 0;
+  padding: 0;
+  box-shadow: 5px 8px 5px black;
 }
 
 .BoardStuff {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  margin-right: 30px;
+  margin-left: 30px;
+  float: right;
 }
 
 .BoardList {
-  margin: 20px;
-  border: 2px solid black; 
-}
-
-.SelectedBoard {
-  margin: 20px;
-  border: 2px solid black; 
+  display: flex;
+  flex-direction: column;
+  margin: 18px;
 }
 
 .NewBoardForm {
-  margin: 20px;
-  border: 2px solid black; 
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 15px;
+  font-size: 20px;
+}
+
+.NewBoardForm button {
+  margin-top: 20px;
 }
 
 h3 {
   font-family: 'Nanum Pen Script', cursive;
   font-size: 1.5em;
 }
-
-/* .board {
-  background-image: url("https://images-na.ssl-images-amazon.com/images/I/91G8asH3H7L._AC_SL1500_.jpg");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-} */
-
-/* .displayOn {
-  background-color: blue;
-}
-
-.displayOff {
-  
-} */

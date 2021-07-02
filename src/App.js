@@ -4,16 +4,17 @@ import './App.css';
 import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
 
-// getBoardData
 function App() {
   //STATES:
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
   const [boardCount, setBoardCount] = useState(0);
   const [cards, setCards] = useState([]);
-  const [showNewBoardForm, toggleNewBoardForm] = useState(true);
+  const [showNewBoardForm, toggleNewBoardForm] = useState(false);
   const [sortMethod, setSortMethod] = useState('asc')
   
+
+  // FUNCTIONS THAT MAKE API CALLS
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/boards`,
     {
@@ -31,19 +32,6 @@ function App() {
       alert("Could not connect to boards")
     });
   }, [boardCount]);
-
-
-  const selectBoard = (event) => {
-    if (event.target.value) {
-      for (let board of boardData) {
-        if (event.target.value === board.title) {
-          setCurrentBoard(board);
-        }
-      }
-    } else {
-      setCurrentBoard({});
-    }
-  }
 
   // this is used (1) to generate cards on the board whenever there's a change to the current board (currentBoard state),
   // or, (2) to re-render the cards when a card's like count increases, or (3) to re-render the cards when a card is deleted
@@ -74,7 +62,6 @@ function App() {
       renderCards(sortMethod);
     }
   }, [currentBoard, sortMethod])
-
 
   //this increases a card's like count and re-renders all displayed cards
   const increaseLikeCount = (card_id) => {
@@ -111,15 +98,6 @@ function App() {
     });
   }
 
-
-  const generateBoardTitles = (boardData) => {
-    const boardTitles = [];
-    for (let board of boardData) {
-        boardTitles.push(<option key={board.board_id} value={board.title}>{board.title}</option>);
-    }
-    return boardTitles;
-  }
-
   const postNewBoard = (newBoardData) => {
     console.log(newBoardData);
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoardData)
@@ -150,9 +128,25 @@ function App() {
       });
   };
 
-  const handleBoardSubmit = (newBoardData) => {
-    console.log(newBoardData);
-    postNewBoard(newBoardData);
+  // OTHER HELPER FUNCTIONS
+  const selectBoard = (event) => {
+    if (event.target.value) {
+      for (let board of boardData) {
+        if (event.target.value === board.title) {
+          setCurrentBoard(board);
+        }
+      }
+    } else {
+      setCurrentBoard({});
+    }
+  }
+
+  const generateBoardTitles = (boardData) => {
+    const boardTitles = [];
+    for (let board of boardData) {
+        boardTitles.push(<option key={board.board_id} value={board.title}>{board.title}</option>);
+    }
+    return boardTitles;
   }
 
   const handleCardSubmit = (newCardData) => {
@@ -165,6 +159,7 @@ function App() {
     }
   }
 
+
   return (
     <div className="App">
 
@@ -175,23 +170,15 @@ function App() {
       <main>
         <div className='BoardStuff'>
           <div className="BoardList">
-            <h3>Boards List:</h3>
-            {/* Created this as a drop-down list, not sure if I like it */}
             <select id="boards" onChange={(event) => {selectBoard(event)}} value={currentBoard.title}>
-              <option value=""></option>
+              <option value="">Select Board:</option>
               {generateBoardTitles(boardData)}
             </select>
           </div>
 
-          <div className="SelectedBoard">
-            <h3>Selected Board: </h3>
-            <h4>{currentBoard.title}</h4>
-          </div>
-
           <div className="NewBoardForm">
-            <h3>Create a New Board:</h3>  
-            { showNewBoardForm ? <NewBoardForm onSubmitCallback={handleBoardSubmit}></NewBoardForm> : '' }
-            <button onClick={() => toggleNewBoardForm(!showNewBoardForm)}>Show New Board Form</button>
+            { showNewBoardForm ? <NewBoardForm onSubmitCallback={(newBoardData) => {postNewBoard(newBoardData)}}></NewBoardForm> : '' }
+            <button onClick={() => toggleNewBoardForm(!showNewBoardForm)}>Show/Hide New Board Form</button>
           </div>
         </div>
 

@@ -1,0 +1,8 @@
+.cardForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardForm input {
+    margin-bottom: 15px;
+}

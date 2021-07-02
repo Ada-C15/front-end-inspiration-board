@@ -1,14 +1,15 @@
 .card {
     border: 1px solid black;
-    margin: 5px;
-    /* padding-top: 25px; */
+    margin: 10px;
     background-color:rgb(255, 249, 158);
     background-image: url("https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/31248/nota-clipart-md.png");
     background-size: cover;
     width: 150px;
     height: 150px;
+    box-shadow: 5px 8px 5px black;
 }
 
 .card p {
-    padding-top: 20px;
+    padding-top: 25px;
+    font-size: 20px;
 }

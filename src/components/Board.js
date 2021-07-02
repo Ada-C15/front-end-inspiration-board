@@ -6,38 +6,44 @@ import './Board.css';
 
 const Board = (props) => {
     console.log("I'm in Board and this is the data passed to me: ", props.data);
-    const [showNewCardForm, toggleNewCardForm] = useState(false);
+    const [showBoardContent, toggleBoardContent] = useState(false);
 
     useEffect(() => {
-        props.data.board_id ? toggleNewCardForm(true) : toggleNewCardForm(false);
+        props.data.board_id ? toggleBoardContent(true) : toggleBoardContent(false);
     }, [props.data]);
 
     return (
         <div className="board">
-            <div className="boardHeader">
-                <h2>{props.data.title}</h2>
-                <h3>{props.data.owner}</h3>
-            </div>
-            <div className='boardDisplay'>
-                <div className='cardDisplay'>
-                    <CardList cards={props.cards} onLikeClickCallback={props.onLikeClickCallback} onDeleteClickCallback={props.onDeleteClickCallback}></CardList>
+            { showBoardContent ?
+            <div className='boardContent'>
+                <div className="boardHeader">
+                    <h2>{props.data.title}</h2>
+                    <h3>{props.data.owner}</h3>
                 </div>
-                { showNewCardForm ?
-                    <div className='newCardForm'>
-                        <h3>Create a New Card</h3>
-                        <NewCardForm onSubmitCallback={(newCardData) => props.onSubmitCallback(newCardData)}></NewCardForm>
+                <div className='boardDisplay'>
+                    <div className='cardDisplay'>
+                        <CardList cards={props.cards} onLikeClickCallback={props.onLikeClickCallback} onDeleteClickCallback={props.onDeleteClickCallback}></CardList>
                     </div>
-                    : ''
-                }
+                    
+                        <div className='newCardForm'>
+                            <h3>Create a New Card</h3>
+                            <NewCardForm onSubmitCallback={(newCardData) => props.onSubmitCallback(newCardData)}></NewCardForm>
+                        </div>
+                        
+                </div>
+                <div className='cardSort'>
+                    <select id='sort' onChange={(event) => props.onSortCallback(event)} value={props.sortMethod}>
+                        <option value=''>Sort Cards:</option>
+                        <option value='id'>Id</option>
+                        <option value='alphabetical'>Alphabetical</option>
+                        <option value='likes'># of Likes</option>
+                    </select>
+                </div>
             </div>
-            <label>Sort By:</label>
-            <select id='sort' onChange={(event) => props.onSortCallback(event)} value={props.sortMethod}>
-                <option value=''>None</option>
-                <option value='id'>Id</option>
-                <option value='alphabetical'>Alphabetical</option>
-                <option value='likes'># Likes</option>
-            </select>
+            : ''
+        }
         </div>
+            
     );
 
 };
