@@ -38,13 +38,7 @@ main{
 }
 .card_div {
   background-color: rgb(247, 247, 180);
-  padding: 50px;
-  margin: 20px;
-}
-
-.preview{
-  border: 3px solid blue;
-  background-color: white;
+  box-shadow: -10px 7px 7px rgb(160, 159, 159);
   padding: 50px;
   margin: 20px;
 }
@@ -56,6 +50,7 @@ main{
 h1{
   display: inline;
   vertical-align: middle;
+  text-shadow: 3px 3px #ffbb00;
 }
 
 #star1, #star2 {
@@ -63,6 +58,13 @@ h1{
   vertical-align: middle;
   width: 10%;  
   height: 10%;  
+}
+
+.preview{
+  border: 3px solid blue;
+  background-color: white;
+  padding: 50px;
+  margin: 20px;
 }
 
 button{

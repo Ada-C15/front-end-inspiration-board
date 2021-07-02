@@ -15,26 +15,20 @@ const NewCardForm = (props) => {
 
     const onSubmit= (event) => {
         event.preventDefault();
-        props.createNewCard(formFields);
-        console.log(formFields)
-        if (setFormFields.message === null){
-            alert("invalid input")
-        } else{
-        setFormFields({ messsage: "" })
-        alert('💗 Thank you for your message! 💗')
+        // console.log(formFields)
+        if (formFields.message === ''){
+            alert("Invalid input. Please write something.")
+        } else {
+            alert('💗 Thank you for your message! 💗')
+            props.createNewCard(formFields);
     }
+        // setFormFields({ messsage: '' })
       };
-    
-    // const check_form = (event) =>{
-    //     if (event.target.value.length === 0){
-    //         alert('invalid input')
-    //     }
-    // }
 
     return (
         <form onSubmit={onSubmit}>
             <div>
-                <label htmlFor="message">Enter Message:</label>
+                <label htmlFor="message">Enter Message: </label>
                 <input name="message"
                     value={formFields.message}
                     onChange={onMessageChange}
@@ -51,8 +45,7 @@ const NewCardForm = (props) => {
                 // minLength="1" 
                 // maxLength="40"
                 // disabled={(formFields.message.length === 0) || (formFields.message.length > 40)}
-                // onClick={check_form}
-                // onClick={clearForm}
+                // disabled={formFields.message === ''}
             />
         </form>
     );
