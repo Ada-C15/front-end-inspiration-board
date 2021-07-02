@@ -27,16 +27,16 @@ header {
 .boards__container {
   display: grid;
   grid-template-columns: 20% 1fr 20%;
-  grid-template-rows: 40% 10% 30%;
+  grid-template-rows: 100%;
   padding-top: 1px;
-}
-
-.ol {
-  border: black solid 2.5px;
 }
 
 .boards__container div {
   margin: 15px;
+}
+
+.ol {
+  border: black solid 2.5px;
 }
 
 .left, .middle, .right, .bottom-left, .bottom-right {
@@ -73,11 +73,7 @@ header {
   
 
 } 
-.bottom-right {
-  grid-column: 3 / 4;
-  grid-row: 3 / 4;
-  height: 100;
-}
+
 
 .newFormHideButton {
   background-color: #def068;

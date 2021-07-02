@@ -16,3 +16,9 @@ h2 {
 .smallButton {
     font-family: 'Red Hat Display', sans-serif;
 }
+
+.bottom-right {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+    height: 100;
+}
