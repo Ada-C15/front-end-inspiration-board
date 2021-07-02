@@ -160,7 +160,7 @@ function App() {
 
       <section className='cards_container'> 
 
-        <div>{selectedBoard.title}</div>
+        <div className='currentboard'>{selectedBoard.title}</div>
         < CardList 
           cardsData={ cardsData }
           upvoteCard={ upvoteCard }
