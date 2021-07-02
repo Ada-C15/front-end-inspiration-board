@@ -87,11 +87,26 @@ button {
   padding: 0.5em;
   background-color: white;
   border: 2px solid #d7b9d5;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+  text-align: left;
 }
 
+ol {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+}
 
+.selected_board {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+}
 
-
-
+.cards_container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+}
 
 

@@ -80,7 +80,7 @@ function App() {
 
         <section>
           <h2>BOARDS</h2>
-          <ul> {allBoardsList} </ul>       
+          <ol> {allBoardsList} </ol>       
         </section>
 
         <section className="selected_board">

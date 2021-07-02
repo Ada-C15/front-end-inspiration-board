@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
 .new-board-form_submit {
     padding: 0.5em;
     background-color: white;
@@ -6,4 +8,24 @@
     flex-direction: column;
     margin-bottom: 2em;
     width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+
+.new-board-form_input[type=text]:focus {
+    border: 3px solid #d7b9d5;
+}
+
+.new-board-form_input[type=text], select {
+    width: 100%;
+    padding: 10px 6px;
+    margin: 15px 0;
+    display: inline-block;
+    border: 1px solid #d7b9d5;
+    box-sizing: border-box;
+}
+
+.new-board-form_form {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
 }

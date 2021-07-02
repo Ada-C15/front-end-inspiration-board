@@ -1,4 +1,5 @@
 
+import './CardList.css';
 import PropTypes from 'prop-types';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
@@ -78,7 +79,7 @@ const CardList = (props) => {
 
     return (
         <section>
-            <h2>Cards for {props.board.title}</h2>
+            <h2>Cards for ✨{props.board.title}✨</h2>
             {cardsDisplayed}
             <NewCardForm addCardCallback={addNewCard}></NewCardForm>
         </section>

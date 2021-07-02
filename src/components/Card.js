@@ -1,4 +1,5 @@
 
+import './Card.css';
 import { useState } from 'react';
 
 const Card = (props) => {
@@ -22,9 +23,9 @@ const Card = (props) => {
         <div className='card-item'>
             <p className='card-item__message'>{props.message}</p>
             <ul className='card-item__controls'>
-                <li><p>{cardLikes}💕</p></li>
+                <li><p>{cardLikes} 💕</p></li>
                 <li><p onClick={likeButton}>+1</p></li>
-                <li><p className='card-item__delete' onClick={deleteButton}>🗑️</p></li>
+                <li><p className='card-item__delete' onClick={deleteButton}>Delete</p></li>
             </ul>
         </div>);
     };

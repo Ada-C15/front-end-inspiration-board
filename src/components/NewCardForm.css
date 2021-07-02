@@ -11,4 +11,24 @@
     padding: 0.5em;
     background-color: white;
     border: 2px solid #d7b9d5;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+
+.new-card-form_form {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+
+.new-card-form_message {
+    width: 100%;
+    padding: 10px 6px;
+    margin: 15px 0;
+    display: inline-block;
+    border: 1px solid #d7b9d5;
+    box-sizing: border-box;
 }

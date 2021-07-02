@@ -23,8 +23,8 @@ const NewCardForm = (props) => {
         <section className="new-card-form_container">
             <form onSubmit={submitNewCard} className="new-card-form_form">
                 <div>
-                    <label htmlFor="message">Message</label>
-                    <input name="message" value={formFields} onChange={onMessageChange} />
+                    <label htmlFor="message">Message:</label>
+                    <input name="message" value={formFields} onChange={onMessageChange} className="new-card-form_message"/>
                 </div>
                 <div>
                     <input type="submit" value="Add New Card" className="new-card-form_submit" />

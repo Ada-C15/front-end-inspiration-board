@@ -30,15 +30,13 @@ const NewBoardForm = (props) => {
 
     return (
         <form onSubmit={submitNewBoard}>
-            <div>
+            <div className="new-board-form_form">
                 <label>Title: </label>
-                <input type="text" name="title" value={title} onChange={onTitleChange} />
-            </div>
-            <div>
+                <input type="text" name="title" value={title} onChange={onTitleChange} className="new-board-form_input" />
                 <label>Owner: </label>
-                <input type="text" name="owner" value={owner} onChange={onOwnerChange} />
+                <input type="text" name="owner" value={owner} onChange={onOwnerChange} className="new-board-form_input"/>
+                <input type="submit" value="Add Board" className="new-board-form_submit"/>
             </div>
-            <input type="submit" value="Add Board" className="new-board-form_submit"/>
         </form>
     );
 
