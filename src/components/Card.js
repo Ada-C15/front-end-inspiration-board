@@ -46,11 +46,11 @@ const Card = (props) => {
                     <textarea defaultValue={props.message} onChange={ onMessageChange }></textarea>
                     <button onClick={() => onSubmitMessage(newMessage)}>Save</button>
                 </>
-                ) : <li>Message: { props.message }</li>}
+                ) : <li className="card-message" >Message: { props.message }</li>}
                 </>
-            <button type='button' onClick={upvoteClick}> Upvote: {props.likesCount}</button>
-            <button type='button' onClick={deleteCardClick}>Delete</button>
-            <button type='button' onClick={editButtonClick}>Edit</button>
+            <button className="stickybutton" type='button' onClick={upvoteClick}> Upvote:  {props.likesCount}</button>
+            <button className="stickybutton" type='button' onClick={deleteCardClick}>Delete</button>
+            <button className="stickybutton" type='button' onClick={editButtonClick}>Edit</button>
         </ul>
     </section>
 
