@@ -9,7 +9,6 @@ import CardList from './components/CardList';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import BoardList from './components/BoardList';
-import './pink-note.png';
 
 function App() {
   const [boardData, setBoardData] = useState([]);
