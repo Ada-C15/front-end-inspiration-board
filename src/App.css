@@ -1,0 +1,23 @@
+.App {
+  background-image: url("https://images6.alphacoders.com/425/425421.jpg");
+  background-color: #ffccff;
+  background-size: cover;
+  text-align: center;
+  color: black;
+  min-height: 100vh;
+  font-size: calc(5px + 2vmin);
+  display: flex;
+  flex-direction: row;
+}
+
+input {
+  box-sizing: content-box;
+}
+
+.invalid-form-input {
+  border: red solid 1px;
+  box-shadow: 0 0 7px red;
+}
+
+
+
