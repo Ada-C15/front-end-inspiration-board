@@ -1,0 +1,13 @@
+.cards__container{
+    -webkit-font-smoothing: antialiased;
+    color: rgb(0, 0, 0);
+    display: grid;
+    font-family: Gill Sans, sans-serif;
+    grid-template-columns: 582.78125px 148.875px;
+    height: 445.78125px;
+    width: 422px;
+}
+
+.h2{
+    -webkit-font-smoothing: antialiased;
+}

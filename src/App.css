@@ -1,0 +1,91 @@
+h1{
+  text-align: center;
+  font-size: 2em;
+}
+.App-header{
+  font-family: Gill Sans, sans-serif;
+  color: white;
+}
+
+footer,
+header {
+  background: rgb(255,100,150);
+  font-family:Gill Sans, sans-serif;
+  padding: 2em 10em;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2em;
+  font-style: bold;
+}
+
+.deleteButton{
+  background: pink;
+  font-weight: bold;
+  border-radius:15px;
+  border:2px solid white;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Verdana;
+  font-size:12px;
+  padding:10px 20px;
+  margin-left: 50px;
+}
+
+.hideForm {
+  padding-left: 60px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1 0 auto;
+}
+
+.boards_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.allBoards {
+  max-height: 9rem;
+  min-height: 9rem;
+  overflow: scroll;
+  border: black dashed 1px;
+  margin-right: 2rem;
+  margin-top: 3rem;
+}
+.new_board, .new_card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.forSingleBoard {
+  position: relative;
+  padding: .8em 1.6em;
+  margin: 2em 1em;
+  border: 2px solid;
+  border-radius: .1em;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  transition: all .3s ease;
+}
+
+.forCreateBoard {
+  position: relative;
+  padding: 0.9em 0.1rem;
+  margin: 2em 3em;
+  border: 2px solid;
+  border-radius: .1em;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  transition: all .3s ease;
+}

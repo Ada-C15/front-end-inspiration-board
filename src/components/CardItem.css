@@ -1,0 +1,28 @@
+.card-item{
+
+    -webkit-font-smoothing: antialiased;
+    align-items: center;
+    background-color: rgb(255, 248, 165);
+    box-shadow: rgb(211, 211, 211) -10px 7px 7px 0px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    font-family: "Concert One", cursive;
+    height: 208.78125px;
+    justify-content: center;
+    min-height: 200px;
+    padding-bottom: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 32px;
+    width: 87.59375px;
+}
+
+.card-item__controls {
+    font-family: "Open Sans", sans-serif;
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    width: 100%;
+    justify-content: space-evenly;
+    }
