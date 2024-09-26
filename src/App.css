@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+/* * {
+    border-style: solid;
+    border-color: red;
+}  */
+
+*{
+    /* font-family: 'Roboto', sans-serif; */
+    color:rgb(39, 39, 39);
+    /* font-weight: lighter; */
+
+
+
+}
+body {
+    animation: 50000ms ease-in-out infinite color-change;
+}
+
+@keyframes color-change {
+    0% {
+        background-color: lightblue;
+    }
+    20% {
+        background-color: rgb(189, 248, 189);
+    }
+    40% {
+        background-color: lightsteelblue;
+    }
+    60% {
+        background-color: rgb(236, 172, 172);
+    }
+    80% {
+        background-color:lightyellow;
+    }
+    100% {
+        background-color:rgb(184, 228, 226);
+    }
+}
+
+.board-list {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    text-align: center;
+    overflow: scroll;
+    margin-right: 2rem;
+    border: black solid 1px;
+    border-radius: 3px;
+    text-align: left;
+    min-height: 65%;
+
+    background-color: #e4e6e7;
+    padding: 0;
+    min-width: 100%;
+}
+
+.board-sec {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 250px;
+    width: 100%;
+} 
+
+.board-list-header {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    min-width: 100%;
+    text-align: right;
+    justify-content: space-between;
+}
+
+.delete-board-icon {
+    margin-left: 22%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: right;
+    cursor: pointer;
+}
+
+.board-header {
+    margin-left: 5%;
+    font-family: 'Roboto', sans-serif;
+    font-size: xxx-large;
+    text-shadow: 3px 3px #ffffff;
+    color:rgb(59, 59, 59);
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 2px 2px #ffffff;
+    color:rgb(59, 59, 59);
+}
+
+.board-sec div {
+    width: 40%;    
+}
+
+.submit-btn {
+    cursor: pointer;
+}

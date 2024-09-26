@@ -1,0 +1,35 @@
+.new-card-form {
+    display: flex;
+    flex-direction: column;
+    min-height: 15vh;
+    max-width: 20vw;
+    min-width: 20vw;
+}
+
+.new-card-form p {
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-weight: 300;
+
+}
+.new-card-form input{
+    margin-top: 15px;
+}
+
+input:hover {
+    color: rgb(11, 158, 207);
+    border: 1px solid #999;
+}
+
+textarea:hover {
+    color: rgb(11, 158, 207);
+    border: 1px solid #999;
+}
+
+.message-box {
+    height: 15vh;
+}
+
+.form-title {
+    margin-bottom: 2.5px;
+}

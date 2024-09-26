@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+
+
+.card {
+    max-height: 20vh;
+    min-height: 20vh;
+    max-width: 20vw;
+    min-width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Kalam', cursive;
+    box-shadow: 3px 3px rgb(182, 182, 182);
+}
+
+.yellow {
+    background-color: rgb(240, 240, 159);
+}
+
+.pink {
+    background-color:rgb(247, 200, 207);
+}
+
+.blue {
+    background-color: rgb(169, 217, 247);
+}
+
+.green {
+    background-color:lightgreen;
+}
+
+.card-bottom {
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* .note {
+    font-family: 'Kalam', cursive;
+} */
